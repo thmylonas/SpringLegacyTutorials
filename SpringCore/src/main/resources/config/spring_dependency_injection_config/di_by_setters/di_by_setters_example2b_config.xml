@@ -9,7 +9,7 @@
     <!-- Using p-namespaces -->
 
     <bean id="bySettersThomas2"
-          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example2.Employee"
+          class="com.thomasmylonas.spring_core.spring_dependency_injection._models.example2.Employee"
           p:firstName="Thomas"
           p:lastName="Mylonas"
           p:age="53"
@@ -17,14 +17,14 @@
           p:job-ref="bySettersThomasJob2"/>
 
     <bean id="bySettersThomasCar2"
-          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example2.Car"
+          class="com.thomasmylonas.spring_core.spring_dependency_injection._models.example2.Car"
           p:type="Mazda 6"
           p:name="Thomas's car"
           p:velocity="250"
           p:carAge="10"/>
 
     <bean id="bySettersThomasJob2"
-          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example2.Job"
+          class="com.thomasmylonas.spring_core.spring_dependency_injection._models.example2.Job"
           p:name="Computer Scientist and Mathematician"
           p:salary="2500.00"/>
 </beans>

@@ -6,7 +6,7 @@
        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
     <bean id="bySettersThomas1"
-          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example2.Employee">
+          class="com.thomasmylonas.spring_core.spring_dependency_injection._models.example2.Employee">
         <property name="firstName" value="Thomas"/>
         <property name="lastName" value="Mylonas"/>
         <property name="age" value="53"/>
@@ -15,7 +15,7 @@
     </bean>
 
     <bean id="bySettersThomasCar1"
-          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example2.Car">
+          class="com.thomasmylonas.spring_core.spring_dependency_injection._models.example2.Car">
         <property name="type" value="Mazda 6"/>
         <property name="name" value="Thomas's car"/>
         <property name="velocity" value="250"/>
@@ -23,7 +23,7 @@
     </bean>
 
     <bean id="bySettersThomasJob1"
-          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example2.Job">
+          class="com.thomasmylonas.spring_core.spring_dependency_injection._models.example2.Job">
         <property name="name" value="Computer Scientist and Mathematician"/>
         <property name="salary" value="2500.00"/>
     </bean>

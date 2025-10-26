@@ -7,7 +7,7 @@
        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
     <bean id="bySettersLibrary"
-          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example3.Library">
+          class="com.thomasmylonas.spring_core.spring_dependency_injection._models.example3.Library">
 
         <!-- Beans fields -->
         <property name="manager" ref="bySettersAniLorakManager"/>
@@ -66,7 +66,7 @@
     <!-- Persons beans (based on "Person") -->
 
     <bean id="bySettersAniLorakManager"
-          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example3.Person">
+          class="com.thomasmylonas.spring_core.spring_dependency_injection._models.example3.Person">
         <property name="name" value="Karolina Miroslavina Kuek"/>
         <property name="age" value="47"/>
         <property name="address" value="Russian singer/Ballerina"/>
@@ -76,7 +76,7 @@
     <!-- Teachers beans (based on "Teacher") -->
 
     <bean id="bySettersSpilca"
-          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example3.Teacher">
+          class="com.thomasmylonas.spring_core.spring_dependency_injection._models.example3.Teacher">
         <property name="name" value="Laurentiu Spilca"/>
         <property name="age" value="37"/>
         <property name="address" value="Calea Victoriei, 15"/>
@@ -87,7 +87,7 @@
     </bean>
 
     <bean id="bySettersPaumard"
-          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example3.Teacher">
+          class="com.thomasmylonas.spring_core.spring_dependency_injection._models.example3.Teacher">
         <property name="name" value="Jose Paumard"/>
         <property name="age" value="49"/>
         <property name="address" value="Rue des Abbesses, 25"/>
@@ -98,7 +98,7 @@
     </bean>
 
     <bean id="bySettersSubramaniam"
-          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example3.Teacher">
+          class="com.thomasmylonas.spring_core.spring_dependency_injection._models.example3.Teacher">
         <property name="name" value="Venkat Subramaniam"/>
         <property name="age" value="59"/>
         <property name="address" value="Chandni Chowk, 35"/>
@@ -109,7 +109,7 @@
     </bean>
 
     <bean id="bySettersMihalcea"
-          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example3.Teacher">
+          class="com.thomasmylonas.spring_core.spring_dependency_injection._models.example3.Teacher">
         <property name="name" value="Vlad Mihalcea"/>
         <property name="age" value="46"/>
         <property name="address" value="Splaiul Unirii, 45"/>
@@ -122,7 +122,7 @@
     <!-- Books beans (based on "Book") -->
 
     <bean id="bySettersSpringSecurityInAction2Edition"
-          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example3.Book">
+          class="com.thomasmylonas.spring_core.spring_dependency_injection._models.example3.Book">
         <property name="title" value="Spring Security in Action, 2nd Edition"/>
         <property name="genre" value="Spring Programming books"/>
         <property name="isbn" value="405ab1ca-a833-4862-bbc9-0417f1b2e830"/>
@@ -131,7 +131,7 @@
     </bean>
 
     <bean id="bySettersJava8InAction"
-          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example3.Book">
+          class="com.thomasmylonas.spring_core.spring_dependency_injection._models.example3.Book">
         <property name="title" value="Java 8 in Action"/>
         <property name="genre" value="Java Programming books"/>
         <property name="isbn" value="94afbcc6-1c7f-4530-8d60-14e626393cef"/>
@@ -140,7 +140,7 @@
     </bean>
 
     <bean id="bySettersFunctionalProgrammingInJava2Edition"
-          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example3.Book">
+          class="com.thomasmylonas.spring_core.spring_dependency_injection._models.example3.Book">
         <property name="title" value="Functional Programming in Java, 2nd Edition"/>
         <property name="genre" value="Java Programming books"/>
         <property name="isbn" value="034a19b5-7926-477c-b320-df3a08c0ce07"/>
@@ -149,7 +149,7 @@
     </bean>
 
     <bean id="bySettersHighPerformanceJavaPersistence"
-          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example3.Book">
+          class="com.thomasmylonas.spring_core.spring_dependency_injection._models.example3.Book">
         <property name="title" value="High-Performance Java Persistence"/>
         <property name="genre" value="Hibernate books"/>
         <property name="isbn" value="f2e3c967-03d3-40fd-afe1-51e04f316cfa"/>
@@ -158,7 +158,7 @@
     </bean>
 
     <bean id="bySettersZombiesOnPlane"
-          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example3.Book"
+          class="com.thomasmylonas.spring_core.spring_dependency_injection._models.example3.Book"
           p:title="Zombies on a plane"
           p:genre="Thriller books"
           p:isbn="c9fc5173-e050-4692-8ef6-2a915e54e791"
@@ -166,7 +166,7 @@
           p:penaltyOnDelay="30.00"/>
 
     <bean id="bySettersZombiesOnTrain"
-          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example3.Book">
+          class="com.thomasmylonas.spring_core.spring_dependency_injection._models.example3.Book">
         <property name="title" value="Zombies on a train"/>
         <property name="genre" value="Thriller books"/>
         <property name="isbn" value="77d24be8-c44c-49e7-a64f-efaf761416ad"/>

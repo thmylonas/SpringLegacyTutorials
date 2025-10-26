@@ -8,16 +8,16 @@
     <!-- spring_dependency_injection -->
 
     <bean id="dependencyInjectionByConstructorsTutorial"
-          class="com.thomasmylonas.spring_legacy.spring_dependency_injection.DependencyInjectionByConstructorsTutorial">
+          class="com.thomasmylonas.spring_core.spring_dependency_injection.DependencyInjectionByConstructorsTutorial">
     </bean>
 
     <bean id="dependencyInjectionBySettersTutorial"
-          class="com.thomasmylonas.spring_legacy.spring_dependency_injection.DependencyInjectionBySettersTutorial">
+          class="com.thomasmylonas.spring_core.spring_dependency_injection.DependencyInjectionBySettersTutorial">
     </bean>
 
     <!-- spring_dependency_injection_alt -->
 
     <bean id="dependencyInjectionAltTutorial"
-          class="com.thomasmylonas.spring_legacy.spring_dependency_injection_alt.DependencyInjectionAltTutorial">
+          class="com.thomasmylonas.spring_core.spring_dependency_injection_alt.DependencyInjectionAltTutorial">
     </bean>
 </beans>

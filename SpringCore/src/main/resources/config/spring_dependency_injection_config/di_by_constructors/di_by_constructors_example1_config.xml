@@ -7,7 +7,7 @@
        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
     <bean id="byConstructorsGroupOfPeople"
-          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example1.GroupOfPeople">
+          class="com.thomasmylonas.spring_core.spring_dependency_injection._models.example1.GroupOfPeople">
 
         <!--  Simple Types fields -->
         <constructor-arg name="groupDescription" value="Group of people"/>
@@ -77,14 +77,14 @@
     <!-- Russian singers beans (based on "Person*") -->
 
     <bean id="byConstructorsAniLorak"
-          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example1.Person1"
+          class="com.thomasmylonas.spring_core.spring_dependency_injection._models.example1.Person1"
           c:name1="Karolina Miroslavina Kuek"
           c:age1="43"
           c:info1="Russian singer/Ballerina"
           c:salary1="25000.00"/>
 
     <bean id="byConstructorsJasmine"
-          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example1.Person2">
+          class="com.thomasmylonas.spring_core.spring_dependency_injection._models.example1.Person2">
         <constructor-arg value="Jasmine Lvovna Manakhimova"/>
         <constructor-arg value="45"/>
         <constructor-arg value="Russian singer"/>
@@ -92,7 +92,7 @@
     </bean>
 
     <bean id="byConstructorsLiubanya"
-          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example1.Person3">
+          class="com.thomasmylonas.spring_core.spring_dependency_injection._models.example1.Person3">
         <constructor-arg value="Liubanya"/>
         <constructor-arg value="35"/>
         <constructor-arg value="Music instrumental group"/>
@@ -100,7 +100,7 @@
     </bean>
 
     <bean id="byConstructorsMarina"
-          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example1.Person4">
+          class="com.thomasmylonas.spring_core.spring_dependency_injection._models.example1.Person4">
         <constructor-arg value="Marina Devyatova"/>
         <constructor-arg value="50"/>
         <constructor-arg value="Traditional Russian singer"/>
@@ -110,7 +110,7 @@
     <!-- Rhythmic gymnastics girls beans (based on "Person1") -->
 
     <bean id="byConstructorsSasha"
-          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example1.Person1">
+          class="com.thomasmylonas.spring_core.spring_dependency_injection._models.example1.Person1">
         <constructor-arg value="Aleksandra Soldatova"/>
         <constructor-arg value="22"/>
         <constructor-arg value="Rhythmic Gymnast"/>
@@ -118,7 +118,7 @@
     </bean>
 
     <bean id="byConstructorsYana"
-          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example1.Person1">
+          class="com.thomasmylonas.spring_core.spring_dependency_injection._models.example1.Person1">
         <constructor-arg value="Yana Kudriavtseva"/>
         <constructor-arg value="21"/>
         <constructor-arg value="Rhythmic Gymnast"/>
@@ -126,7 +126,7 @@
     </bean>
 
     <bean id="byConstructorsZenya"
-          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example1.Person1">
+          class="com.thomasmylonas.spring_core.spring_dependency_injection._models.example1.Person1">
         <constructor-arg value="Zenya Kanaeva"/>
         <constructor-arg name="age1" value="35"/>
         <constructor-arg name="info1" value="Rhythmic Gymnast"/>
@@ -134,7 +134,7 @@
     </bean>
 
     <bean id="byConstructorsAlina"
-          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example1.Person1">
+          class="com.thomasmylonas.spring_core.spring_dependency_injection._models.example1.Person1">
         <constructor-arg name="name1" value="Alina Kabaeva"/>
         <constructor-arg name="age1" value="30"/>
         <constructor-arg name="info1" value="Rhythmic Gymnast"/>
@@ -142,7 +142,7 @@
     </bean>
 
     <bean id="byConstructorsMelita"
-          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example1.Person1">
+          class="com.thomasmylonas.spring_core.spring_dependency_injection._models.example1.Person1">
         <constructor-arg value="Melitina Staniouta"/>
         <constructor-arg value="26"/>
         <constructor-arg value="Rhythmic Gymnast"/>
