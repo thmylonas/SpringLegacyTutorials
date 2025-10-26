@@ -8,7 +8,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>jar</packaging>
     <name>SpringCore</name>
-    <description>A tutorial application for Spring_Legacy_Framework (Core, AOP, JDBC, Web, etc.)</description>
+    <description>Spring_Legacy_Framework/SpringCore</description>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
