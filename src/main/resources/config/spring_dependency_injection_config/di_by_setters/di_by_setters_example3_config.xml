@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="bySettersLibrary"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example3.Library">
+
+        <!-- Beans fields -->
+        <property name="manager" ref="bySettersAniLorakManager"/>
+
+        <!-- Collections fields -->
+
+        <!-- "List<Teacher> teachers" -->
+        <property name="teachers">
+            <list>
+                <ref bean="bySettersSpilca"/>
+                <ref bean="bySettersPaumard"/>
+                <ref bean="bySettersSubramaniam"/>
+                <ref bean="bySettersMihalcea"/>
+            </list>
+        </property>
+
+        <!-- "Set<Book> books" -->
+        <property name="books">
+            <set>
+                <ref bean="bySettersSpringSecurityInAction2Edition"/>
+                <ref bean="bySettersJava8InAction"/>
+                <ref bean="bySettersFunctionalProgrammingInJava2Edition"/>
+                <ref bean="bySettersHighPerformanceJavaPersistence"/>
+            </set>
+        </property>
+
+        <!-- "Map<String, String> teacherBookMapping" -->
+        <property name="teacherBookMapping">
+            <map>
+                <entry key="Laurentiu Spilca" value="Spring Security in Action, 2nd Edition"/>
+                <entry key="Jose Paumard" value="Java 8 in Action"/>
+                <entry key="Venkat Subramaniam" value="Functional Programming in Java, 2nd Edition"/>
+                <entry key="Vlad Mihalcea" value="High-Performance Java Persistence"/>
+            </map>
+        </property>
+
+        <!-- "Properties (String, String) teacherInfo" -->
+        <property name="teacherInfo">
+            <props>
+                <prop key="Laurentiu Spilca">
+                    Java and Spring developer and experienced technology instructor
+                </prop>
+                <prop key="Jose Paumard">
+                    Java Developer Relations (DevRel) Advocate at Oracle
+                </prop>
+                <prop key="Venkat Subramaniam">
+                    Professor of University of Houston, founder of Agile
+                </prop>
+                <prop key="Vlad Mihalcea">
+                    Java Champion and Hibernate Developer Advocate
+                </prop>
+            </props>
+        </property>
+    </bean>
+
+    <!-- Persons beans (based on "Person") -->
+
+    <bean id="bySettersAniLorakManager"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example3.Person">
+        <property name="name" value="Karolina Miroslavina Kuek"/>
+        <property name="age" value="47"/>
+        <property name="address" value="Russian singer/Ballerina"/>
+        <property name="phoneNumber" value="696969691"/>
+    </bean>
+
+    <!-- Teachers beans (based on "Teacher") -->
+
+    <bean id="bySettersSpilca"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example3.Teacher">
+        <property name="name" value="Laurentiu Spilca"/>
+        <property name="age" value="37"/>
+        <property name="address" value="Calea Victoriei, 15"/>
+        <property name="phoneNumber" value="111111111"/>
+        <property name="bookGenre" value="Spring Programming books"/>
+        <property name="visitsPerWeek" value="4"/>
+        <property name="hoursOfDelay" value="3"/>
+    </bean>
+
+    <bean id="bySettersPaumard"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example3.Teacher">
+        <property name="name" value="Jose Paumard"/>
+        <property name="age" value="49"/>
+        <property name="address" value="Rue des Abbesses, 25"/>
+        <property name="phoneNumber" value="222222222"/>
+        <property name="bookGenre" value="Java Programming books"/>
+        <property name="visitsPerWeek" value="10"/>
+        <property name="hoursOfDelay" value="4"/>
+    </bean>
+
+    <bean id="bySettersSubramaniam"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example3.Teacher">
+        <property name="name" value="Venkat Subramaniam"/>
+        <property name="age" value="59"/>
+        <property name="address" value="Chandni Chowk, 35"/>
+        <property name="phoneNumber" value="333333333"/>
+        <property name="bookGenre" value="Java Programming books"/>
+        <property name="visitsPerWeek" value="15"/>
+        <property name="hoursOfDelay" value="8"/>
+    </bean>
+
+    <bean id="bySettersMihalcea"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example3.Teacher">
+        <property name="name" value="Vlad Mihalcea"/>
+        <property name="age" value="46"/>
+        <property name="address" value="Splaiul Unirii, 45"/>
+        <property name="phoneNumber" value="444444444"/>
+        <property name="bookGenre" value="Hibernate books"/>
+        <property name="visitsPerWeek" value="10"/>
+        <property name="hoursOfDelay" value="4"/>
+    </bean>
+
+    <!-- Books beans (based on "Book") -->
+
+    <bean id="bySettersSpringSecurityInAction2Edition"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example3.Book">
+        <property name="title" value="Spring Security in Action, 2nd Edition"/>
+        <property name="genre" value="Spring Programming books"/>
+        <property name="isbn" value="405ab1ca-a833-4862-bbc9-0417f1b2e830"/>
+        <property name="numberOfPages" value="440"/>
+        <property name="penaltyOnDelay" value="20.00"/>
+    </bean>
+
+    <bean id="bySettersJava8InAction"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example3.Book">
+        <property name="title" value="Java 8 in Action"/>
+        <property name="genre" value="Java Programming books"/>
+        <property name="isbn" value="94afbcc6-1c7f-4530-8d60-14e626393cef"/>
+        <property name="numberOfPages" value="424"/>
+        <property name="penaltyOnDelay" value="20.00"/>
+    </bean>
+
+    <bean id="bySettersFunctionalProgrammingInJava2Edition"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example3.Book">
+        <property name="title" value="Functional Programming in Java, 2nd Edition"/>
+        <property name="genre" value="Java Programming books"/>
+        <property name="isbn" value="034a19b5-7926-477c-b320-df3a08c0ce07"/>
+        <property name="numberOfPages" value="276"/>
+        <property name="penaltyOnDelay" value="25.00"/>
+    </bean>
+
+    <bean id="bySettersHighPerformanceJavaPersistence"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example3.Book">
+        <property name="title" value="High-Performance Java Persistence"/>
+        <property name="genre" value="Hibernate books"/>
+        <property name="isbn" value="f2e3c967-03d3-40fd-afe1-51e04f316cfa"/>
+        <property name="numberOfPages" value="488"/>
+        <property name="penaltyOnDelay" value="25.00"/>
+    </bean>
+
+    <bean id="bySettersZombiesOnPlane"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example3.Book"
+          p:title="Zombies on a plane"
+          p:genre="Thriller books"
+          p:isbn="c9fc5173-e050-4692-8ef6-2a915e54e791"
+          p:numberOfPages="850"
+          p:penaltyOnDelay="30.00"/>
+
+    <bean id="bySettersZombiesOnTrain"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example3.Book">
+        <property name="title" value="Zombies on a train"/>
+        <property name="genre" value="Thriller books"/>
+        <property name="isbn" value="77d24be8-c44c-49e7-a64f-efaf761416ad"/>
+        <property name="numberOfPages" value="730"/>
+        <property name="penaltyOnDelay" value="27.00"/>
+    </bean>
+</beans>

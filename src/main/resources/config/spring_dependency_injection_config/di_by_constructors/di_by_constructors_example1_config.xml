@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="byConstructorsGroupOfPeople"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example1.GroupOfPeople">
+
+        <!--  Simple Types fields -->
+        <constructor-arg name="groupDescription" value="Group of people"/>
+        <constructor-arg name="groupInfo" value="Russian singers/Rhythmic gymnastics girls"/>
+        <constructor-arg name="groupSize" value="4"/>
+
+        <!-- Beans fields -->
+        <constructor-arg name="person1" ref="byConstructorsAniLorak"/>
+        <constructor-arg name="person2" ref="byConstructorsJasmine"/>
+        <constructor-arg name="person3" ref="byConstructorsLiubanya"/>
+        <constructor-arg name="person4">
+            <ref bean="byConstructorsMarina"/>
+        </constructor-arg>
+
+        <!-- Collections fields -->
+
+        <!-- "List<String> peopleNames" -->
+        <constructor-arg name="peopleNames">
+            <list>
+                <value>Karolina Miroslavina Kuek</value>
+                <value>Jasmine Lvovna Manakhimova</value>
+                <value>Liubanya</value>
+                <value>Marina Devyatova</value>
+            </list>
+        </constructor-arg>
+
+        <!-- "Set<Person1> people" -->
+        <constructor-arg name="people">
+            <set>
+                <ref bean="byConstructorsSasha"/>
+                <ref bean="byConstructorsYana"/>
+                <ref bean="byConstructorsZenya"/>
+                <ref bean="byConstructorsAlina"/>
+                <ref bean="byConstructorsMelita"/>
+            </set>
+        </constructor-arg>
+
+        <!-- "Map<String, Integer> peopleNameAgeMapping" -->
+        <constructor-arg name="peopleNameAgeMapping">
+            <map>
+                <entry key="Karolina Miroslavina Kuek" value="43"/>
+                <entry key="Jasmine Lvovna Manakhimova" value="45"/>
+                <entry key="Liubanya" value="35"/>
+                <entry key="Marina Devyatova" value="50"/>
+            </map>
+        </constructor-arg>
+
+        <!-- "Properties (String, String) peopleInfo" -->
+        <constructor-arg name="peopleInfo">
+            <props>
+                <prop key="Karolina Miroslavina Kuek">
+                    Russian singer/Ballerina
+                </prop>
+                <prop key="Jasmine Lvovna Manakhimova">
+                    Russian singer
+                </prop>
+                <prop key="Liubanya">
+                    Music instrumental group
+                </prop>
+                <prop key="Marina Devyatova">
+                    Traditional Russian singer
+                </prop>
+            </props>
+        </constructor-arg>
+    </bean>
+
+    <!-- Russian singers beans (based on "Person*") -->
+
+    <bean id="byConstructorsAniLorak"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example1.Person1"
+          c:name1="Karolina Miroslavina Kuek"
+          c:age1="43"
+          c:info1="Russian singer/Ballerina"
+          c:salary1="25000.00"/>
+
+    <bean id="byConstructorsJasmine"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example1.Person2">
+        <constructor-arg value="Jasmine Lvovna Manakhimova"/>
+        <constructor-arg value="45"/>
+        <constructor-arg value="Russian singer"/>
+        <constructor-arg name="salary2" value="15000.00"/>
+    </bean>
+
+    <bean id="byConstructorsLiubanya"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example1.Person3">
+        <constructor-arg value="Liubanya"/>
+        <constructor-arg value="35"/>
+        <constructor-arg value="Music instrumental group"/>
+        <constructor-arg value="10000.00"/>
+    </bean>
+
+    <bean id="byConstructorsMarina"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example1.Person4">
+        <constructor-arg value="Marina Devyatova"/>
+        <constructor-arg value="50"/>
+        <constructor-arg value="Traditional Russian singer"/>
+        <constructor-arg value="20000.00"/>
+    </bean>
+
+    <!-- Rhythmic gymnastics girls beans (based on "Person1") -->
+
+    <bean id="byConstructorsSasha"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example1.Person1">
+        <constructor-arg value="Aleksandra Soldatova"/>
+        <constructor-arg value="22"/>
+        <constructor-arg value="Rhythmic Gymnast"/>
+        <constructor-arg value="5000.00"/>
+    </bean>
+
+    <bean id="byConstructorsYana"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example1.Person1">
+        <constructor-arg value="Yana Kudriavtseva"/>
+        <constructor-arg value="21"/>
+        <constructor-arg value="Rhythmic Gymnast"/>
+        <constructor-arg value="5000.00"/>
+    </bean>
+
+    <bean id="byConstructorsZenya"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example1.Person1">
+        <constructor-arg value="Zenya Kanaeva"/>
+        <constructor-arg name="age1" value="35"/>
+        <constructor-arg name="info1" value="Rhythmic Gymnast"/>
+        <constructor-arg name="salary1" value="5000.00"/>
+    </bean>
+
+    <bean id="byConstructorsAlina"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example1.Person1">
+        <constructor-arg name="name1" value="Alina Kabaeva"/>
+        <constructor-arg name="age1" value="30"/>
+        <constructor-arg name="info1" value="Rhythmic Gymnast"/>
+        <constructor-arg name="salary1" value="3000.00"/>
+    </bean>
+
+    <bean id="byConstructorsMelita"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example1.Person1">
+        <constructor-arg value="Melitina Staniouta"/>
+        <constructor-arg value="26"/>
+        <constructor-arg value="Rhythmic Gymnast"/>
+        <constructor-arg value="5000.00"/>
+    </bean>
+</beans>

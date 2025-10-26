@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:c="http://www.springframework.org/schema/c"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="byConstructorsLibrary"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example3.Library">
+
+        <!-- Beans fields -->
+        <constructor-arg name="manager" ref="byConstructorsAniLorakManager"/>
+
+        <!-- Collections fields -->
+
+        <!-- "List<Teacher> teachers" -->
+        <constructor-arg name="teachers">
+            <list>
+                <ref bean="byConstructorsSpilca"/>
+                <ref bean="byConstructorsPaumard"/>
+                <ref bean="byConstructorsSubramaniam"/>
+                <ref bean="byConstructorsMihalcea"/>
+            </list>
+        </constructor-arg>
+
+        <!-- "Set<Book> books" -->
+        <constructor-arg name="books">
+            <set>
+                <ref bean="byConstructorsSpringSecurityInAction2Edition"/>
+                <ref bean="byConstructorsJava8InAction"/>
+                <ref bean="byConstructorsFunctionalProgrammingInJava2Edition"/>
+                <ref bean="byConstructorsHighPerformanceJavaPersistence"/>
+            </set>
+        </constructor-arg>
+
+        <!-- "Map<String, String> teacherBookMapping" -->
+        <constructor-arg name="teacherBookMapping">
+            <map>
+                <entry key="Laurentiu Spilca" value="Spring Security in Action, 2nd Edition"/>
+                <entry key="Jose Paumard" value="Java 8 in Action"/>
+                <entry key="Venkat Subramaniam" value="Functional Programming in Java, 2nd Edition"/>
+                <entry key="Vlad Mihalcea" value="High-Performance Java Persistence"/>
+            </map>
+        </constructor-arg>
+
+        <!-- "Properties (String, String) teacherInfo" -->
+        <constructor-arg name="teacherInfo">
+            <props>
+                <prop key="Laurentiu Spilca">
+                    Java and Spring developer and experienced technology instructor
+                </prop>
+                <prop key="Jose Paumard">
+                    Java Developer Relations (DevRel) Advocate at Oracle
+                </prop>
+                <prop key="Venkat Subramaniam">
+                    Professor of University of Houston, founder of Agile
+                </prop>
+                <prop key="Vlad Mihalcea">
+                    Java Champion and Hibernate Developer Advocate
+                </prop>
+            </props>
+        </constructor-arg>
+    </bean>
+
+    <!-- Persons beans (based on "Person") -->
+
+    <bean id="byConstructorsAniLorakManager"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example3.Person">
+        <constructor-arg value="Karolina Miroslavina Kuek"/>
+        <constructor-arg value="47"/>
+        <constructor-arg value="Russian singer/Ballerina"/>
+        <constructor-arg name="phoneNumber" value="696969691"/>
+    </bean>
+
+    <!-- Teachers beans (based on "Teacher") -->
+
+    <bean id="byConstructorsSpilca"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example3.Teacher"
+          c:name="Laurentiu Spilca"
+          c:age="37"
+          c:address="Calea Victoriei, 15"
+          c:phoneNumber="111111111"
+          c:bookGenre="Spring Programming books"
+          c:visitsPerWeek="4"
+          c:hoursOfDelay="3"/>
+
+    <bean id="byConstructorsPaumard"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example3.Teacher">
+        <constructor-arg name="name" value="Jose Paumard"/>
+        <constructor-arg name="age" value="49"/>
+        <constructor-arg name="address" value="Rue des Abbesses, 25"/>
+        <constructor-arg name="phoneNumber" value="222222222"/>
+        <constructor-arg name="bookGenre" value="Java Programming books"/>
+        <constructor-arg name="visitsPerWeek" value="10"/>
+        <constructor-arg name="hoursOfDelay" value="4"/>
+    </bean>
+
+    <bean id="byConstructorsSubramaniam"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example3.Teacher">
+        <constructor-arg name="name" value="Venkat Subramaniam"/>
+        <constructor-arg name="age" value="59"/>
+        <constructor-arg name="address" value="Chandni Chowk, 35"/>
+        <constructor-arg name="phoneNumber" value="333333333"/>
+        <constructor-arg name="bookGenre" value="Java Programming books"/>
+        <constructor-arg name="visitsPerWeek" value="15"/>
+        <constructor-arg name="hoursOfDelay" value="8"/>
+    </bean>
+
+    <bean id="byConstructorsMihalcea"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example3.Teacher">
+        <constructor-arg name="name" value="Vlad Mihalcea"/>
+        <constructor-arg name="age" value="46"/>
+        <constructor-arg name="address" value="Splaiul Unirii, 45"/>
+        <constructor-arg name="phoneNumber" value="444444444"/>
+        <constructor-arg name="bookGenre" value="Hibernate books"/>
+        <constructor-arg name="visitsPerWeek" value="10"/>
+        <constructor-arg name="hoursOfDelay" value="4"/>
+    </bean>
+
+    <!-- Books beans (based on "Book") -->
+
+    <bean id="byConstructorsSpringSecurityInAction2Edition"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example3.Book">
+        <constructor-arg name="title" value="Spring Security in Action, 2nd Edition"/>
+        <constructor-arg name="genre" value="Spring Programming books"/>
+        <constructor-arg name="isbn" value="405ab1ca-a833-4862-bbc9-0417f1b2e830"/>
+        <constructor-arg name="numberOfPages" value="440"/>
+        <constructor-arg name="penaltyOnDelay" value="20.00"/>
+    </bean>
+
+    <bean id="byConstructorsJava8InAction"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example3.Book">
+        <constructor-arg name="title" value="Java 8 in Action"/>
+        <constructor-arg name="genre" value="Java Programming books"/>
+        <constructor-arg name="isbn" value="94afbcc6-1c7f-4530-8d60-14e626393cef"/>
+        <constructor-arg name="numberOfPages" value="424"/>
+        <constructor-arg name="penaltyOnDelay" value="20.00"/>
+    </bean>
+
+    <bean id="byConstructorsFunctionalProgrammingInJava2Edition"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example3.Book">
+        <constructor-arg name="title" value="Functional Programming in Java, 2nd Edition"/>
+        <constructor-arg name="genre" value="Java Programming books"/>
+        <constructor-arg name="isbn" value="034a19b5-7926-477c-b320-df3a08c0ce07"/>
+        <constructor-arg name="numberOfPages" value="276"/>
+        <constructor-arg name="penaltyOnDelay" value="25.00"/>
+    </bean>
+
+    <bean id="byConstructorsHighPerformanceJavaPersistence"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example3.Book">
+        <constructor-arg name="title" value="High-Performance Java Persistence"/>
+        <constructor-arg name="genre" value="Hibernate books"/>
+        <constructor-arg name="isbn" value="f2e3c967-03d3-40fd-afe1-51e04f316cfa"/>
+        <constructor-arg name="numberOfPages" value="488"/>
+        <constructor-arg name="penaltyOnDelay" value="25.00"/>
+    </bean>
+
+    <bean id="byConstructorsZombiesOnPlane"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example3.Book"
+          c:title="Zombies on a plane"
+          c:genre="Thriller books"
+          c:isbn="c9fc5173-e050-4692-8ef6-2a915e54e791"
+          c:numberOfPages="850"
+          c:penaltyOnDelay="30.00"/>
+
+    <bean id="byConstructorsZombiesOnTrain"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example3.Book">
+        <constructor-arg name="title" value="Zombies on a train"/>
+        <constructor-arg name="genre" value="Thriller books"/>
+        <constructor-arg name="isbn" value="77d24be8-c44c-49e7-a64f-efaf761416ad"/>
+        <constructor-arg name="numberOfPages" value="730"/>
+        <constructor-arg name="penaltyOnDelay" value="27.00"/>
+    </bean>
+</beans>

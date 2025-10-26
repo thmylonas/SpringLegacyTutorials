@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="studentThomas"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection_alt._models.Student">
+
+        <property name="firstName" value="Thomas"/>
+        <property name="lastName" value="Mylonas"/>
+        <property name="age" value="53"/>
+
+        <property name="nikomedeiasAddress">
+            <!-- Instead of using a reference to a "nikomedeiasAddress" bean, we simply can define it inline, as an inner bean -->
+            <bean class="com.thomasmylonas.spring_legacy.spring_dependency_injection_alt._models.Address">
+                <property name="street" value="Nikomedeias"/>
+                <property name="number" value="11"/>
+                <property name="postCode" value="38445"/>
+            </bean>
+        </property>
+    </bean>
+</beans>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="byConstructorsThomas1"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example2.Employee">
+        <constructor-arg type="java.lang.String" value="Thomas"/> <!-- firstName -->
+        <constructor-arg type="java.lang.String" value="Mylonas"/> <!-- lastName -->
+        <constructor-arg type="int" value="53"/> <!-- age -->
+        <constructor-arg ref="byConstructorsThomasCar1"/> <!-- car -->
+        <constructor-arg ref="byConstructorsThomasJob1"/> <!-- job -->
+    </bean>
+
+    <bean id="byConstructorsThomasCar1"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example2.Car">
+        <constructor-arg index="0" value="Mazda 6"/> <!-- type -->
+        <constructor-arg index="1" value="Thomas's car"/> <!-- name -->
+        <constructor-arg index="2" value="250"/> <!-- velocity -->
+        <constructor-arg index="3" value="10"/> <!-- carAge -->
+    </bean>
+
+    <bean id="byConstructorsThomasJob1"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example2.Job">
+        <constructor-arg type="java.lang.String" value="Computer Scientist and Mathematician"/> <!-- name -->
+        <constructor-arg type="double" value="2500.00"/> <!-- salary -->
+    </bean>
+</beans>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8" ?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <bean id="bySettersGroupOfPeople"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example1.GroupOfPeople">
+
+        <!--  Simple Types fields -->
+        <property name="groupDescription" value="Group of people"/>
+        <property name="groupInfo" value="Russian singers/Rhythmic gymnastics girls"/>
+        <property name="groupSize" value="4"/>
+
+        <!-- Beans fields -->
+        <property name="person1" ref="bySettersAniLorak"/>
+        <property name="person2" ref="bySettersJasmine"/>
+        <property name="person3" ref="bySettersLiubanya"/>
+        <property name="person4">
+            <ref bean="bySettersMarina"/>
+        </property>
+
+        <!-- Collections fields -->
+
+        <!-- "List<String> peopleNames" -->
+        <property name="peopleNames">
+            <list>
+                <value>Karolina Miroslavina Kuek</value>
+                <value>Jasmine Lvovna Manakhimova</value>
+                <value>Liubanya</value>
+                <value>Marina Devyatova</value>
+            </list>
+        </property>
+
+        <!-- "Set<Person1> people" -->
+        <property name="people">
+            <set>
+                <ref bean="bySettersSasha"/>
+                <ref bean="bySettersYana"/>
+                <ref bean="bySettersZenya"/>
+                <ref bean="bySettersAlina"/>
+                <ref bean="bySettersMelita"/>
+            </set>
+        </property>
+
+        <!-- "Map<String, Integer> peopleNameAgeMapping" -->
+        <property name="peopleNameAgeMapping">
+            <map>
+                <entry key="Karolina Miroslavina Kuek" value="43"/>
+                <entry key="Jasmine Lvovna Manakhimova" value="45"/>
+                <entry key="Liubanya" value="35"/>
+                <entry key="Marina Devyatova" value="50"/>
+            </map>
+        </property>
+
+        <!-- "Properties (String, String) peopleInfo" -->
+        <property name="peopleInfo">
+            <props>
+                <prop key="Karolina Miroslavina Kuek">
+                    Russian singer/Ballerina
+                </prop>
+                <prop key="Jasmine Lvovna Manakhimova">
+                    Russian singer
+                </prop>
+                <prop key="Liubanya">
+                    Music instrumental group
+                </prop>
+                <prop key="Marina Devyatova">
+                    Traditional Russian singer
+                </prop>
+            </props>
+        </property>
+    </bean>
+
+    <!-- Russian singers beans (based on "Person*") -->
+
+    <bean id="bySettersAniLorak"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example1.Person1"
+          p:name1="Karolina Miroslavina Kuek"
+          p:age1="43"
+          p:info1="Russian singer/Ballerina"
+          p:salary1="25000.00"/>
+
+    <bean id="bySettersJasmine"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example1.Person2">
+        <property name="name2" value="Jasmine Lvovna Manakhimova"/>
+        <property name="age2" value="45"/>
+        <property name="info2" value="Russian singer"/>
+        <property name="salary2" value="15000.00"/>
+    </bean>
+
+    <bean id="bySettersLiubanya"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example1.Person3">
+        <property name="name3" value="Liubanya"/>
+        <property name="age3" value="35"/>
+        <property name="info3" value="Music instrumental group"/>
+        <property name="salary3" value="10000.00"/>
+    </bean>
+
+    <bean id="bySettersMarina"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example1.Person4">
+        <property name="name4" value="Marina Devyatova"/>
+        <property name="age4" value="50"/>
+        <property name="info4" value="Traditional Russian singer"/>
+        <property name="salary4" value="20000.00"/>
+    </bean>
+
+    <!-- Rhythmic gymnastics girls beans (based on "Person1") -->
+
+    <bean id="bySettersSasha"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example1.Person1">
+        <property name="name1" value="Aleksandra Soldatova"/>
+        <property name="age1" value="22"/>
+        <property name="info1" value="Rhythmic Gymnast"/>
+        <property name="salary1" value="5000.00"/>
+    </bean>
+
+    <bean id="bySettersYana"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example1.Person1">
+        <property name="name1" value="Yana Kudriavtseva"/>
+        <property name="age1" value="21"/>
+        <property name="info1" value="Rhythmic Gymnast"/>
+        <property name="salary1" value="5000.00"/>
+    </bean>
+
+    <bean id="bySettersZenya"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example1.Person1">
+        <property name="name1" value="Zenya Kanaeva"/>
+        <property name="age1" value="35"/>
+        <property name="info1" value="Rhythmic Gymnast"/>
+        <property name="salary1" value="5000.00"/>
+    </bean>
+
+    <bean id="bySettersAlina"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example1.Person1">
+        <property name="name1" value="Alina Kabaeva"/>
+        <property name="age1" value="30"/>
+        <property name="info1" value="Rhythmic Gymnast"/>
+        <property name="salary1" value="3000.00"/>
+    </bean>
+
+    <bean id="bySettersMelita"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example1.Person1">
+        <property name="name1" value="Melitina Staniouta"/>
+        <property name="age1" value="26"/>
+        <property name="info1" value="Rhythmic Gymnast"/>
+        <property name="salary1" value="5000.00"/>
+    </bean>
+</beans>

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <!-- Using p-namespaces -->
+
+    <bean id="bySettersThomas2"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example2.Employee"
+          p:firstName="Thomas"
+          p:lastName="Mylonas"
+          p:age="53"
+          p:car-ref="bySettersThomasCar2"
+          p:job-ref="bySettersThomasJob2"/>
+
+    <bean id="bySettersThomasCar2"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example2.Car"
+          p:type="Mazda 6"
+          p:name="Thomas's car"
+          p:velocity="250"
+          p:carAge="10"/>
+
+    <bean id="bySettersThomasJob2"
+          class="com.thomasmylonas.spring_legacy.spring_dependency_injection._models.example2.Job"
+          p:name="Computer Scientist and Mathematician"
+          p:salary="2500.00"/>
+</beans>
