@@ -1,0 +1,58 @@
+How to add static CSS,JS files in the Spring MVC app (without Thymeleaf)
+---------------------------------------------------------------------------
+<head>
+    <!-- Stylesheets -->
+    <link href="/JsfPrimefacesTutorials/resources/css/styles_general/_styles_variables.css" rel="stylesheet"/>
+    <link href="/JsfPrimefacesTutorials/resources/css/styles_general/student_alt_home.css" rel="stylesheet"/>
+    <!-- Stylesheets for Bootstrap -->
+    <link href="/JsfPrimefacesTutorials/resources/css/boostrap_css_libs/bootstrap.min.css" rel="stylesheet"/>
+</head>
+
+public class WebConfig implements WebMvcConfigurer {
+    @Override
+    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+    }
+}
+
+========================================================================================================================
+
+1. Right configuration of "ComponentScan"
+
+We have to exclude: "@ComponentScan.Filter(type = FilterType.ANNOTATION, value = Configuration.class)"
+from all the Configuration classes. Otherwise, the Controllers will be called many times
+
+@ComponentScan(basePackages = {"com.packages.path.to.app"},
+        excludeFilters = {
+                @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Repository.class),
+                @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Controller.class),
+                @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Configuration.class)
+        }
+)
+public class RootConfig {}
+
+@ComponentScan(basePackages = {"com.packages.path.to.controllers_directory.controllers"},
+        excludeFilters = {
+                @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Configuration.class)
+        }
+)
+public class WebConfig {}
+
+@ComponentScan(basePackages = {"com.packages.path.to.data_access_layer.repositories"},
+        excludeFilters = {
+                @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Configuration.class)
+        }
+)
+public class DataAccessConfig {}
+
+2. How to use "FilterType.REGEX"
+
+@ComponentScan(basePackages = {"com.packages.path.to.app"},
+        excludeFilters = {
+                @ComponentScan.Filter(type = FilterType.REGEX, pattern = {"com\\.packages\\.path\\.to\\.app\\.data_access_layer\\..*"}),
+                @ComponentScan.Filter(type = FilterType.REGEX, pattern = {"com\\.packages\\.path\\.to\\.app\\.servlet_dispatcher_web_components\\..*"}),
+        }
+)
+public class RootConfig {}
+
+3. Be careful, the "@WebFilter" is not a Spring bean, and is not in the "Spring Container". It is a Web Container"'s (Tomcat) object
