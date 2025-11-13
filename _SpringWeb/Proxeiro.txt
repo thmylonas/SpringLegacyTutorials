@@ -56,3 +56,15 @@ public class DataAccessConfig {}
 public class RootConfig {}
 
 3. Be careful, the "@WebFilter" is not a Spring bean, and is not in the "Spring Container". It is a Web Container"'s (Tomcat) object
+
+========================================================================================================================
+
+<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
+<dependency>
+    <groupId>org.hibernate</groupId>
+    <artifactId>hibernate-validator</artifactId>
+    <version>6.1.1.Final</version>
+</dependency>
+The following is for @Valid annotation on @RequestBody
+
+========================================================================================================================
