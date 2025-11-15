@@ -1,29 +1,26 @@
 package com.thomasmylonas.spring_rest.repositories;
 
-import com.thomasmylonas.jsf_primefaces_tutorials.data_access_layer.entities.Student;
-import com.thomasmylonas.jsf_primefaces_tutorials.helpers.HelperClass;
-import com.thomasmylonas.jsf_primefaces_tutorials.service_layer.services.exceptions.ResourceNotFoundException;
+import com.thomasmylonas.spring_rest.entities.StudentAlt;
+import com.thomasmylonas.spring_rest.exceptions.ResourceNotFoundException;
+import com.thomasmylonas.spring_rest.helpers.HelperClass;
 import lombok.Getter;
 import lombok.Setter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
-@ManagedBean(name = "studentDao")
-@SessionScoped
+@Component(value = "studentDao")
 @Getter
 @Setter
+@Slf4j
 public class StudentDao {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(StudentDao.class.getSimpleName());
     private static final String PERSISTENCE_UNIT_NAME = "StudentPU_H2";
 
     private EntityManager em;
@@ -33,24 +30,24 @@ public class StudentDao {
         em = createEntityManager(PERSISTENCE_UNIT_NAME);
     }
 
-    public Student findById(Long id) {
+    public StudentAlt findById(Long id) {
 
         if (id == null || id < 0) {
             throw new IllegalArgumentException("The id is not valid!");
         }
-        Student entityResult = em.find(Student.class, id);
+        StudentAlt entityResult = em.find(StudentAlt.class, id);
         if (entityResult == null) {
-            throw new ResourceNotFoundException(Student.class.getSimpleName(), id);
+            throw new ResourceNotFoundException(StudentAlt.class.getSimpleName(), id);
         }
         return entityResult;
     }
 
-    public List<Student> findAll() {
-        TypedQuery<Student> query = em.createQuery("select s from Student s", Student.class);
+    public List<StudentAlt> findAll() {
+        TypedQuery<StudentAlt> query = em.createQuery("select s from StudentAlt s", StudentAlt.class);
         return query.getResultList();
     }
 
-    public Student save(Student student) {
+    public StudentAlt save(StudentAlt student) {
 
         if (student == null) {
             throw new IllegalArgumentException("The student is not valid (is null)!");
@@ -63,12 +60,12 @@ public class StudentDao {
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
-            LOGGER.error("Because of an 'Exception': '{}', the transaction is rolled back!", e.getMessage());
+            log.error("Because of an 'Exception': '{}', the transaction is rolled back!", e.getMessage());
         }
         return student;
     }
 
-    public void saveAll(List<Student> entities) {
+    public void saveAll(List<StudentAlt> entities) {
 
         try {
             em.getTransaction().begin();
@@ -78,11 +75,11 @@ public class StudentDao {
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
-            LOGGER.error("Because of an 'Exception': '{}', the transaction is rolled back!", e.getMessage());
+            log.error("Because of an 'Exception': '{}', the transaction is rolled back!", e.getMessage());
         }
     }
 
-    public void update(Student student, Long id) {
+    public void update(StudentAlt student, Long id) {
 
         if (id == null || id < 0 || student == null) {
             throw new IllegalArgumentException("The arguments are not valid!");
@@ -90,13 +87,13 @@ public class StudentDao {
         try {
             em.getTransaction().begin();
 
-            Student studentToUpdate = findById(id); // IllegalArgumentException, ResourceNotFoundException
+            StudentAlt studentToUpdate = findById(id); // IllegalArgumentException, ResourceNotFoundException
             updateStudentWithGivenObject(studentToUpdate, student);
 
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
-            LOGGER.error("Because of an 'Exception': '{}', the transaction is rolled back!", e.getMessage());
+            log.error("Because of an 'Exception': '{}', the transaction is rolled back!", e.getMessage());
         }
     }
 
@@ -108,13 +105,13 @@ public class StudentDao {
         try {
             em.getTransaction().begin();
 
-            Student entityToDelete = findById(id); // IllegalArgumentException, ResourceNotFoundException
+            StudentAlt entityToDelete = findById(id); // IllegalArgumentException, ResourceNotFoundException
             em.remove(entityToDelete);
 
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
-            LOGGER.error("Because of an 'Exception': '{}', the transaction is rolled back!", e.getMessage());
+            log.error("Because of an 'Exception': '{}', the transaction is rolled back!", e.getMessage());
         }
     }
 
@@ -128,7 +125,7 @@ public class StudentDao {
         }
     }
 
-    protected void updateStudentWithGivenObject(Student studentToUpdate, Student student) {
+    protected void updateStudentWithGivenObject(StudentAlt studentToUpdate, StudentAlt student) {
 
         if (!HelperClass.isStringNullOrEmpty(student.getLastName())) {
             studentToUpdate.setLastName(student.getLastName());

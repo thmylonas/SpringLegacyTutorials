@@ -1,8 +1,8 @@
 package com.thomasmylonas.spring_rest.controllers;
 
-import com.thomasmylonas.spring_mvc_jsf_pf_web_app.servlet_dispatcher_web_components.controllers._base.AbstractController;
-import com.thomasmylonas.spring_mvc_jsf_pf_web_app.data_access_layer.entities.StudentAlt;
-import com.thomasmylonas.spring_mvc_jsf_pf_web_app.service_layer.services.api_services.student_alt_api_services.StudentAltService;
+import com.thomasmylonas.spring_rest.entities.StudentAlt;
+import com.thomasmylonas.spring_rest.student_alt_api_services.StudentAltService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -20,7 +20,8 @@ import java.util.List;
  */
 @Controller
 @RequestMapping(path = "/api/student-alt/")
-public class StudentAltController extends AbstractController {
+@Slf4j
+public class StudentAltController /*extends AbstractController*/ {
 
     private final StudentAltService dbStudentAltService;
 
@@ -34,7 +35,7 @@ public class StudentAltController extends AbstractController {
     @ResponseBody
     public ResponseEntity<StudentAlt> getStudentAltById(@PathVariable(name = "id") Long id) {
         StudentAlt studentAlt = dbStudentAltService.getStudentAltById(id);
-        LOGGER.info("The studentAlt with id = " + id + ", is the\n" + studentAlt);
+        log.info("The studentAlt with id = " + id + ", is the\n" + studentAlt);
         return new ResponseEntity<>(studentAlt, HttpStatus.OK);
     }
 
@@ -42,7 +43,7 @@ public class StudentAltController extends AbstractController {
     @RequestMapping(path = "all-students-alt", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<List<StudentAlt>> getAllStudentsAlt() {
-        return new ResponseEntity<>(dbStudentAltService.getAllStudentsAlt(), HttpStatus.OK);
+        return new ResponseEntity<>(dbStudentAltService.findAllStudentsAlt(), HttpStatus.OK);
     }
 
     // http://localhost:8080/SpringMvcJsfPfWebApp/api/student-alt

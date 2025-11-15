@@ -1,52 +1,46 @@
 package com.thomasmylonas.spring_rest.student_alt_api_services;
 
-import com.thomasmylonas.jsf_primefaces_tutorials.data_access_layer.entities.Student;
-import com.thomasmylonas.jsf_primefaces_tutorials.data_access_layer.repositories.StudentDao;
-import com.thomasmylonas.jsf_primefaces_tutorials.helpers.TestDataProvider;
-import com.thomasmylonas.jsf_primefaces_tutorials.service_layer.services._base.AbstractService;
+import com.thomasmylonas.spring_rest.entities.StudentAlt;
+import com.thomasmylonas.spring_rest.repositories.StudentDao;
 import lombok.Getter;
 import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.SessionScoped;
 import java.util.List;
 
-@ManagedBean(name = "dbStudentService")
-@SessionScoped
+@Service(value = "dbStudentService")
 @Getter
 @Setter
-public class DbStudentService extends AbstractService implements StudentService {
+public class DbStudentService implements StudentService {
 
-    @ManagedProperty(value = "#{studentDao}")
+    @Autowired
     private StudentDao studentDao;
 
     private TestDataProvider testDataProvider;
 
-    @PostConstruct
-    private void init() {
+    public DbStudentService() {
         testDataProvider = new TestDataProvider();
         initStudentsList();
     }
 
     @Override
-    public Student findStudentById(Long id) {
+    public StudentAlt findStudentById(Long id) {
         return studentDao.findById(id); // IllegalArgumentException, ResourceNotFoundException
     }
 
     @Override
-    public List<Student> findAllStudents() {
+    public List<StudentAlt> findAllStudents() {
         return studentDao.findAll();
     }
 
     @Override
-    public Student saveStudent(Student student) {
+    public StudentAlt saveStudent(StudentAlt student) {
 
         if (student == null) {
             throw new IllegalArgumentException("The student is not valid (is null)!");
         }
-        Student studentToSave = Student.builder()
+        StudentAlt studentToSave = StudentAlt.builder()
                 .lastName(student.getLastName())
                 .firstName(student.getFirstName())
                 .dateOfBirth(student.getDateOfBirth())
@@ -58,7 +52,7 @@ public class DbStudentService extends AbstractService implements StudentService 
     }
 
     @Override
-    public void updateStudent(Student student, Long id) {
+    public void updateStudent(StudentAlt student, Long id) {
         studentDao.update(student, id); // IllegalArgumentException, ResourceNotFoundException
     }
 
@@ -68,7 +62,7 @@ public class DbStudentService extends AbstractService implements StudentService 
     }
 
     private void initStudentsList() {
-        List<Student> students = testDataProvider.generateDBStudents();
+        List<StudentAlt> students = TestDataProvider.STUDENTS;
         studentDao.saveAll(students);
     }
 }

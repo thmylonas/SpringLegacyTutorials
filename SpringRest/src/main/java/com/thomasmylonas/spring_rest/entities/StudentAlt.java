@@ -1,7 +1,12 @@
 package com.thomasmylonas.spring_rest.entities;
 
 import com.thomasmylonas.spring_rest.entities.enums.Status;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -13,167 +18,39 @@ import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity(name = "StudentAlt")
-@Table(name = "student_alt", schema = "schooldb")
+@Table(name = "Students")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 @Builder
 public class StudentAlt {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "student_alt_generator")
-    @SequenceGenerator(name = "student_alt_generator", sequenceName = "student_alt_sequence", allocationSize = 1)
-    @Column(name = "id")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Students_Sequence_Generator")
+    @SequenceGenerator(name = "Students_Sequence_Generator", sequenceName = "Students_Sequence", allocationSize = 1)
+    @Column(name = "Id")
     private Long id;
 
-    @Column(name = "last_name", length = 30)
+    @Column(name = "Last_Name", length = 30)
     private String lastName;
 
-    @Column(name = "first_name", length = 20)
+    @Column(name = "First_Name", length = 20)
     private String firstName;
 
-    @Column(name = "date_of_birth")
+    @Column(name = "Date_Of_Birth")
     private LocalDate dateOfBirth;
 
-    @Column(name = "absences")
+    @Column(name = "Absences")
     private Integer absences;
 
-    @Column(name = "department_id", length = 10)
+    @Column(name = "Department_Id", length = 10)
     private String departmentId;
 
     @Enumerated(value = EnumType.STRING)
-    @Column(name = "status", length = 20)
+    @Column(name = "Status", length = 20)
     private Status status;
-
-    public StudentAlt() {
-    }
-
-    private StudentAlt(Builder builder) {
-        this.id = builder.id;
-        this.lastName = builder.lastName;
-        this.firstName = builder.firstName;
-        this.dateOfBirth = builder.dateOfBirth;
-        this.absences = builder.absences;
-        this.departmentId = builder.departmentId;
-        this.status = builder.status;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    public LocalDate getDateOfBirth() {
-        return dateOfBirth;
-    }
-
-    public void setDateOfBirth(LocalDate dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
-    }
-
-    public Integer getAbsences() {
-        return absences;
-    }
-
-    public void setAbsences(Integer absences) {
-        this.absences = absences;
-    }
-
-    public String getDepartmentId() {
-        return departmentId;
-    }
-
-    public void setDepartmentId(String departmentId) {
-        this.departmentId = departmentId;
-    }
-
-    public Status getStatus() {
-        return status;
-    }
-
-    public void setStatus(Status status) {
-        this.status = status;
-    }
-
-    @Override
-    public String toString() {
-        return "StudentAlt{" +
-                "id=" + id +
-                ", lastName='" + lastName + '\'' +
-                ", firstName='" + firstName + '\'' +
-                ", dateOfBirth=" + dateOfBirth +
-                ", absences=" + absences +
-                ", departmentId='" + departmentId + '\'' +
-                ", status=" + status +
-                '}';
-    }
-
-    public static class Builder {
-
-        private Long id;
-        private String lastName;
-        private String firstName;
-        private LocalDate dateOfBirth;
-        private Integer absences;
-        private String departmentId;
-        private Status status;
-
-        public Builder id(Long id) {
-            this.id = id;
-            return this;
-        }
-
-        public Builder lastName(String lastName) {
-            this.lastName = lastName;
-            return this;
-        }
-
-        public Builder firstName(String firstName) {
-            this.firstName = firstName;
-            return this;
-        }
-
-        public Builder dateOfBirth(LocalDate dateOfBirth) {
-            this.dateOfBirth = dateOfBirth;
-            return this;
-        }
-
-        public Builder absences(Integer absences) {
-            this.absences = absences;
-            return this;
-        }
-
-        public Builder departmentId(String departmentId) {
-            this.departmentId = departmentId;
-            return this;
-        }
-
-        public Builder status(Status status) {
-            this.status = status;
-            return this;
-        }
-
-        public StudentAlt build() {
-            return new StudentAlt(this);
-        }
-    }
 }
