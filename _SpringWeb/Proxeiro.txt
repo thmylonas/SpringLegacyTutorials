@@ -68,3 +68,7 @@ public class RootConfig {}
 The following is for @Valid annotation on @RequestBody
 
 ========================================================================================================================
+
+IntelliJ
+1. Create a maven project
+2. No archetype

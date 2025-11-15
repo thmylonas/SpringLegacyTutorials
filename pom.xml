@@ -21,6 +21,7 @@
 
     <modules>
         <module>SpringCore</module>
+        <module>SpringRest</module>
     </modules>
 
     <dependencies>
