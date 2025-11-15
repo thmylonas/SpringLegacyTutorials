@@ -1,11 +1,10 @@
 package com.thomasmylonas.spring_rest.student_alt_api_services._base;
 
-import com.thomasmylonas.spring_mvc_jsf_pf_web_app.data_access_layer.entities.StudentAlt;
-import com.thomasmylonas.spring_mvc_jsf_pf_web_app.helpers.HelperClass;
-import com.thomasmylonas.spring_mvc_jsf_pf_web_app.service_layer.services._base.AbstractService;
-import com.thomasmylonas.spring_mvc_jsf_pf_web_app.service_layer.services.api_services.student_alt_api_services.StudentAltService;
+import com.thomasmylonas.spring_rest.entities.StudentAlt;
+import com.thomasmylonas.spring_rest.helpers.HelperClass;
+import com.thomasmylonas.spring_rest.student_alt_api_services.StudentAltService;
 
-public abstract class AbstractStudentAltService extends AbstractService implements StudentAltService {
+public abstract class AbstractStudentAltService implements StudentAltService {
 
     // All "interface StudentAltService"'s methods are implemented in the subclasses
 

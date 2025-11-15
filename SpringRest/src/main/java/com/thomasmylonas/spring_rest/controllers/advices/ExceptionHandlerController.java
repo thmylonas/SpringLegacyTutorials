@@ -1,7 +1,7 @@
 package com.thomasmylonas.spring_rest.controllers.advices;
 
-import com.thomasmylonas.spring_mvc_jsf_pf_web_app.service_layer.exceptions.ResourceNotFoundException;
-import com.thomasmylonas.spring_mvc_jsf_pf_web_app.service_layer.exceptions.ResponseError;
+import com.thomasmylonas.spring_rest.exceptions.ResourceNotFoundException;
+import com.thomasmylonas.spring_rest.exceptions.ResponseError;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

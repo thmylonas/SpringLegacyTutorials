@@ -1,6 +1,7 @@
 package com.thomasmylonas.spring_rest.entities;
 
-import com.thomasmylonas.spring_mvc_jsf_pf_web_app.data_access_layer.entities.enums.Status;
+import com.thomasmylonas.spring_rest.entities.enums.Status;
+import lombok.Builder;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -11,10 +12,12 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity(name = "StudentAlt")
 @Table(name = "student_alt", schema = "schooldb")
+@Builder
 public class StudentAlt {
 
     @Id
@@ -30,7 +33,7 @@ public class StudentAlt {
     private String firstName;
 
     @Column(name = "date_of_birth")
-    private Date dateOfBirth;
+    private LocalDate dateOfBirth;
 
     @Column(name = "absences")
     private Integer absences;
@@ -79,11 +82,11 @@ public class StudentAlt {
         this.firstName = firstName;
     }
 
-    public Date getDateOfBirth() {
+    public LocalDate getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(Date dateOfBirth) {
+    public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -129,7 +132,7 @@ public class StudentAlt {
         private Long id;
         private String lastName;
         private String firstName;
-        private Date dateOfBirth;
+        private LocalDate dateOfBirth;
         private Integer absences;
         private String departmentId;
         private Status status;
@@ -149,7 +152,7 @@ public class StudentAlt {
             return this;
         }
 
-        public Builder dateOfBirth(Date dateOfBirth) {
+        public Builder dateOfBirth(LocalDate dateOfBirth) {
             this.dateOfBirth = dateOfBirth;
             return this;
         }
