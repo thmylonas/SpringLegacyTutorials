@@ -1,4 +1,4 @@
-package com.thomasmylonas.entities;
+package com.thomasmylonas.spring_rest.entities;
 
 import com.thomasmylonas.spring_mvc_jsf_pf_web_app.data_access_layer.entities.enums.Status;
 

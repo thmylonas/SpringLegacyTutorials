@@ -1,4 +1,4 @@
-package com.thomasmylonas.controllers;
+package com.thomasmylonas.spring_rest.controllers;
 
 import com.thomasmylonas.spring_mvc_jsf_pf_web_app.servlet_dispatcher_web_components.controllers._base.AbstractController;
 import com.thomasmylonas.spring_mvc_jsf_pf_web_app.data_access_layer.entities.StudentAlt;

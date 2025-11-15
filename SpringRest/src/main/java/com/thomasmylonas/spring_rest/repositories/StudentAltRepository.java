@@ -1,4 +1,4 @@
-package com.thomasmylonas.repositories;
+package com.thomasmylonas.spring_rest.repositories;
 
 import com.thomasmylonas.spring_mvc_jsf_pf_web_app.data_access_layer.entities.StudentAlt;
 import org.springframework.data.jpa.repository.JpaRepository;

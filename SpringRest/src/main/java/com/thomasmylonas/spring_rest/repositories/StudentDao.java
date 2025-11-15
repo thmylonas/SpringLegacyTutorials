@@ -1,4 +1,4 @@
-package com.thomasmylonas.repositories;
+package com.thomasmylonas.spring_rest.repositories;
 
 import com.thomasmylonas.jsf_primefaces_tutorials.data_access_layer.entities.Student;
 import com.thomasmylonas.jsf_primefaces_tutorials.helpers.HelperClass;

@@ -1,4 +1,4 @@
-package com.thomasmylonas.controllers.advices;
+package com.thomasmylonas.spring_rest.controllers.advices;
 
 import com.thomasmylonas.spring_mvc_jsf_pf_web_app.service_layer.exceptions.ResourceNotFoundException;
 import com.thomasmylonas.spring_mvc_jsf_pf_web_app.service_layer.exceptions.ResponseError;

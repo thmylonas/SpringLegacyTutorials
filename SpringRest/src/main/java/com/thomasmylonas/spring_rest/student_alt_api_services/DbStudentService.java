@@ -1,4 +1,4 @@
-package com.thomasmylonas.student_alt_api_services;
+package com.thomasmylonas.spring_rest.student_alt_api_services;
 
 import com.thomasmylonas.jsf_primefaces_tutorials.data_access_layer.entities.Student;
 import com.thomasmylonas.jsf_primefaces_tutorials.data_access_layer.repositories.StudentDao;

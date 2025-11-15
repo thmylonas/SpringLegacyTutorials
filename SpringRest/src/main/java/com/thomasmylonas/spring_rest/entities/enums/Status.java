@@ -1,4 +1,4 @@
-package com.thomasmylonas.entities.enums;
+package com.thomasmylonas.spring_rest.entities.enums;
 
 public enum Status {
 

@@ -1,4 +1,4 @@
-package com.thomasmylonas.config;
+package com.thomasmylonas.spring_rest.config;
 
 import javax.naming.NamingException;
 import javax.persistence.EntityManagerFactory;

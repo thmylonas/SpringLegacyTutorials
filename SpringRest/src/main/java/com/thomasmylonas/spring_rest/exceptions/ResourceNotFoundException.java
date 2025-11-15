@@ -1,4 +1,4 @@
-package com.thomasmylonas.exceptions;
+package com.thomasmylonas.spring_rest.exceptions;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

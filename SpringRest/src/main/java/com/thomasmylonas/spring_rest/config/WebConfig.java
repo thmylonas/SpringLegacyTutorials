@@ -1,6 +1,5 @@
-package com.thomasmylonas.config;
+package com.thomasmylonas.spring_rest.config;
 
-import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -11,7 +10,6 @@ import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
-import javax.faces.webapp.FacesServlet;
 import javax.servlet.ServletContext;
 import java.util.Arrays;
 

@@ -1,4 +1,4 @@
-package com.thomasmylonas.config;
+package com.thomasmylonas.spring_rest.config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 
 @Configuration
-@ComponentScan(basePackages = {"com.thomasmylonas.spring_mvc_jsf_pf_web_app"},
+@ComponentScan(basePackages = {"com.thomasmylonas.spring_rest"},
         excludeFilters = {
                 @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Repository.class),
                 @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Controller.class),

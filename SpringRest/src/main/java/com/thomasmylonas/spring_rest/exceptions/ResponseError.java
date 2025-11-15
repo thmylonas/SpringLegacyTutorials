@@ -1,4 +1,4 @@
-package com.thomasmylonas.exceptions;
+package com.thomasmylonas.spring_rest.exceptions;
 
 public class ResponseError {
 

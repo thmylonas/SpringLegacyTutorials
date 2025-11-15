@@ -1,46 +1,35 @@
-package com.thomasmylonas.student_alt_api_services;
+package com.thomasmylonas.spring_rest.student_alt_api_services;
 
 import com.thomasmylonas.spring_mvc_jsf_pf_web_app.data_access_layer.entities.StudentAlt;
 import com.thomasmylonas.spring_mvc_jsf_pf_web_app.data_access_layer.entities.enums.Status;
-import com.thomasmylonas.spring_mvc_jsf_pf_web_app.data_access_layer.repositories.StudentAltRepository;
 import com.thomasmylonas.spring_mvc_jsf_pf_web_app.helpers.HelperClass;
 import com.thomasmylonas.spring_mvc_jsf_pf_web_app.service_layer.exceptions.ResourceNotFoundException;
 import com.thomasmylonas.spring_mvc_jsf_pf_web_app.service_layer.services.api_services.student_alt_api_services._base.AbstractStudentAltService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
-@Service(value = "dbStudentAltService")
-public class DbStudentAltService extends AbstractStudentAltService {
+@Service(value = "inMemoryStudentAltService")
+public class InMemoryStudentAltService extends AbstractStudentAltService {
 
-    private final StudentAltRepository studentAltRepository;
-
-    @Autowired
-    public DbStudentAltService(StudentAltRepository studentAltRepository) {
-        this.studentAltRepository = studentAltRepository;
-    }
+    private List<StudentAlt> inMemoryStudentsAltList;
 
     @PostConstruct
     private void init() {
-        initStudentsAltList();
+        initInMemoryStudentsAltList();
     }
 
     @Override
     public StudentAlt getStudentAltById(Long id) throws ResourceNotFoundException {
-
-        if (id == null) {
-            return null;
-        }
-        return studentAltRepository.findById(id).
-                orElseThrow(() -> new ResourceNotFoundException(StudentAlt.class.getSimpleName(), id));
+        return filterInMemoryStudentsAltListById(id);
     }
 
     @Override
     public List<StudentAlt> getAllStudentsAlt() {
-        return studentAltRepository.findAll();
+        return inMemoryStudentsAltList;
     }
 
     @Override
@@ -49,7 +38,8 @@ public class DbStudentAltService extends AbstractStudentAltService {
         if (studentAlt == null) {
             return null;
         }
-        return studentAltRepository.save(studentAlt);
+        inMemoryStudentsAltList.add(studentAlt);
+        return studentAlt;
     }
 
     @Override
@@ -58,24 +48,38 @@ public class DbStudentAltService extends AbstractStudentAltService {
         if (id == null || studentAlt == null) {
             return null;
         }
-        StudentAlt studentAltToBeUpdated = studentAltRepository.findById(id).
-                orElseThrow(() -> new ResourceNotFoundException(StudentAlt.class.getSimpleName(), id));
+        StudentAlt studentAltToBeUpdated = getStudentAltById(id); // This might throw a "ResourceNotFoundException"
         updateStudentAltWithGivenObject(studentAltToBeUpdated, studentAlt);
-        return studentAltRepository.save(studentAltToBeUpdated);
+        return studentAltToBeUpdated;
     }
 
     @Override
     public void deleteStudentAlt(Long id) throws ResourceNotFoundException {
 
-        if (id == null) {
+        StudentAlt studentAltToDelete = getStudentAltById(id); // This might throw a "ResourceNotFoundException"
+        if (studentAltToDelete == null) {
             return;
         }
-        studentAltRepository.deleteById(id);
+        inMemoryStudentsAltList.remove(studentAltToDelete);
     }
 
-    private void initStudentsAltList() {
+    private StudentAlt filterInMemoryStudentsAltListById(Long id) {
 
-        studentAltRepository.save(new StudentAlt.Builder()
+        // Filter the "inMemoryStudentsAltList" by ID
+        return id == null ? null :
+                inMemoryStudentsAltList
+                        .stream()
+                        .filter(studentAlt -> studentAlt.getId().equals(id))
+                        .findAny()
+                        .orElseThrow(() -> new ResourceNotFoundException(StudentAlt.class.getSimpleName(), id));
+    }
+
+    private void initInMemoryStudentsAltList() {
+
+        inMemoryStudentsAltList = new ArrayList<>();
+
+        inMemoryStudentsAltList.add(new StudentAlt.Builder()
+                .id(1L)
                 .lastName("Mylonas")
                 .firstName("Thomas")
                 .dateOfBirth(HelperClass.getDate(1972, Calendar.SEPTEMBER, 24))
@@ -83,7 +87,8 @@ public class DbStudentAltService extends AbstractStudentAltService {
                 .departmentId("Dept1")
                 .status(Status.ADVANCED_STUDENT)
                 .build());
-        studentAltRepository.save(new StudentAlt.Builder()
+        inMemoryStudentsAltList.add(new StudentAlt.Builder()
+                .id(2L)
                 .lastName("Lorem")
                 .firstName("Ipsum")
                 .dateOfBirth(HelperClass.getDate(1979, Calendar.APRIL, 30))
@@ -91,7 +96,8 @@ public class DbStudentAltService extends AbstractStudentAltService {
                 .departmentId("Dept1")
                 .status(Status.JUNIOR_STUDENT)
                 .build());
-        studentAltRepository.save(new StudentAlt.Builder()
+        inMemoryStudentsAltList.add(new StudentAlt.Builder()
+                .id(3L)
                 .lastName("Chan")
                 .firstName("Jacky")
                 .dateOfBirth(HelperClass.getDate(1982, Calendar.MAY, 9))
@@ -99,7 +105,8 @@ public class DbStudentAltService extends AbstractStudentAltService {
                 .departmentId("Dept2")
                 .status(Status.JUNIOR_STUDENT)
                 .build());
-        studentAltRepository.save(new StudentAlt.Builder()
+        inMemoryStudentsAltList.add(new StudentAlt.Builder()
+                .id(4L)
                 .lastName("Parker")
                 .firstName("Peter")
                 .dateOfBirth(HelperClass.getDate(1990, Calendar.OCTOBER, 15))
@@ -107,7 +114,8 @@ public class DbStudentAltService extends AbstractStudentAltService {
                 .departmentId("Dept3")
                 .status(Status.MEDIUM_STUDENT)
                 .build());
-        studentAltRepository.save(new StudentAlt.Builder()
+        inMemoryStudentsAltList.add(new StudentAlt.Builder()
+                .id(5L)
                 .lastName("Murdock")
                 .firstName("Matt")
                 .dateOfBirth(HelperClass.getDate(2000, Calendar.FEBRUARY, 2))
