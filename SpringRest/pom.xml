@@ -44,6 +44,18 @@
             <version>${springframework.data.version}</version>
         </dependency>
 
+        <!-- org.hibernate -->
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-core</artifactId>
+            <version>5.4.3.Final</version> <!-- The latest version: "5.6.1.Final", fails to start the WebApp -->
+        </dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-validator</artifactId>
+            <version>7.0.1.Final</version> <!-- 6.1.1.Final -->
+        </dependency>
+
         <!-- Logging API: org.slf4j, org.apache.logging.log4j -->
         <dependency>
             <groupId>org.slf4j</groupId>

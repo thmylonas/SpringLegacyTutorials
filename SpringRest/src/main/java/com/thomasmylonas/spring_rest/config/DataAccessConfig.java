@@ -23,12 +23,12 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import java.util.Properties;
 
 @Configuration
-@ComponentScan(basePackages = {"com.thomasmylonas.spring_mvc_jsf_pf_web_app.data_access_layer"},
+@ComponentScan(basePackages = {"com.thomasmylonas.spring_rest.entities", "com.thomasmylonas.spring_rest.repositories"},
         excludeFilters = {
                 @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Configuration.class)
         }
 )
-@EnableJpaRepositories(basePackages = "com.thomasmylonas.spring_mvc_jsf_pf_web_app.data_access_layer")
+@EnableJpaRepositories(basePackages = "com.thomasmylonas.spring_rest.repositories")
 @EnableTransactionManagement
 public class DataAccessConfig {
 
