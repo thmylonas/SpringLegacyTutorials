@@ -5,7 +5,7 @@ import com.thomasmylonas.spring_rest.exceptions.ResourceNotFoundException;
 
 import java.util.List;
 
-public interface StudentAltService {
+public interface StudentService {
 
     Student findStudentById(Long id) throws ResourceNotFoundException;
 

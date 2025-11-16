@@ -2,9 +2,9 @@ package com.thomasmylonas.spring_rest.student_alt_api_services._base;
 
 import com.thomasmylonas.spring_rest.entities.Student;
 import com.thomasmylonas.spring_rest.helpers.HelperClass;
-import com.thomasmylonas.spring_rest.student_alt_api_services.StudentAltService;
+import com.thomasmylonas.spring_rest.student_alt_api_services.StudentService;
 
-public abstract class AbstractStudentService implements StudentAltService {
+public abstract class AbstractStudentService implements StudentService {
 
     // All "interface StudentService"'s methods are implemented in the subclasses
 
