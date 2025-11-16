@@ -23,18 +23,18 @@ import java.util.List;
 @Slf4j
 public class StudentController /*extends AbstractController*/ {
 
-    private final StudentService dbStudentService;
+    private final StudentService studentService;
 
     @Autowired
-    public StudentController(StudentService dbStudentService) {
-        this.dbStudentService = dbStudentService;
+    public StudentController(StudentService studentService) {
+        this.studentService = studentService;
     }
 
     // http://localhost:8080/SpringMvcJsfPfWebApp/api/student/1
     @RequestMapping(path = "{id}", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<Student> getStudentById(@PathVariable(name = "id") Long id) {
-        Student student = dbStudentService.findStudentById(id);
+        Student student = studentService.findStudentById(id);
         log.info("The student with id = " + id + ", is the\n" + student);
         return new ResponseEntity<>(student, HttpStatus.OK);
     }
@@ -43,14 +43,14 @@ public class StudentController /*extends AbstractController*/ {
     @RequestMapping(path = "all-students", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<List<Student>> getAllStudents() {
-        return new ResponseEntity<>(dbStudentService.findAllStudents(), HttpStatus.OK);
+        return new ResponseEntity<>(studentService.findAllStudents(), HttpStatus.OK);
     }
 
     // http://localhost:8080/SpringMvcJsfPfWebApp/api/student
     @RequestMapping(method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<Student> saveNewStudent(@RequestBody Student student) {
-        return new ResponseEntity<>(dbStudentService.saveStudent(student), HttpStatus.CREATED);
+        return new ResponseEntity<>(studentService.saveStudent(student), HttpStatus.CREATED);
     }
 
     // http://localhost:8080/SpringMvcJsfPfWebApp/api/student/1
@@ -58,14 +58,13 @@ public class StudentController /*extends AbstractController*/ {
     @ResponseBody
     public ResponseEntity<Student> updateExistingStudent(@RequestBody Student student,
                                                          @PathVariable(name = "id") Long id) {
-//        return new ResponseEntity<>(dbStudentService.updateStudent(student, id), HttpStatus.OK);
-        return null;
+        return new ResponseEntity<>(studentService.updateStudent(student, id), HttpStatus.OK);
     }
 
     // http://localhost:8080/SpringMvcJsfPfWebApp/api/student/1
     @RequestMapping(path = "{id}", method = RequestMethod.DELETE)
     @ResponseBody
     public void deleteExistingStudent(@PathVariable(name = "id") Long id) {
-        dbStudentService.deleteStudent(id);
+        studentService.deleteStudent(id);
     }
 }

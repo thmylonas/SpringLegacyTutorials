@@ -2,21 +2,17 @@ package com.thomasmylonas.spring_rest.student_alt_api_services;
 
 import com.thomasmylonas.spring_rest.entities.Student;
 import com.thomasmylonas.spring_rest.repositories.StudentDao;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
 
-@Service(value = "dbStudentService")
+@Service(value = "studentService")
+@RequiredArgsConstructor
 public class StudentServiceImpl implements StudentService {
 
     private final StudentDao studentDao;
-
-    @Autowired
-    public StudentServiceImpl(StudentDao studentDao) {
-        this.studentDao = studentDao;
-    }
 
     @PostConstruct
     private void init() {
