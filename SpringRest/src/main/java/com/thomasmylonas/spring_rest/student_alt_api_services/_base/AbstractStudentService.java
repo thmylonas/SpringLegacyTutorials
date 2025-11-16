@@ -4,7 +4,7 @@ import com.thomasmylonas.spring_rest.entities.Student;
 import com.thomasmylonas.spring_rest.helpers.HelperClass;
 import com.thomasmylonas.spring_rest.student_alt_api_services.StudentAltService;
 
-public abstract class AbstractStudentAltService implements StudentAltService {
+public abstract class AbstractStudentService implements StudentAltService {
 
     // All "interface StudentService"'s methods are implemented in the subclasses
 
