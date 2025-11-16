@@ -115,6 +115,12 @@ public class WebConfig implements WebMvcConfigurer {
 
 ========================================================================================================================
 
-IntelliJ
-1. Create a maven project
-2. No archetype
+Attention:
+Pont_1:
+The Services in the "JsfPrimefacesTutorials", are servicing the StudentDao only.
+In that case returning something in some of their methods was not useful in anything.
+Their purpose was completely different.
+
+Pont_2:
+The Services in this project, are servicing an API. This means that the Service needs to follow the
+pattern of the APIs. So, they need to return the resource to the Client.

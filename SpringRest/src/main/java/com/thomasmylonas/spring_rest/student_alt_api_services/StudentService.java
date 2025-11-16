@@ -5,6 +5,7 @@ import com.thomasmylonas.spring_rest.exceptions.ResourceNotFoundException;
 
 import java.util.List;
 
+// The same as in "JsfPrimefacesTutorials"
 public interface StudentService {
 
     Student findStudentById(Long id) throws ResourceNotFoundException;

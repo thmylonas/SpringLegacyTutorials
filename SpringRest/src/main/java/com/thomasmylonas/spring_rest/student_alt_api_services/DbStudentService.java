@@ -7,8 +7,10 @@ import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.annotation.PostConstruct;
 import java.util.List;
 
+// The same as in "JsfPrimefacesTutorials"
 @Service(value = "dbStudentService")
 @Getter
 @Setter
@@ -19,7 +21,8 @@ public class DbStudentService implements StudentService {
 
     private TestDataProvider testDataProvider;
 
-    public DbStudentService() {
+    @PostConstruct
+    private void init() {
         testDataProvider = new TestDataProvider();
         initStudentsList();
     }
