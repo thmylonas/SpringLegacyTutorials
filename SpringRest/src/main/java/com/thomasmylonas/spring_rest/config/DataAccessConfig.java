@@ -4,8 +4,7 @@ import javax.naming.NamingException;
 import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -30,9 +29,8 @@ import java.util.Properties;
 )
 @EnableJpaRepositories(basePackages = "com.thomasmylonas.spring_rest.repositories")
 @EnableTransactionManagement
+@Slf4j
 public class DataAccessConfig {
-
-    private final Logger LOGGER = LogManager.getLogger(getClass().getName());
 
     @Bean(value = "transactionManager")
     public PlatformTransactionManager transactionManager(EntityManagerFactory entityManagerFactory) {
@@ -46,10 +44,10 @@ public class DataAccessConfig {
 
         LocalContainerEntityManagerFactoryBean emfb = new LocalContainerEntityManagerFactoryBean();
 
-        //emfb.setPersistenceUnitName("School_PU");
+        //emfb.setPersistenceUnitName("StudentPU_H2");
         emfb.setDataSource(dataSource);
         emfb.setJpaVendorAdapter(jpaVendorAdapter);
-        emfb.setPackagesToScan("com.thomasmylonas.spring_mvc_jsf_pf_web_app.data_access_layer");
+        emfb.setPackagesToScan("com.thomasmylonas.spring_rest.entities", "com.thomasmylonas.spring_rest.repositories");
 
         Properties properties = new Properties();
         properties.setProperty("hibernate.hbm2ddl.auto", "update");
@@ -63,8 +61,23 @@ public class DataAccessConfig {
         return emfb.getObject();
     }
 
-    @Bean(value = "datasource")
-    public DataSource datasource() {
+    @Bean(value = "studentdbDatasource")
+    public DataSource studentdbDatasource() {
+
+        JndiObjectFactoryBean jndiObjectFactoryBean = new JndiObjectFactoryBean();
+        jndiObjectFactoryBean.setJndiName("jdbc/studentdb");
+        jndiObjectFactoryBean.setResourceRef(true); // Default value: false
+        jndiObjectFactoryBean.setProxyInterface(javax.sql.DataSource.class);
+        try {
+            jndiObjectFactoryBean.afterPropertiesSet();
+        } catch (NamingException e) {
+            log.error("NamingException thrown while jndiObjectFactoryBean.afterPropertiesSet");
+        }
+        return (DataSource) jndiObjectFactoryBean.getObject();
+    }
+
+    //@Bean(value = "oracledbDatasource")
+    public DataSource oracledbDatasource() {
 
         JndiObjectFactoryBean jndiObjectFactoryBean = new JndiObjectFactoryBean();
         jndiObjectFactoryBean.setJndiName("jdbc/oracledb");
@@ -73,13 +86,24 @@ public class DataAccessConfig {
         try {
             jndiObjectFactoryBean.afterPropertiesSet();
         } catch (NamingException e) {
-            LOGGER.error("NamingException thrown while jndiObjectFactoryBean.afterPropertiesSet");
+            log.error("NamingException thrown while jndiObjectFactoryBean.afterPropertiesSet");
         }
         return (DataSource) jndiObjectFactoryBean.getObject();
     }
 
-    @Bean(value = "jpaVendorAdapter")
-    public JpaVendorAdapter jpaVendorAdapter() {
+    @Bean(value = "jpaH2VendorAdapter")
+    public JpaVendorAdapter jpaH2VendorAdapter() {
+
+        HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
+        adapter.setDatabase(Database.H2);
+        adapter.setDatabasePlatform("org.hibernate.dialect.H2Dialect");
+        adapter.setShowSql(true);
+        adapter.setGenerateDdl(true);
+        return adapter;
+    }
+
+    //@Bean(value = "jpaOracleVendorAdapter")
+    public JpaVendorAdapter jpaOracleVendorAdapter() {
 
         HibernateJpaVendorAdapter adapter = new HibernateJpaVendorAdapter();
         adapter.setDatabase(Database.ORACLE);
