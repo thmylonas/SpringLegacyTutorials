@@ -1,8 +1,7 @@
-package com.thomasmylonas.spring_rest.student_alt_api_services;
+package com.thomasmylonas.spring_rest.helpers;
 
 import com.thomasmylonas.spring_rest.entities.Student;
 import com.thomasmylonas.spring_rest.entities.enums.Status;
-import com.thomasmylonas.spring_rest.helpers.HelperClass;
 
 import java.util.Calendar;
 import java.util.List;
