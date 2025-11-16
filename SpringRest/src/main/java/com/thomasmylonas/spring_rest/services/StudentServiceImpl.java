@@ -1,4 +1,4 @@
-package com.thomasmylonas.spring_rest.student_alt_api_services;
+package com.thomasmylonas.spring_rest.services;
 
 import com.thomasmylonas.spring_rest.entities.Student;
 import com.thomasmylonas.spring_rest.helpers.TestDataProvider;

@@ -1,7 +1,7 @@
 package com.thomasmylonas.spring_rest.controllers;
 
 import com.thomasmylonas.spring_rest.entities.Student;
-import com.thomasmylonas.spring_rest.student_alt_api_services.StudentService;
+import com.thomasmylonas.spring_rest.services.StudentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
