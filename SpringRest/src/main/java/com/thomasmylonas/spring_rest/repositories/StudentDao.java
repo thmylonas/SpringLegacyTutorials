@@ -4,6 +4,7 @@ import com.thomasmylonas.spring_rest.entities.Student;
 import com.thomasmylonas.spring_rest.exceptions.ResourceNotFoundException;
 import com.thomasmylonas.spring_rest.helpers.HelperClass;
 import lombok.Getter;
+import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -11,23 +12,25 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
+//import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Component(value = "studentDao")
 @Getter
 @Setter
+@RequiredArgsConstructor
 @Slf4j
 public class StudentDao {
 
-    private static final String PERSISTENCE_UNIT_NAME = "StudentPU_H2";
+    //private static final String PERSISTENCE_UNIT_NAME = "StudentPU_H2";
 
+    private final EntityManagerFactory entityManagerFactory;
     private EntityManager em;
 
     @PostConstruct
     private void init() {
-        em = createEntityManager(PERSISTENCE_UNIT_NAME);
+        em = createEntityManager(); //(PERSISTENCE_UNIT_NAME);
     }
 
     public Student findById(Long id) {
@@ -115,11 +118,11 @@ public class StudentDao {
         }
     }
 
-    private EntityManager createEntityManager(String persistenceUnitName) {
+    private EntityManager createEntityManager() { //(String persistenceUnitName) {
 
-        EntityManagerFactory emf = Persistence.createEntityManagerFactory(persistenceUnitName);
+//        EntityManagerFactory emf = Persistence.createEntityManagerFactory(persistenceUnitName);
         try {
-            return emf.createEntityManager(); // IllegalStateException
+            return entityManagerFactory.createEntityManager(); // IllegalStateException
         } catch (Exception e) {
             throw new RuntimeException("Error creating EntityManager", e);
         }

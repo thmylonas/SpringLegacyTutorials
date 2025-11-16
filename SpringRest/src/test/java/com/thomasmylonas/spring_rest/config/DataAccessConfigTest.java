@@ -25,7 +25,7 @@ public class DataAccessConfigTest {
 
     @Test
     public void testDatasource() {
-        DataSource actual = dataAccessConfig.datasource();
+        DataSource actual = dataAccessConfig.studentdbDatasource();
         Assertions.assertNotNull(actual);
     }
 }

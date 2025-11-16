@@ -20,6 +20,32 @@
     </properties>
 
     <dependencies>
+        <!-- H2-Database -->
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>2.3.232</version> <!-- 2.1.214 -->
+            <!--<scope>runtime</scope>--> <!-- test -->
+        </dependency>
+
+        <!--
+        com.oracle.ojdbc8
+        This dependency "com.oracle, ojdbc8" has to be installed manually using the command:
+        "mvn install:install-file -Dfile=C:\ojdbc8.jar -DgroupId=com.oracle -DartifactId=ojdbc8 -Dversion=19.3 -Dpackaging=jar"
+        -->
+        <!--<dependency>
+            <groupId>com.oracle</groupId>
+            <artifactId>ojdbc8</artifactId> &lt;!&ndash; ojdbc10 &ndash;&gt;
+            <version>19.3</version>
+        </dependency>-->
+
+        <!-- org.apache.tomcat: tomcat-catalina, tomcat-dbcp, javax -->
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-catalina</artifactId>
+            <version>9.0.58</version> <!-- 9.0.30 -->
+        </dependency>
+
         <!--
         Covered by "org.springframework/spring-webmvc"
         <dependency>
