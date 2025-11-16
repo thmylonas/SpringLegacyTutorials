@@ -1,11 +1,11 @@
 package com.thomasmylonas.spring_rest.student_alt_api_services;
 
-import com.thomasmylonas.spring_mvc_jsf_pf_web_app.data_access_layer.entities.StudentAlt;
-import com.thomasmylonas.spring_mvc_jsf_pf_web_app.data_access_layer.entities.enums.Status;
-import com.thomasmylonas.spring_mvc_jsf_pf_web_app.data_access_layer.repositories.StudentAltRepository;
-import com.thomasmylonas.spring_mvc_jsf_pf_web_app.helpers.HelperClass;
-import com.thomasmylonas.spring_mvc_jsf_pf_web_app.service_layer.exceptions.ResourceNotFoundException;
-import com.thomasmylonas.spring_mvc_jsf_pf_web_app.service_layer.services.api_services.student_alt_api_services._base.AbstractStudentAltService;
+import com.thomasmylonas.spring_rest.entities.Student;
+import com.thomasmylonas.spring_rest.entities.enums.Status;
+import com.thomasmylonas.spring_rest.exceptions.ResourceNotFoundException;
+import com.thomasmylonas.spring_rest.helpers.HelperClass;
+import com.thomasmylonas.spring_rest.repositories.StudentDao;
+import com.thomasmylonas.spring_rest.student_alt_api_services._base.AbstractStudentAltService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -16,11 +16,11 @@ import java.util.List;
 @Service(value = "dbStudentAltService")
 public class DbStudentAltService extends AbstractStudentAltService {
 
-    private final StudentAltRepository studentAltRepository;
+    private final StudentDao studentDao;
 
     @Autowired
-    public DbStudentAltService(StudentAltRepository studentAltRepository) {
-        this.studentAltRepository = studentAltRepository;
+    public DbStudentAltService(StudentDao studentDao) {
+        this.studentDao = studentDao;
     }
 
     @PostConstruct
@@ -29,88 +29,88 @@ public class DbStudentAltService extends AbstractStudentAltService {
     }
 
     @Override
-    public StudentAlt getStudentAltById(Long id) throws ResourceNotFoundException {
+    public Student findStudentById(Long id) throws ResourceNotFoundException {
 
         if (id == null) {
             return null;
         }
-        return studentAltRepository.findById(id).
-                orElseThrow(() -> new ResourceNotFoundException(StudentAlt.class.getSimpleName(), id));
+//        return studentDao.findById(id).
+//                orElseThrow(() -> new ResourceNotFoundException(Student.class.getSimpleName(), id));
+        return null;
     }
 
     @Override
-    public List<StudentAlt> getAllStudentsAlt() {
-        return studentAltRepository.findAll();
+    public List<Student> findAllStudents() {
+        return studentDao.findAll();
     }
 
     @Override
-    public StudentAlt saveStudentAlt(StudentAlt studentAlt) {
+    public Student saveStudent(Student studentAlt) {
 
         if (studentAlt == null) {
             return null;
         }
-        return studentAltRepository.save(studentAlt);
+        return studentDao.save(studentAlt);
     }
 
     @Override
-    public StudentAlt updateStudentAlt(StudentAlt studentAlt, Long id) throws ResourceNotFoundException {
+    public Student updateStudent(Student studentAlt, Long id) throws ResourceNotFoundException {
 
         if (id == null || studentAlt == null) {
             return null;
         }
-        StudentAlt studentAltToBeUpdated = studentAltRepository.findById(id).
-                orElseThrow(() -> new ResourceNotFoundException(StudentAlt.class.getSimpleName(), id));
-        updateStudentAltWithGivenObject(studentAltToBeUpdated, studentAlt);
-        return studentAltRepository.save(studentAltToBeUpdated);
+        Student studentAltToBeUpdated = null; //studentDao.findById(id).orElseThrow(() -> new ResourceNotFoundException(Student.class.getSimpleName(), id));
+        updateStudentWithGivenObject(studentAltToBeUpdated, studentAlt);
+        return studentDao.save(studentAltToBeUpdated);
     }
 
     @Override
-    public void deleteStudentAlt(Long id) throws ResourceNotFoundException {
+    public void deleteStudent(Long id) throws ResourceNotFoundException {
 
         if (id == null) {
             return;
         }
-        studentAltRepository.deleteById(id);
+        studentDao.deleteById(id);
     }
 
     private void initStudentsAltList() {
 
-        studentAltRepository.save(new StudentAlt.Builder()
+        studentDao.save(Student.builder()
                 .lastName("Mylonas")
                 .firstName("Thomas")
-                .dateOfBirth(HelperClass.getDate(1972, Calendar.SEPTEMBER, 24))
+                .dateOfBirth(HelperClass.buildDate(1972, Calendar.SEPTEMBER, 24))
                 .absences(1)
                 .departmentId("Dept1")
                 .status(Status.ADVANCED_STUDENT)
                 .build());
-        studentAltRepository.save(new StudentAlt.Builder()
+        studentDao.save(Student.builder()
                 .lastName("Lorem")
                 .firstName("Ipsum")
-                .dateOfBirth(HelperClass.getDate(1979, Calendar.APRIL, 30))
+                .dateOfBirth(HelperClass.buildDate(1979, Calendar.APRIL, 30))
                 .absences(5)
                 .departmentId("Dept1")
                 .status(Status.JUNIOR_STUDENT)
                 .build());
-        studentAltRepository.save(new StudentAlt.Builder()
+        studentDao.save(Student.builder()
                 .lastName("Chan")
                 .firstName("Jacky")
-                .dateOfBirth(HelperClass.getDate(1982, Calendar.MAY, 9))
+                .dateOfBirth(HelperClass.buildDate(1982, Calendar.MAY, 9))
                 .absences(3)
                 .departmentId("Dept2")
                 .status(Status.JUNIOR_STUDENT)
                 .build());
-        studentAltRepository.save(new StudentAlt.Builder()
+        studentDao.save(Student.builder()
                 .lastName("Parker")
                 .firstName("Peter")
-                .dateOfBirth(HelperClass.getDate(1990, Calendar.OCTOBER, 15))
+                .dateOfBirth(HelperClass.buildDate(1990, Calendar.OCTOBER, 15))
                 .absences(7)
                 .departmentId("Dept3")
                 .status(Status.MEDIUM_STUDENT)
                 .build());
-        studentAltRepository.save(new StudentAlt.Builder()
+        studentDao.save(Student.builder()
                 .lastName("Murdock")
                 .firstName("Matt")
-                .dateOfBirth(HelperClass.getDate(2000, Calendar.FEBRUARY, 2))
+                .dateOfBirth(HelperClass.buildDate(2000, Calendar.FEBRUARY, 2))
                 .absences(2)
                 .departmentId("Dept4")
                 .status(Status.ADVANCED_STUDENT)
