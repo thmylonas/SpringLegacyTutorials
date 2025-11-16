@@ -19,9 +19,9 @@ import java.util.List;
  * A simple sample API, on the Student entity
  */
 @Controller
-@RequestMapping(path = "/api/student/")
+@RequestMapping(path = "/api/v1/students")
 @Slf4j
-public class StudentController /*extends AbstractController*/ {
+public class StudentController {
 
     private final StudentService studentService;
 
@@ -30,7 +30,7 @@ public class StudentController /*extends AbstractController*/ {
         this.studentService = studentService;
     }
 
-    // http://localhost:8080/SpringMvcJsfPfWebApp/api/student/1
+    // http://localhost:8080/api/v1/students/1
     @RequestMapping(path = "{id}", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<Student> getStudentById(@PathVariable(name = "id") Long id) {
@@ -39,21 +39,21 @@ public class StudentController /*extends AbstractController*/ {
         return new ResponseEntity<>(student, HttpStatus.OK);
     }
 
-    // http://localhost:8080/SpringMvcJsfPfWebApp/api/student/all-students
+    // http://localhost:8080/api/v1/students/all-students
     @RequestMapping(path = "all-students", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<List<Student>> getAllStudents() {
         return new ResponseEntity<>(studentService.findAllStudents(), HttpStatus.OK);
     }
 
-    // http://localhost:8080/SpringMvcJsfPfWebApp/api/student
+    // http://localhost:8080/api/v1/students
     @RequestMapping(method = RequestMethod.POST)
     @ResponseBody
     public ResponseEntity<Student> saveNewStudent(@RequestBody Student student) {
         return new ResponseEntity<>(studentService.saveStudent(student), HttpStatus.CREATED);
     }
 
-    // http://localhost:8080/SpringMvcJsfPfWebApp/api/student/1
+    // http://localhost:8080/api/v1/students/1
     @RequestMapping(path = "{id}", method = RequestMethod.PUT)
     @ResponseBody
     public ResponseEntity<Student> updateExistingStudent(@RequestBody Student student,
@@ -61,7 +61,7 @@ public class StudentController /*extends AbstractController*/ {
         return new ResponseEntity<>(studentService.updateStudent(student, id), HttpStatus.OK);
     }
 
-    // http://localhost:8080/SpringMvcJsfPfWebApp/api/student/1
+    // http://localhost:8080/api/v1/students/1
     @RequestMapping(path = "{id}", method = RequestMethod.DELETE)
     @ResponseBody
     public void deleteExistingStudent(@PathVariable(name = "id") Long id) {
