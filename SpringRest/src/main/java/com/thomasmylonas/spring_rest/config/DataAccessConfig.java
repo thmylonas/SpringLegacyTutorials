@@ -63,8 +63,8 @@ public class DataAccessConfig {
         return emfb.getObject();
     }
 
-    @Bean(value = "dataSource")
-    public DataSource dataSource() {
+    @Bean(value = "datasource")
+    public DataSource datasource() {
 
         JndiObjectFactoryBean jndiObjectFactoryBean = new JndiObjectFactoryBean();
         jndiObjectFactoryBean.setJndiName("jdbc/oracledb");
