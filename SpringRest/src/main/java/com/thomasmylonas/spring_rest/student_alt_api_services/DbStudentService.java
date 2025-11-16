@@ -1,6 +1,6 @@
 package com.thomasmylonas.spring_rest.student_alt_api_services;
 
-import com.thomasmylonas.spring_rest.entities.StudentAlt;
+import com.thomasmylonas.spring_rest.entities.Student;
 import com.thomasmylonas.spring_rest.repositories.StudentDao;
 import lombok.Getter;
 import lombok.Setter;
@@ -25,22 +25,22 @@ public class DbStudentService implements StudentService {
     }
 
     @Override
-    public StudentAlt findStudentById(Long id) {
+    public Student findStudentById(Long id) {
         return studentDao.findById(id); // IllegalArgumentException, ResourceNotFoundException
     }
 
     @Override
-    public List<StudentAlt> findAllStudents() {
+    public List<Student> findAllStudents() {
         return studentDao.findAll();
     }
 
     @Override
-    public StudentAlt saveStudent(StudentAlt student) {
+    public Student saveStudent(Student student) {
 
         if (student == null) {
             throw new IllegalArgumentException("The student is not valid (is null)!");
         }
-        StudentAlt studentToSave = StudentAlt.builder()
+        Student studentToSave = Student.builder()
                 .lastName(student.getLastName())
                 .firstName(student.getFirstName())
                 .dateOfBirth(student.getDateOfBirth())
@@ -52,7 +52,7 @@ public class DbStudentService implements StudentService {
     }
 
     @Override
-    public void updateStudent(StudentAlt student, Long id) {
+    public void updateStudent(Student student, Long id) {
         studentDao.update(student, id); // IllegalArgumentException, ResourceNotFoundException
     }
 
@@ -62,7 +62,7 @@ public class DbStudentService implements StudentService {
     }
 
     private void initStudentsList() {
-        List<StudentAlt> students = TestDataProvider.STUDENTS;
+        List<Student> students = TestDataProvider.STUDENTS;
         studentDao.saveAll(students);
     }
 }

@@ -1,35 +1,35 @@
 package com.thomasmylonas.spring_rest.student_alt_api_services._base;
 
-import com.thomasmylonas.spring_rest.entities.StudentAlt;
+import com.thomasmylonas.spring_rest.entities.Student;
 import com.thomasmylonas.spring_rest.helpers.HelperClass;
 import com.thomasmylonas.spring_rest.student_alt_api_services.StudentAltService;
 
 public abstract class AbstractStudentAltService implements StudentAltService {
 
-    // All "interface StudentAltService"'s methods are implemented in the subclasses
+    // All "interface StudentService"'s methods are implemented in the subclasses
 
-    protected void updateStudentAltWithGivenObject(StudentAlt studentAltToBeUpdated, StudentAlt studentAlt) {
+    protected void updateStudentWithGivenObject(Student studentToBeUpdated, Student student) {
 
-        if (studentAltToBeUpdated == null || studentAlt == null) {
+        if (studentToBeUpdated == null || student == null) {
             return;
         }
-        if (!HelperClass.isStringNullOrEmpty(studentAlt.getLastName())) {
-            studentAltToBeUpdated.setLastName(studentAlt.getLastName());
+        if (!HelperClass.isStringNullOrEmpty(student.getLastName())) {
+            studentToBeUpdated.setLastName(student.getLastName());
         }
-        if (!HelperClass.isStringNullOrEmpty(studentAlt.getFirstName())) {
-            studentAltToBeUpdated.setFirstName(studentAlt.getFirstName());
+        if (!HelperClass.isStringNullOrEmpty(student.getFirstName())) {
+            studentToBeUpdated.setFirstName(student.getFirstName());
         }
-        if (studentAlt.getDateOfBirth() != null) {
-            studentAltToBeUpdated.setDateOfBirth(studentAlt.getDateOfBirth());
+        if (student.getDateOfBirth() != null) {
+            studentToBeUpdated.setDateOfBirth(student.getDateOfBirth());
         }
-        if (studentAlt.getAbsences() != null) {
-            studentAltToBeUpdated.setAbsences(studentAlt.getAbsences());
+        if (student.getAbsences() != null) {
+            studentToBeUpdated.setAbsences(student.getAbsences());
         }
-        if (!HelperClass.isStringNullOrEmpty(studentAlt.getDepartmentId())) {
-            studentAltToBeUpdated.setDepartmentId(studentAlt.getDepartmentId());
+        if (!HelperClass.isStringNullOrEmpty(student.getDepartmentId())) {
+            studentToBeUpdated.setDepartmentId(student.getDepartmentId());
         }
-        if (studentAlt.getStatus() != null) {
-            studentAltToBeUpdated.setStatus(studentAlt.getStatus());
+        if (student.getStatus() != null) {
+            studentToBeUpdated.setStatus(student.getStatus());
         }
     }
 }

@@ -1,6 +1,6 @@
 package com.thomasmylonas.spring_rest.repositories;
 
-import com.thomasmylonas.spring_rest.entities.StudentAlt;
+import com.thomasmylonas.spring_rest.entities.Student;
 import com.thomasmylonas.spring_rest.exceptions.ResourceNotFoundException;
 import com.thomasmylonas.spring_rest.helpers.HelperClass;
 import lombok.Getter;
@@ -30,24 +30,24 @@ public class StudentDao {
         em = createEntityManager(PERSISTENCE_UNIT_NAME);
     }
 
-    public StudentAlt findById(Long id) {
+    public Student findById(Long id) {
 
         if (id == null || id < 0) {
             throw new IllegalArgumentException("The id is not valid!");
         }
-        StudentAlt entityResult = em.find(StudentAlt.class, id);
+        Student entityResult = em.find(Student.class, id);
         if (entityResult == null) {
-            throw new ResourceNotFoundException(StudentAlt.class.getSimpleName(), id);
+            throw new ResourceNotFoundException(Student.class.getSimpleName(), id);
         }
         return entityResult;
     }
 
-    public List<StudentAlt> findAll() {
-        TypedQuery<StudentAlt> query = em.createQuery("select s from StudentAlt s", StudentAlt.class);
+    public List<Student> findAll() {
+        TypedQuery<Student> query = em.createQuery("select s from Student s", Student.class);
         return query.getResultList();
     }
 
-    public StudentAlt save(StudentAlt student) {
+    public Student save(Student student) {
 
         if (student == null) {
             throw new IllegalArgumentException("The student is not valid (is null)!");
@@ -65,7 +65,7 @@ public class StudentDao {
         return student;
     }
 
-    public void saveAll(List<StudentAlt> entities) {
+    public void saveAll(List<Student> entities) {
 
         try {
             em.getTransaction().begin();
@@ -79,7 +79,7 @@ public class StudentDao {
         }
     }
 
-    public void update(StudentAlt student, Long id) {
+    public void update(Student student, Long id) {
 
         if (id == null || id < 0 || student == null) {
             throw new IllegalArgumentException("The arguments are not valid!");
@@ -87,7 +87,7 @@ public class StudentDao {
         try {
             em.getTransaction().begin();
 
-            StudentAlt studentToUpdate = findById(id); // IllegalArgumentException, ResourceNotFoundException
+            Student studentToUpdate = findById(id); // IllegalArgumentException, ResourceNotFoundException
             updateStudentWithGivenObject(studentToUpdate, student);
 
             em.getTransaction().commit();
@@ -105,7 +105,7 @@ public class StudentDao {
         try {
             em.getTransaction().begin();
 
-            StudentAlt entityToDelete = findById(id); // IllegalArgumentException, ResourceNotFoundException
+            Student entityToDelete = findById(id); // IllegalArgumentException, ResourceNotFoundException
             em.remove(entityToDelete);
 
             em.getTransaction().commit();
@@ -125,7 +125,7 @@ public class StudentDao {
         }
     }
 
-    protected void updateStudentWithGivenObject(StudentAlt studentToUpdate, StudentAlt student) {
+    protected void updateStudentWithGivenObject(Student studentToUpdate, Student student) {
 
         if (!HelperClass.isStringNullOrEmpty(student.getLastName())) {
             studentToUpdate.setLastName(student.getLastName());

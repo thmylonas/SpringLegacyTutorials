@@ -1,7 +1,7 @@
 package com.thomasmylonas.spring_rest.controllers;
 
-import com.thomasmylonas.spring_rest.entities.StudentAlt;
-import com.thomasmylonas.spring_rest.student_alt_api_services.StudentAltService;
+import com.thomasmylonas.spring_rest.entities.Student;
+import com.thomasmylonas.spring_rest.student_alt_api_services.StudentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -16,55 +16,56 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import java.util.List;
 
 /**
- * A simple sample API, on the StudentAlt entity (alternative)
+ * A simple sample API, on the Student entity
  */
 @Controller
-@RequestMapping(path = "/api/student-alt/")
+@RequestMapping(path = "/api/student/")
 @Slf4j
 public class StudentAltController /*extends AbstractController*/ {
 
-    private final StudentAltService dbStudentAltService;
+    private final StudentService dbStudentService;
 
     @Autowired
-    public StudentAltController(StudentAltService dbStudentAltService) {
-        this.dbStudentAltService = dbStudentAltService;
+    public StudentAltController(StudentService dbStudentService) {
+        this.dbStudentService = dbStudentService;
     }
 
-    // http://localhost:8080/SpringMvcJsfPfWebApp/api/student-alt/1
+    // http://localhost:8080/SpringMvcJsfPfWebApp/api/student/1
     @RequestMapping(path = "{id}", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseEntity<StudentAlt> getStudentAltById(@PathVariable(name = "id") Long id) {
-        StudentAlt studentAlt = dbStudentAltService.getStudentAltById(id);
-        log.info("The studentAlt with id = " + id + ", is the\n" + studentAlt);
-        return new ResponseEntity<>(studentAlt, HttpStatus.OK);
+    public ResponseEntity<Student> getStudentById(@PathVariable(name = "id") Long id) {
+        Student student = dbStudentService.findStudentById(id);
+        log.info("The student with id = " + id + ", is the\n" + student);
+        return new ResponseEntity<>(student, HttpStatus.OK);
     }
 
-    // http://localhost:8080/SpringMvcJsfPfWebApp/api/student-alt/all-students-alt
-    @RequestMapping(path = "all-students-alt", method = RequestMethod.GET)
+    // http://localhost:8080/SpringMvcJsfPfWebApp/api/student/all-students
+    @RequestMapping(path = "all-students", method = RequestMethod.GET)
     @ResponseBody
-    public ResponseEntity<List<StudentAlt>> getAllStudentsAlt() {
-        return new ResponseEntity<>(dbStudentAltService.findAllStudentsAlt(), HttpStatus.OK);
+    public ResponseEntity<List<Student>> getAllStudents() {
+        return new ResponseEntity<>(dbStudentService.findAllStudents(), HttpStatus.OK);
     }
 
-    // http://localhost:8080/SpringMvcJsfPfWebApp/api/student-alt
+    // http://localhost:8080/SpringMvcJsfPfWebApp/api/student
     @RequestMapping(method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<StudentAlt> saveNewStudentAlt(@RequestBody StudentAlt studentAlt) {
-        return new ResponseEntity<>(dbStudentAltService.saveStudentAlt(studentAlt), HttpStatus.CREATED);
+    public ResponseEntity<Student> saveNewStudent(@RequestBody Student student) {
+        return new ResponseEntity<>(dbStudentService.saveStudent(student), HttpStatus.CREATED);
     }
 
-    // http://localhost:8080/SpringMvcJsfPfWebApp/api/student-alt/1
+    // http://localhost:8080/SpringMvcJsfPfWebApp/api/student/1
     @RequestMapping(path = "{id}", method = RequestMethod.PUT)
     @ResponseBody
-    public ResponseEntity<StudentAlt> updateExistingStudentAlt(@RequestBody StudentAlt studentAlt,
-                                                               @PathVariable(name = "id") Long id) {
-        return new ResponseEntity<>(dbStudentAltService.updateStudentAlt(studentAlt, id), HttpStatus.OK);
+    public ResponseEntity<Student> updateExistingStudent(@RequestBody Student student,
+                                                         @PathVariable(name = "id") Long id) {
+//        return new ResponseEntity<>(dbStudentService.updateStudent(student, id), HttpStatus.OK);
+        return null;
     }
 
-    // http://localhost:8080/SpringMvcJsfPfWebApp/api/student-alt/1
+    // http://localhost:8080/SpringMvcJsfPfWebApp/api/student/1
     @RequestMapping(path = "{id}", method = RequestMethod.DELETE)
     @ResponseBody
-    public void deleteExistingStudentAlt(@PathVariable(name = "id") Long id) {
-        dbStudentAltService.deleteStudentAlt(id);
+    public void deleteExistingStudent(@PathVariable(name = "id") Long id) {
+        dbStudentService.deleteStudent(id);
     }
 }

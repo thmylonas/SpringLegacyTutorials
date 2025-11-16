@@ -19,7 +19,7 @@ import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import java.time.LocalDate;
 
-@Entity(name = "StudentAlt")
+@Entity(name = "Student")
 @Table(name = "Students")
 @Getter
 @Setter
@@ -27,7 +27,7 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @ToString
 @Builder
-public class StudentAlt {
+public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Students_Sequence_Generator")
