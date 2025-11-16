@@ -1,4 +1,4 @@
-package com.thomasmylonas.spring_mvc_jsf_pf_web_app.config;
+package com.thomasmylonas.spring_rest.config;
 
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -7,7 +7,9 @@ import org.junit.jupiter.api.Assertions;
 
 import javax.sql.DataSource;
 
-class DataAccessConfigTest {
+//import static org.junit.jupiter.api.Assertions.*;
+
+public class DataAccessConfigTest {
 
     private DataAccessConfig dataAccessConfig;
 
@@ -22,7 +24,7 @@ class DataAccessConfigTest {
     }
 
     @Test
-    void dataSource() {
+    public void dataSource() {
         DataSource actual = dataAccessConfig.dataSource();
         Assertions.assertNotNull(actual);
     }
