@@ -21,12 +21,12 @@ import java.util.List;
 @Controller
 @RequestMapping(path = "/api/student/")
 @Slf4j
-public class StudentAltController /*extends AbstractController*/ {
+public class StudentController /*extends AbstractController*/ {
 
     private final StudentService dbStudentService;
 
     @Autowired
-    public StudentAltController(StudentService dbStudentService) {
+    public StudentController(StudentService dbStudentService) {
         this.dbStudentService = dbStudentService;
     }
 

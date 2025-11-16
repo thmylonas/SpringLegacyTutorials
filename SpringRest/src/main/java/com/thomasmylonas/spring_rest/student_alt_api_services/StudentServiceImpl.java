@@ -11,12 +11,12 @@ import javax.annotation.PostConstruct;
 import java.util.List;
 
 @Service(value = "dbStudentService")
-public class DbStudentAltService extends AbstractStudentService {
+public class StudentServiceImpl extends AbstractStudentService {
 
     private final StudentDao studentDao;
 
     @Autowired
-    public DbStudentAltService(StudentDao studentDao) {
+    public StudentServiceImpl(StudentDao studentDao) {
         this.studentDao = studentDao;
     }
 
