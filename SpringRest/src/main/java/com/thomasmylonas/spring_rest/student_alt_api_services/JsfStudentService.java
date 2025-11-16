@@ -14,7 +14,7 @@ import java.util.List;
 @Service(value = "dbStudentService")
 @Getter
 @Setter
-public class DbStudentService implements StudentService {
+public class JsfStudentService implements StudentService {
 
     @Autowired
     private StudentDao studentDao;
