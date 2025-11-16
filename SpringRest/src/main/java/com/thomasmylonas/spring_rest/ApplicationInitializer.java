@@ -1,8 +1,8 @@
 package com.thomasmylonas.spring_rest;
 
-import com.thomasmylonas.spring_mvc_jsf_pf_web_app.config.DataAccessConfig;
-import com.thomasmylonas.spring_mvc_jsf_pf_web_app.config.RootConfig;
-import com.thomasmylonas.spring_mvc_jsf_pf_web_app.config.WebConfig;
+import com.thomasmylonas.spring_rest.config.DataAccessConfig;
+import com.thomasmylonas.spring_rest.config.RootConfig;
+import com.thomasmylonas.spring_rest.config.WebConfig;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class ApplicationInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
