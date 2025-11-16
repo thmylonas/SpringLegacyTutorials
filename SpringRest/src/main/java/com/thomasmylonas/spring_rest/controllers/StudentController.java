@@ -2,8 +2,8 @@ package com.thomasmylonas.spring_rest.controllers;
 
 import com.thomasmylonas.spring_rest.entities.Student;
 import com.thomasmylonas.spring_rest.services.StudentService;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -12,59 +12,51 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.List;
 
-/**
- * A simple sample API, on the Student entity
- */
 @Controller
 @RequestMapping(path = "/api/v1/students")
+@RequiredArgsConstructor
 @Slf4j
 public class StudentController {
 
     private final StudentService studentService;
 
-    @Autowired
-    public StudentController(StudentService studentService) {
-        this.studentService = studentService;
-    }
-
-    // http://localhost:8080/api/v1/students/1
-    @RequestMapping(path = "{id}", method = RequestMethod.GET)
+    @RequestMapping(path = {"/{id}"}, method = RequestMethod.GET)
+    @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody
-    public ResponseEntity<Student> getStudentById(@PathVariable(name = "id") Long id) {
+    public ResponseEntity<Student> findStudentById(@PathVariable(name = "id") Long id) { // "http://localhost:8080/api/v1/students/1"
         Student student = studentService.findStudentById(id);
         log.info("The student with id = " + id + ", is the\n" + student);
         return new ResponseEntity<>(student, HttpStatus.OK);
     }
 
-    // http://localhost:8080/api/v1/students/all-students
-    @RequestMapping(path = "all-students", method = RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
+    @ResponseStatus(value = HttpStatus.CREATED)
     @ResponseBody
-    public ResponseEntity<List<Student>> getAllStudents() {
+    public ResponseEntity<List<Student>> findAllStudents() { // "http://localhost:8080/api/v1/students/all-students"
         return new ResponseEntity<>(studentService.findAllStudents(), HttpStatus.OK);
     }
 
-    // http://localhost:8080/api/v1/students
     @RequestMapping(method = RequestMethod.POST)
     @ResponseBody
-    public ResponseEntity<Student> saveNewStudent(@RequestBody Student student) {
+    public ResponseEntity<Student> saveStudent(@RequestBody Student student) { // "http://localhost:8080/api/v1/students"
         return new ResponseEntity<>(studentService.saveStudent(student), HttpStatus.CREATED);
     }
 
-    // http://localhost:8080/api/v1/students/1
-    @RequestMapping(path = "{id}", method = RequestMethod.PUT)
+    @RequestMapping(path = {"/{id}"}, method = RequestMethod.PUT)
+    @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody
-    public ResponseEntity<Student> updateExistingStudent(@RequestBody Student student,
-                                                         @PathVariable(name = "id") Long id) {
+    public ResponseEntity<Student> updateStudent(@RequestBody Student student, @PathVariable(name = "id") Long id) { // "http://localhost:8080/api/v1/students/{id}"
         return new ResponseEntity<>(studentService.updateStudent(student, id), HttpStatus.OK);
     }
 
-    // http://localhost:8080/api/v1/students/1
-    @RequestMapping(path = "{id}", method = RequestMethod.DELETE)
+    @RequestMapping(path = {"/{id}"}, method = RequestMethod.DELETE)
+    @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody
-    public void deleteExistingStudent(@PathVariable(name = "id") Long id) {
+    public void deleteStudentById(@PathVariable(name = "id") Long id) { // "http://localhost:8080/api/v1/students/{id}"
         studentService.deleteStudent(id);
     }
 }
