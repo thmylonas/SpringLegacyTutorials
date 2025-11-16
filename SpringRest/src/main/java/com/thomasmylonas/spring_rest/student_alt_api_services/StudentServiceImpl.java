@@ -1,9 +1,7 @@
 package com.thomasmylonas.spring_rest.student_alt_api_services;
 
 import com.thomasmylonas.spring_rest.entities.Student;
-import com.thomasmylonas.spring_rest.exceptions.ResourceNotFoundException;
 import com.thomasmylonas.spring_rest.repositories.StudentDao;
-import com.thomasmylonas.spring_rest.student_alt_api_services._base.AbstractStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -11,7 +9,7 @@ import javax.annotation.PostConstruct;
 import java.util.List;
 
 @Service(value = "dbStudentService")
-public class StudentServiceImpl extends AbstractStudentService {
+public class StudentServiceImpl implements StudentService {
 
     private final StudentDao studentDao;
 
@@ -26,14 +24,8 @@ public class StudentServiceImpl extends AbstractStudentService {
     }
 
     @Override
-    public Student findStudentById(Long id) throws ResourceNotFoundException {
-
-        if (id == null) {
-            return null;
-        }
-//        return studentDao.findById(id).
-//                orElseThrow(() -> new ResourceNotFoundException(Student.class.getSimpleName(), id));
-        return null;
+    public Student findStudentById(Long id) {
+        return studentDao.findById(id); // IllegalArgumentException, ResourceNotFoundException
     }
 
     @Override
@@ -45,29 +37,28 @@ public class StudentServiceImpl extends AbstractStudentService {
     public Student saveStudent(Student student) {
 
         if (student == null) {
-            return null;
+            throw new IllegalArgumentException("The student is not valid (is null)!");
         }
-        return studentDao.save(student);
+        /*Student studentToSave = Student.builder()
+                .lastName(student.getLastName())
+                .firstName(student.getFirstName())
+                .dateOfBirth(student.getDateOfBirth())
+                .absences(student.getAbsences())
+                .departmentId(student.getDepartmentId())
+                .status(student.getStatus())
+                .build();*/
+        return studentDao.save(student); // IllegalArgumentException
     }
 
     @Override
-    public Student updateStudent(Student student, Long id) throws ResourceNotFoundException {
-
-        if (id == null || student == null) {
-            return null;
-        }
-        Student studentToBeUpdated = null; //studentDao.findById(id).orElseThrow(() -> new ResourceNotFoundException(Student.class.getSimpleName(), id));
-        updateStudentWithGivenObject(studentToBeUpdated, student);
-        return studentDao.save(studentToBeUpdated);
+    public Student updateStudent(Student student, Long id) {
+        studentDao.update(student, id); // IllegalArgumentException, ResourceNotFoundException
+        return null;
     }
 
     @Override
-    public void deleteStudent(Long id) throws ResourceNotFoundException {
-
-        if (id == null) {
-            return;
-        }
-        studentDao.deleteById(id);
+    public void deleteStudent(Long id) {
+        studentDao.deleteById(id); // IllegalArgumentException, ResourceNotFoundException
     }
 
     private void initStudentsList() {
