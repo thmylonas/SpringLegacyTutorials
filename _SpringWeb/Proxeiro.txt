@@ -206,7 +206,8 @@ public class ApplicationInitializer extends org.springframework.web.servlet.supp
 }
 
 Attention:
-The "public class WebConfig implements WebMvcConfigurer" is NOT mandatory
+- The "public class WebConfig implements org.springframework.web.servlet.config.annotation.WebMvcConfigurer" is NOT mandatory
+- The "public class WebConfig extends org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter" is NOT mandatory
 
 ========================================================================================================================
 
