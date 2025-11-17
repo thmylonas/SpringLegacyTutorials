@@ -10,6 +10,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.FilterType;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.jndi.JndiObjectFactoryBean;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.JpaVendorAdapter;
@@ -52,7 +53,7 @@ public class DataAccessConfig {
         Properties properties = new Properties();
         properties.setProperty("hibernate.hbm2ddl.auto", "update");
         properties.setProperty("hibernate.show_sql", "true");
-        properties.setProperty("hibernate.format_sql", "true");
+        properties.setProperty("hibernate.format_sql", "false");
         //properties.put("hibernate.id.new_generator_mappings", "true");
 
         emfb.setJpaProperties(properties);
@@ -64,16 +65,12 @@ public class DataAccessConfig {
     @Bean(value = "studentdbDatasource")
     public DataSource studentdbDatasource() {
 
-        JndiObjectFactoryBean jndiObjectFactoryBean = new JndiObjectFactoryBean();
-        jndiObjectFactoryBean.setJndiName("jdbc/studentdb");
-        jndiObjectFactoryBean.setResourceRef(true); // Default value: false
-        jndiObjectFactoryBean.setProxyInterface(javax.sql.DataSource.class);
-        try {
-            jndiObjectFactoryBean.afterPropertiesSet();
-        } catch (NamingException e) {
-            log.error("NamingException thrown while jndiObjectFactoryBean.afterPropertiesSet");
-        }
-        return (DataSource) jndiObjectFactoryBean.getObject();
+        DriverManagerDataSource dataSource = new DriverManagerDataSource(); // Alternatives: "org.springframework.jdbc.datasource.SimpleDriverDataSource", "org.springframework.jdbc.datasource.SingleConnectionDataSource"
+        dataSource.setDriverClassName("org.h2.Driver");
+        dataSource.setUrl("jdbc:h2:~/studentdb;AUTO_SERVER=TRUE;DB_CLOSE_DELAY=-1"); // "jdbc:h2:mem:studentdb"
+        dataSource.setUsername("sa");
+        dataSource.setPassword("");
+        return dataSource;
     }
 
     //@Bean(value = "oracledbDatasource")
