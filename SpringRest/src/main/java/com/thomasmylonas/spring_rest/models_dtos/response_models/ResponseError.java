@@ -13,7 +13,7 @@ public record ResponseError(
         LocalDateTime timestamp,
         String statusCode,
         String message,
-        String path, // "request URL"
-        String stacktrace
+        String path // "request URL"
+        //String stacktrace
 ) {
 }
