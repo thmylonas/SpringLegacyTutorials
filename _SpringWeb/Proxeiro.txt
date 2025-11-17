@@ -117,7 +117,7 @@ public class WebConfig implements WebMvcConfigurer {
 
 If "public class WebConfig implements WebMvcConfigurer":
 - In Springframework version_4.x.xx, we need to implement all the "WebMvcConfigurer" interface's methods
-- In Springframework version_5.3.22, we DO NOT need to implement any of the "WebMvcConfigurer" interface's methods (default methods)
+- In Springframework version_5.x.xx, we DO NOT need to implement any of the "WebMvcConfigurer" interface's methods (default methods)
 
 ========================================================================================================================
 
