@@ -12,7 +12,6 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-//import javax.persistence.Persistence;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
@@ -23,14 +22,12 @@ import java.util.List;
 @Slf4j
 public class StudentDao {
 
-    //private static final String PERSISTENCE_UNIT_NAME = "StudentPU_H2";
-
     private final EntityManagerFactory entityManagerFactory;
     private EntityManager em;
 
     @PostConstruct
     private void init() {
-        em = createEntityManager(); //(PERSISTENCE_UNIT_NAME);
+        em = createEntityManager();
     }
 
     public Student findById(Long id) {
@@ -118,9 +115,8 @@ public class StudentDao {
         }
     }
 
-    private EntityManager createEntityManager() { //(String persistenceUnitName) {
+    private EntityManager createEntityManager() {
 
-//        EntityManagerFactory emf = Persistence.createEntityManagerFactory(persistenceUnitName);
         try {
             return entityManagerFactory.createEntityManager(); // IllegalStateException
         } catch (Exception e) {
@@ -128,7 +124,7 @@ public class StudentDao {
         }
     }
 
-    protected void updateStudentWithGivenObject(Student studentToUpdate, Student student) {
+    private void updateStudentWithGivenObject(Student studentToUpdate, Student student) {
 
         if (!HelperClass.isStringNullOrEmpty(student.getLastName())) {
             studentToUpdate.setLastName(student.getLastName());
