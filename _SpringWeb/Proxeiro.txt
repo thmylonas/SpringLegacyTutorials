@@ -141,6 +141,24 @@ If "public class WebConfig implements WebMvcConfigurer":
 
 ========================================================================================================================
 
+The minimum Configuration to run a SpringMVC/SpringREST web application is:
+
+@Configuration
+@ComponentScan(basePackages = {"path.to.controllers"})
+@EnableWebMvc
+public class WebConfig {}
+
+public class ApplicationInitializer extends org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer {
+    @Override protected Class<?>[] getRootConfigClasses() {return new Class[]{RootConfig.class, DataAccessConfig.class};}
+    @Override protected Class<?>[] getServletConfigClasses() {return new Class[]{WebConfig.class};}
+    @Override protected String[] getServletMappings() {return new String[]{"/"};}
+}
+
+Attention:
+The "public class WebConfig implements WebMvcConfigurer" is NOT mandatory
+
+========================================================================================================================
+
 Attention:
 Pont_1:
 The Services in the "JsfPrimefacesTutorials", are servicing the StudentDao only.
