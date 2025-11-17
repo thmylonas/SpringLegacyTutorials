@@ -36,7 +36,7 @@ public class StudentController {
     @RequestMapping(method = RequestMethod.GET)
     @ResponseStatus(value = HttpStatus.CREATED)
     @ResponseBody
-    public ResponseEntity<List<Student>> findAllStudents() { // "http://localhost:8080/api/v1/students/all-students"
+    public ResponseEntity<List<Student>> findAllStudents() { // "http://localhost:8080/api/v1/students"
         return new ResponseEntity<>(studentService.findAllStudents(), HttpStatus.OK);
     }
 
