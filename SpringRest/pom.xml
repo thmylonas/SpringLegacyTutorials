@@ -11,12 +11,12 @@
     <description>Spring_Legacy_Framework/SpringRest</description>
 
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source> <!-- Keep this version Un-Changed (see Proxeiro) -->
+        <maven.compiler.target>21</maven.compiler.target> <!-- Keep this version Un-Changed (see Proxeiro) -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <springframework.version>5.2.1.RELEASE</springframework.version> <!-- 4.3.30.RELEASE, 5.3.22 -->
-        <springframework.data.version>2.1.9.RELEASE</springframework.data.version> <!-- 2.7.2, 2.7.5 -->
+        <springframework.version>5.3.39</springframework.version> <!-- About version see Proxeiro -->
+        <springframework.data.version>2.7.5</springframework.data.version> <!-- 2.1.9.RELEASE, 2.7.2 -->
     </properties>
 
     <dependencies>
