@@ -1,6 +1,5 @@
 package com.thomasmylonas.spring_rest.services;
 
-import com.thomasmylonas.spring_rest.entities.Student;
 import com.thomasmylonas.spring_rest.exceptions.ResourceNotFoundException;
 import com.thomasmylonas.spring_rest.models_dtos.comment_dtos.StudentRequestDto;
 import com.thomasmylonas.spring_rest.models_dtos.comment_dtos.StudentResponseDto;
