@@ -2,6 +2,8 @@ package com.thomasmylonas.spring_rest.services;
 
 import com.thomasmylonas.spring_rest.entities.Student;
 import com.thomasmylonas.spring_rest.helpers.TestDataProvider;
+import com.thomasmylonas.spring_rest.models_dtos.comment_dtos.StudentRequestDto;
+import com.thomasmylonas.spring_rest.models_dtos.comment_dtos.StudentResponseDto;
 import com.thomasmylonas.spring_rest.repositories.StudentDao;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,7 @@ import java.util.List;
 public class StudentServiceImpl implements StudentService {
 
     private final StudentDao studentDao;
+    private final StudentMapper studentMapper;
 
     @PostConstruct
     private void init() {
@@ -21,41 +24,53 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public Student findStudentById(Long id) {
-        return studentDao.findById(id); // IllegalArgumentException, ResourceNotFoundException
+    public StudentResponseDto findStudentById(Long id) {
+        Student student = studentDao.findById(id); // IllegalArgumentException, ResourceNotFoundException
+        return studentMapper.fromStudent(student);
     }
 
     @Override
-    public List<Student> findAllStudents() {
-        return studentDao.findAll();
+    public List<StudentResponseDto> findAllStudents() {
+        List<Student> students = studentDao.findAll();
+        return students.stream().map(studentMapper::fromStudent).toList();
     }
 
     @Override
-    public Student saveStudent(Student student) {
+    public StudentResponseDto saveStudent(StudentRequestDto studentRequestDto) {
 
-        if (student == null) {
-            throw new IllegalArgumentException("The student is not valid (is null)!");
+        if (studentRequestDto == null) {
+            throw new IllegalArgumentException("The studentRequestDto is not valid (is null)!");
         }
-        /*Student studentToSave = Student.builder()
-                .lastName(student.getLastName())
-                .firstName(student.getFirstName())
-                .dateOfBirth(student.getDateOfBirth())
-                .absences(student.getAbsences())
-                .departmentId(student.getDepartmentId())
-                .status(student.getStatus())
-                .build();*/
-        return studentDao.save(student); // IllegalArgumentException
+        Student student = studentMapper.toStudent(studentRequestDto);
+        Student savedStudent = studentDao.save(student); // IllegalArgumentException
+        return studentMapper.fromStudent(savedStudent);
     }
 
     @Override
-    public Student updateStudent(Student student, Long id) {
-        studentDao.update(student, id); // IllegalArgumentException, ResourceNotFoundException
-        return null;
+    public List<StudentResponseDto> saveAllStudents(List<StudentRequestDto> studentRequestDtos) {
+
+        if (studentRequestDtos == null || studentRequestDtos.contains(null)) {
+            throw new IllegalArgumentException("The studentRequestDtos are not valid (are null)!");
+        }
+        List<Student> students = studentRequestDtos.stream().map(studentMapper::toStudent).toList();
+        List<Student> savedStudents = studentDao.saveAll(students);
+        return savedStudents.stream().map(studentMapper::fromStudent).toList();
+    }
+
+    @Override
+    public StudentResponseDto updateStudent(StudentRequestDto newStudentRequestDto, Long id) {
+
+        if (newStudentRequestDto == null) {
+            throw new IllegalArgumentException("The newStudentRequestDto is not valid (is null)!");
+        }
+        Student newStudent = studentMapper.toStudent(newStudentRequestDto);
+        Student updatedStudent = studentDao.update(newStudent, id); // IllegalArgumentException, ResourceNotFoundException
+        return studentMapper.fromStudent(updatedStudent);
     }
 
     @Override
     public void deleteStudent(Long id) {
-        studentDao.deleteById(id); // IllegalArgumentException, ResourceNotFoundException
+        studentDao.deleteById(id); // IllegalArgumentException
     }
 
     private void initStudentsList() {

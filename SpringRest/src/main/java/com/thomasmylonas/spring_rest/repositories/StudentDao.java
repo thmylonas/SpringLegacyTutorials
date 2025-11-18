@@ -49,7 +49,7 @@ public class StudentDao {
         return query.getResultList();
     }
 
-    public Student save(Student student) {
+    public Student save(Student student) throws IllegalArgumentException {
 
         if (student == null) {
             throw new IllegalArgumentException("The student is not valid (is null)!");
