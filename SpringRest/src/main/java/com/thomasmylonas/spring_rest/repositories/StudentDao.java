@@ -49,6 +49,15 @@ public class StudentDao {
         return query.getResultList();
     }
 
+    /**
+     * The method saves a Student in the DB
+     * If "EntityTransaction::commit" happens, the saved "student" (containing the auto-generated "id", after "EntityManager::persist/EntityManager::flush") is returned
+     * If "EntityTransaction::rollback" happens, the initial "student" (without "id") is returned
+     *
+     * @param student The "student" to save
+     * @return The saved "student" which contains the auto-generated "id" or the initial "student" (without "id")
+     * @throws IllegalArgumentException If the "student" is not valid (is null)
+     */
     public Student save(Student student) throws IllegalArgumentException {
 
         if (student == null) {
@@ -64,11 +73,18 @@ public class StudentDao {
         } catch (Exception e) {
             em.getTransaction().rollback();
             log.error(ROLLBACK_MESSAGE, e.getMessage());
-            return student; // The initial "student" (without "id")
         }
-        return student; // The saved Student (contains the auto-generated "id", after "EntityManager::persist/EntityManager::flush")
+        return student; // see method's documentation
     }
 
+    /**
+     * The method saves a list of Student in the DB
+     * If "EntityTransaction::commit" happens, the saved "students" (containing the auto-generated "ids", after "EntityManager::persist/EntityManager::flush") are returned
+     * If "EntityTransaction::rollback" happens, the initial "students" (without "ids") are returned
+     *
+     * @param students The "students" to save
+     * @return The saved "students" which contain the auto-generated "ids" or the initial "students" (without "ids")
+     */
     public List<Student> saveAll(List<Student> students) {
 
         try {
@@ -81,9 +97,8 @@ public class StudentDao {
         } catch (Exception e) {
             em.getTransaction().rollback();
             log.error(ROLLBACK_MESSAGE, e.getMessage());
-            return students; // The initial "students" (without "ids")
         }
-        return students; // The saved Students (contain the auto-generated "ids", after "EntityManager::persist/EntityManager::flush")
+        return students; // see method's documentation
     }
 
     public Student update(Student student, Long id) throws IllegalArgumentException, ResourceNotFoundException {
