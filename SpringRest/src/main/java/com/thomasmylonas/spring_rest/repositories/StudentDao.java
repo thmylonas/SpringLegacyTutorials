@@ -22,15 +22,17 @@ import java.util.List;
 @Slf4j
 public class StudentDao {
 
+    private static final String ROLLBACK_MESSAGE = "Because of an 'Exception': '{}', the transaction is rolled back!";
+    private static EntityManager em;
+
     private final EntityManagerFactory entityManagerFactory;
-    private EntityManager em;
 
     @PostConstruct
     private void init() {
         em = createEntityManager();
     }
 
-    public Student findById(Long id) {
+    public Student findById(Long id) throws IllegalArgumentException, ResourceNotFoundException {
 
         if (id == null || id < 0) {
             throw new IllegalArgumentException("The id is not valid!");
@@ -56,48 +58,59 @@ public class StudentDao {
             em.getTransaction().begin();
 
             em.persist(student); // After "EntityManager::persist" the "entity" contains the "ID" with which is persisted
+            em.flush();
 
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
-            log.error("Because of an 'Exception': '{}', the transaction is rolled back!", e.getMessage());
+            log.error(ROLLBACK_MESSAGE, e.getMessage());
+            return student; // The initial "student" (without "id")
         }
-        return student;
+        return student; // The saved Student (contains the auto-generated "id", after "EntityManager::persist/EntityManager::flush")
     }
 
-    public void saveAll(List<Student> entities) {
+    public List<Student> saveAll(List<Student> students) {
 
         try {
             em.getTransaction().begin();
 
-            entities.forEach(em::persist); // "student -> em.persist(student)"
+            students.forEach(em::persist); // "student -> em.persist(student)"
+            em.flush();
 
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
-            log.error("Because of an 'Exception': '{}', the transaction is rolled back!", e.getMessage());
+            log.error(ROLLBACK_MESSAGE, e.getMessage());
+            return students; // The initial "students" (without "ids")
         }
+        return students; // The saved Students (contain the auto-generated "ids", after "EntityManager::persist/EntityManager::flush")
     }
 
-    public void update(Student student, Long id) {
+    public Student update(Student student, Long id) throws IllegalArgumentException, ResourceNotFoundException {
 
+        Student updatedStudent = null;
         if (id == null || id < 0 || student == null) {
             throw new IllegalArgumentException("The arguments are not valid!");
         }
         try {
             em.getTransaction().begin();
 
-            Student studentToUpdate = findById(id); // IllegalArgumentException, ResourceNotFoundException
-            updateStudentWithGivenObject(studentToUpdate, student);
+            Student studentToUpdate = findById(id); // ResourceNotFoundException (IllegalArgumentException: will never be thrown)
+            updatedStudent = updateStudentWithGivenObject(studentToUpdate, student);
 
             em.getTransaction().commit();
+        } catch (ResourceNotFoundException e) {
+            em.getTransaction().rollback();
+            log.error(ROLLBACK_MESSAGE + " - The Student to update, is not found", e.getMessage());
+            throw new ResourceNotFoundException(Student.class.getSimpleName(), id);
         } catch (Exception e) {
             em.getTransaction().rollback();
-            log.error("Because of an 'Exception': '{}', the transaction is rolled back!", e.getMessage());
+            log.error(ROLLBACK_MESSAGE, e.getMessage());
         }
+        return updatedStudent; // It can never be null
     }
 
-    public void deleteById(Long id) {
+    public void deleteById(Long id) throws IllegalArgumentException {
 
         if (id == null || id < 0) {
             throw new IllegalArgumentException("The id is not valid!");
@@ -105,13 +118,13 @@ public class StudentDao {
         try {
             em.getTransaction().begin();
 
-            Student entityToDelete = findById(id); // IllegalArgumentException, ResourceNotFoundException
+            Student entityToDelete = findById(id); // ResourceNotFoundException (IllegalArgumentException: will never be thrown)
             em.remove(entityToDelete);
 
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
-            log.error("Because of an 'Exception': '{}', the transaction is rolled back!", e.getMessage());
+            log.error(ROLLBACK_MESSAGE, e.getMessage());
         }
     }
 
@@ -124,7 +137,7 @@ public class StudentDao {
         }
     }
 
-    private void updateStudentWithGivenObject(Student studentToUpdate, Student student) {
+    private Student updateStudentWithGivenObject(Student studentToUpdate, Student student) {
 
         if (!HelperClass.isStringNullOrEmpty(student.getLastName())) {
             studentToUpdate.setLastName(student.getLastName());
@@ -144,5 +157,6 @@ public class StudentDao {
         if (student.getStatus() != null) {
             studentToUpdate.setStatus(student.getStatus());
         }
+        return studentToUpdate; // The updated Student
     }
 }
