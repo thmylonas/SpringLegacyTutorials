@@ -23,15 +23,23 @@ import java.util.List;
 public class StudentDao {
 
     private static final String ROLLBACK_MESSAGE = "Because of an 'Exception': '{}', the transaction is rolled back!";
-    private static EntityManager em;
 
-    private final EntityManagerFactory entityManagerFactory;
+    private final EntityManagerFactory entityManagerFactory; // Autowired by "@RequiredArgsConstructor" (as final)
+    private EntityManager em; // Created into "StudentDao::init" (NOT autowired - must NOT be final - "@RequiredArgsConstructor")
 
     @PostConstruct
     private void init() {
         em = createEntityManager();
     }
 
+    /**
+     * The method finds a Student with ID "id"
+     *
+     * @param id The ID "id" of the Student to find
+     * @return The Student with ID "id"
+     * @throws IllegalArgumentException  If the "id" is not valid
+     * @throws ResourceNotFoundException If the Student with ID "id", is not found
+     */
     public Student findById(Long id) throws IllegalArgumentException, ResourceNotFoundException {
 
         if (id == null || id < 0) {
@@ -44,6 +52,11 @@ public class StudentDao {
         return entityResult;
     }
 
+    /**
+     * The method finds all the Students
+     *
+     * @return All the Students
+     */
     public List<Student> findAll() {
         TypedQuery<Student> query = em.createQuery("select s from Student s", Student.class);
         return query.getResultList();
@@ -56,7 +69,7 @@ public class StudentDao {
      *
      * @param student The "student" to save
      * @return The saved "student" which contains the auto-generated "id" or the initial "student" (without "id")
-     * @throws IllegalArgumentException If the "student" is not valid (is null)
+     * @throws IllegalArgumentException If the "student" is not valid
      */
     public Student save(Student student) throws IllegalArgumentException {
 
@@ -101,6 +114,15 @@ public class StudentDao {
         return students; // see method's documentation
     }
 
+    /**
+     * The method updates a Student with ID "id", with the "student"
+     *
+     * @param student The "student" used to update, the Student with ID "id"
+     * @param id      The ID of the Student to update
+     * @return The updated Student
+     * @throws IllegalArgumentException  If the "id" or "student" are not valid
+     * @throws ResourceNotFoundException If the Student with ID "id", is not found
+     */
     public Student update(Student student, Long id) throws IllegalArgumentException, ResourceNotFoundException {
 
         Student updatedStudent = null;
@@ -125,6 +147,12 @@ public class StudentDao {
         return updatedStudent; // It can never be null
     }
 
+    /**
+     * The method deletes a Student with ID "id"
+     *
+     * @param id The ID of the Student to delete
+     * @throws IllegalArgumentException If the "id" is not valid
+     */
     public void deleteById(Long id) throws IllegalArgumentException {
 
         if (id == null || id < 0) {
