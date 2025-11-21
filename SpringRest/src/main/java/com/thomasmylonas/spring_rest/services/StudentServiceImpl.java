@@ -69,7 +69,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public void deleteStudent(Long id) {
+    public void deleteStudentById(Long id) {
         studentDao.deleteById(id); // IllegalArgumentException
     }
 

@@ -220,3 +220,11 @@ Their purpose was completely different.
 Pont_2:
 The Services in this project, are servicing an API. This means that the Service needs to follow the
 pattern of the APIs. So, they need to return the resource to the Client.
+
+========================================================================================================================
+
+In this API will not contain:
+- Validation Code
+- HATEOAS
+- Return the "stacktrace"
+- The names as long they finalized, will not be changed

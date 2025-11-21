@@ -18,5 +18,5 @@ public interface StudentService {
 
     StudentResponseDto updateStudent(StudentRequestDto studentRequestDto, Long id) throws IllegalArgumentException, ResourceNotFoundException;
 
-    void deleteStudent(Long id) throws IllegalArgumentException;
+    void deleteStudentById(Long id) throws IllegalArgumentException;
 }
