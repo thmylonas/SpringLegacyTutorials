@@ -6,10 +6,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-/**
- * This is the RequestedResourceNotFoundException which carries the "type" (Class) and the "ID" of the resource.
- * In its creation it sets up the super-RuntimeException's message, with the "type" (Class) and the "ID" of the resource
- */
 @ResponseStatus(value = HttpStatus.NOT_FOUND)
 public class RequestedResourceNotFoundException extends RuntimeException {
 
