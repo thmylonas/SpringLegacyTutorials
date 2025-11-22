@@ -136,7 +136,7 @@ public class StudentDao {
         try {
             em.getTransaction().begin();
 
-            Student studentToUpdate = findById(id); // RequestedResourceNotFoundException, IllegalArgumentException
+            Student studentToUpdate = findById(id); // IllegalArgumentException, RequestedResourceNotFoundException
             updatedStudent = updateStudentWithGivenObject(studentToUpdate, student);
 
             em.getTransaction().commit();
@@ -165,7 +165,7 @@ public class StudentDao {
         try {
             em.getTransaction().begin();
 
-            Student studentToDelete = findById(id); // RequestedResourceNotFoundException, IllegalArgumentException
+            Student studentToDelete = findById(id); // IllegalArgumentException, RequestedResourceNotFoundException
             em.remove(studentToDelete);
 
             em.getTransaction().commit();
