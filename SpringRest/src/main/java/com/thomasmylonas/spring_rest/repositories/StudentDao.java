@@ -45,11 +45,11 @@ public class StudentDao {
         if (id == null || id < 0) {
             throw new IllegalArgumentException("The id is not valid!");
         }
-        Student entityResult = em.find(Student.class, id);
-        if (entityResult == null) {
+        Student student = em.find(Student.class, id); // IllegalArgumentException
+        if (student == null) {
             throw new RequestedResourceNotFoundException(Student.class.getSimpleName(), id);
         }
-        return entityResult;
+        return student; // It can never be null
     }
 
     /**
@@ -136,7 +136,7 @@ public class StudentDao {
         try {
             em.getTransaction().begin();
 
-            Student studentToUpdate = findById(id); // RequestedResourceNotFoundException (IllegalArgumentException: will never be thrown)
+            Student studentToUpdate = findById(id); // RequestedResourceNotFoundException, IllegalArgumentException
             updatedStudent = updateStudentWithGivenObject(studentToUpdate, student);
 
             em.getTransaction().commit();
@@ -165,8 +165,8 @@ public class StudentDao {
         try {
             em.getTransaction().begin();
 
-            Student entityToDelete = findById(id); // RequestedResourceNotFoundException (IllegalArgumentException: will never be thrown)
-            em.remove(entityToDelete);
+            Student studentToDelete = findById(id); // RequestedResourceNotFoundException, IllegalArgumentException
+            em.remove(studentToDelete);
 
             em.getTransaction().commit();
         } catch (Exception e) {
