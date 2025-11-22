@@ -35,7 +35,7 @@ public class StudentDao {
     /**
      * The method finds a Student with ID "id"
      *
-     * @param id The ID "id" of the Student to find
+     * @param id The ID of the Student to find
      * @return The Student with ID "id"
      * @throws IllegalArgumentException           If the "id" is not valid
      * @throws RequestedResourceNotFoundException If the Student with ID "id", is not found
@@ -79,7 +79,7 @@ public class StudentDao {
         try {
             em.getTransaction().begin();
 
-            em.persist(student); // After "EntityManager::persist" the "entity" contains the "ID" with which is persisted
+            em.persist(student); // After "EntityManager::persist" the "student" contains the "ID" with which is persisted
             em.flush();
 
             em.getTransaction().commit();
@@ -91,7 +91,7 @@ public class StudentDao {
     }
 
     /**
-     * The method saves a list of Student in the DB
+     * The method saves a list of Students in the DB
      * If "EntityTransaction::commit" happens, the saved "students" (containing the auto-generated "ids", after "EntityManager::persist/EntityManager::flush") are returned
      * If "EntityTransaction::rollback" happens, the initial "students" (without "ids") are returned
      *
