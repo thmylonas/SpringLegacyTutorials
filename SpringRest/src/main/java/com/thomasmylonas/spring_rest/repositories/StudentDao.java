@@ -101,7 +101,7 @@ public class StudentDao {
      */
     public List<Student> saveAll(List<Student> students) throws IllegalArgumentException {
 
-        if (students == null || students.isEmpty()) {
+        if (students == null || students.isEmpty() || students.contains(null)) {
             throw new IllegalArgumentException("The students are not valid!");
         }
         try {

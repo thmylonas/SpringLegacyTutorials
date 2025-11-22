@@ -58,13 +58,13 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public StudentResponseDto updateStudent(StudentRequestDto newStudentRequestDto, Long id) {
+    public StudentResponseDto updateStudent(StudentRequestDto studentRequestDto, Long id) {
 
-        if (newStudentRequestDto == null) {
-            throw new IllegalArgumentException("The newStudentRequestDto is not valid (is null)!");
+        if (studentRequestDto == null) {
+            throw new IllegalArgumentException("The studentRequestDto is not valid (is null)!");
         }
-        Student newStudent = studentMapper.toStudent(newStudentRequestDto);
-        Student updatedStudent = studentDao.update(newStudent, id); // IllegalArgumentException, RequestedResourceNotFoundException
+        Student student = studentMapper.toStudent(studentRequestDto);
+        Student updatedStudent = studentDao.update(student, id); // IllegalArgumentException, RequestedResourceNotFoundException
         return studentMapper.fromStudent(updatedStudent);
     }
 
