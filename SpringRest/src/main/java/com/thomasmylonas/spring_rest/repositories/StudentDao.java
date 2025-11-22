@@ -97,9 +97,13 @@ public class StudentDao {
      *
      * @param students The "students" to save
      * @return The saved "students" which contain the auto-generated "ids" or the initial "students" (without "ids")
+     * @throws IllegalArgumentException If the "students" are not valid
      */
-    public List<Student> saveAll(List<Student> students) {
+    public List<Student> saveAll(List<Student> students) throws IllegalArgumentException {
 
+        if (students == null || students.isEmpty()) {
+            throw new IllegalArgumentException("The students are not valid!");
+        }
         try {
             em.getTransaction().begin();
 
