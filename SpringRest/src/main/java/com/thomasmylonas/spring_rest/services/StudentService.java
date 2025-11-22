@@ -1,6 +1,6 @@
 package com.thomasmylonas.spring_rest.services;
 
-import com.thomasmylonas.spring_rest.exceptions.ResourceNotFoundException;
+import com.thomasmylonas.spring_rest.exceptions.RequestedResourceNotFoundException;
 import com.thomasmylonas.spring_rest.models_dtos.comment_dtos.StudentRequestDto;
 import com.thomasmylonas.spring_rest.models_dtos.comment_dtos.StudentResponseDto;
 
@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface StudentService {
 
-    StudentResponseDto findStudentById(Long id) throws IllegalArgumentException, ResourceNotFoundException;
+    StudentResponseDto findStudentById(Long id) throws IllegalArgumentException, RequestedResourceNotFoundException;
 
     List<StudentResponseDto> findAllStudents();
 
@@ -16,7 +16,7 @@ public interface StudentService {
 
     List<StudentResponseDto> saveAllStudents(List<StudentRequestDto> postRequestDtos) throws IllegalArgumentException;
 
-    StudentResponseDto updateStudent(StudentRequestDto studentRequestDto, Long id) throws IllegalArgumentException, ResourceNotFoundException;
+    StudentResponseDto updateStudent(StudentRequestDto studentRequestDto, Long id) throws IllegalArgumentException, RequestedResourceNotFoundException;
 
     void deleteStudentById(Long id) throws IllegalArgumentException;
 }

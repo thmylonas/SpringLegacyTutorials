@@ -1,6 +1,6 @@
 package com.thomasmylonas.spring_rest.controllers.advice_controllers;
 
-import com.thomasmylonas.spring_rest.exceptions.ResourceNotFoundException;
+import com.thomasmylonas.spring_rest.exceptions.RequestedResourceNotFoundException;
 import com.thomasmylonas.spring_rest.models_dtos.response_models.ResponseError;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,10 +17,10 @@ import java.time.LocalDateTime;
 @ControllerAdvice
 public class ExceptionsHandler {
 
-    @ExceptionHandler(value = {ResourceNotFoundException.class})
+    @ExceptionHandler(value = {RequestedResourceNotFoundException.class})
     @ResponseStatus(value = HttpStatus.NOT_FOUND) // 404: "Not Found"
     @ResponseBody
-    public ResponseEntity<ResponseError> handleResourceNotFoundException(ResourceNotFoundException e, WebRequest request) {
+    public ResponseEntity<ResponseError> handleResourceNotFoundException(RequestedResourceNotFoundException e, WebRequest request) {
         String message = "The resource not found: " + e.getMessage();
         return buildResponseError(e, message, HttpStatus.NOT_FOUND, request);
     }

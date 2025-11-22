@@ -1,7 +1,7 @@
 package com.thomasmylonas.spring_rest.repositories;
 
 import com.thomasmylonas.spring_rest.entities.Student;
-import com.thomasmylonas.spring_rest.exceptions.ResourceNotFoundException;
+import com.thomasmylonas.spring_rest.exceptions.RequestedResourceNotFoundException;
 import com.thomasmylonas.spring_rest.helpers.HelperClass;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -37,17 +37,17 @@ public class StudentDao {
      *
      * @param id The ID "id" of the Student to find
      * @return The Student with ID "id"
-     * @throws IllegalArgumentException  If the "id" is not valid
-     * @throws ResourceNotFoundException If the Student with ID "id", is not found
+     * @throws IllegalArgumentException           If the "id" is not valid
+     * @throws RequestedResourceNotFoundException If the Student with ID "id", is not found
      */
-    public Student findById(Long id) throws IllegalArgumentException, ResourceNotFoundException {
+    public Student findById(Long id) throws IllegalArgumentException, RequestedResourceNotFoundException {
 
         if (id == null || id < 0) {
             throw new IllegalArgumentException("The id is not valid!");
         }
         Student entityResult = em.find(Student.class, id);
         if (entityResult == null) {
-            throw new ResourceNotFoundException(Student.class.getSimpleName(), id);
+            throw new RequestedResourceNotFoundException(Student.class.getSimpleName(), id);
         }
         return entityResult;
     }
@@ -120,10 +120,10 @@ public class StudentDao {
      * @param student The "student" used to update, the Student with ID "id"
      * @param id      The ID of the Student to update
      * @return The updated Student
-     * @throws IllegalArgumentException  If the "id" or "student" are not valid
-     * @throws ResourceNotFoundException If the Student with ID "id", is not found
+     * @throws IllegalArgumentException           If the "id" or "student" are not valid
+     * @throws RequestedResourceNotFoundException If the Student with ID "id", is not found
      */
-    public Student update(Student student, Long id) throws IllegalArgumentException, ResourceNotFoundException {
+    public Student update(Student student, Long id) throws IllegalArgumentException, RequestedResourceNotFoundException {
 
         Student updatedStudent = null;
         if (id == null || id < 0 || student == null) {
@@ -132,14 +132,14 @@ public class StudentDao {
         try {
             em.getTransaction().begin();
 
-            Student studentToUpdate = findById(id); // ResourceNotFoundException (IllegalArgumentException: will never be thrown)
+            Student studentToUpdate = findById(id); // RequestedResourceNotFoundException (IllegalArgumentException: will never be thrown)
             updatedStudent = updateStudentWithGivenObject(studentToUpdate, student);
 
             em.getTransaction().commit();
-        } catch (ResourceNotFoundException e) {
+        } catch (RequestedResourceNotFoundException e) {
             em.getTransaction().rollback();
             log.error(ROLLBACK_MESSAGE + " - The Student to update, is not found", e.getMessage());
-            throw new ResourceNotFoundException(Student.class.getSimpleName(), id);
+            throw new RequestedResourceNotFoundException(Student.class.getSimpleName(), id);
         } catch (Exception e) {
             em.getTransaction().rollback();
             log.error(ROLLBACK_MESSAGE, e.getMessage());
@@ -161,7 +161,7 @@ public class StudentDao {
         try {
             em.getTransaction().begin();
 
-            Student entityToDelete = findById(id); // ResourceNotFoundException (IllegalArgumentException: will never be thrown)
+            Student entityToDelete = findById(id); // RequestedResourceNotFoundException (IllegalArgumentException: will never be thrown)
             em.remove(entityToDelete);
 
             em.getTransaction().commit();
