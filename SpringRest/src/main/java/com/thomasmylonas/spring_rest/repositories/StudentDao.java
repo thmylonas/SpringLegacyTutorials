@@ -171,7 +171,7 @@ public class StudentDao {
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
-            log.error(ROLLBACK_MESSAGE, e.getMessage());
+            log.error(ROLLBACK_MESSAGE + " - The Student to delete, is not found", e.getMessage());
         }
     }
 
