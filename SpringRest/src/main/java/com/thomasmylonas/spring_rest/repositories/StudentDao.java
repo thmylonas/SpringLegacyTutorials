@@ -142,7 +142,7 @@ public class StudentDao {
             em.getTransaction().commit();
         } catch (RequestedResourceNotFoundException e) {
             em.getTransaction().rollback();
-            log.error(ROLLBACK_MESSAGE + " - The Student to update, is not found", e.getMessage());
+            log.error(ROLLBACK_MESSAGE + " - The Student to update, is not found!", e.getMessage());
             throw new RequestedResourceNotFoundException(Student.class.getSimpleName(), id);
         } catch (Exception e) {
             em.getTransaction().rollback();
@@ -171,7 +171,7 @@ public class StudentDao {
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
-            log.error(ROLLBACK_MESSAGE + " - The Student to delete, is not found", e.getMessage());
+            log.error(ROLLBACK_MESSAGE + " - The Student to delete, is not found!", e.getMessage());
         }
     }
 
@@ -180,7 +180,7 @@ public class StudentDao {
         try {
             return entityManagerFactory.createEntityManager(); // IllegalStateException
         } catch (Exception e) {
-            throw new RuntimeException("Error creating EntityManager", e);
+            throw new RuntimeException("Error creating EntityManager!", e);
         }
     }
 
