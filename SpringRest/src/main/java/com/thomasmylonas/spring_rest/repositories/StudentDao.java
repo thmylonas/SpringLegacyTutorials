@@ -22,8 +22,8 @@ import java.util.List;
  * - Only the basic "CRUD" operations are implemented (ideal for Restful_Services/APIs)
  * <p>
  * This class is used in the next projects:
- * - SpringLegacyTutorials/SpringRest
- * - JsfPrimefacesTutorials
+ * - The "SpringLegacyTutorials/SpringRest"
+ * - The "JsfPrimefacesTutorials"
  */
 @Component(value = "studentDao")
 @Getter
