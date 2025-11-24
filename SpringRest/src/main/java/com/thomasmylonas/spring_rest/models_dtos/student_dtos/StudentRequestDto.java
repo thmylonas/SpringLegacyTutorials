@@ -1,4 +1,4 @@
-package com.thomasmylonas.spring_rest.models_dtos.comment_dtos;
+package com.thomasmylonas.spring_rest.models_dtos.student_dtos;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;

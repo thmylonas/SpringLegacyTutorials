@@ -1,7 +1,7 @@
 package com.thomasmylonas.spring_rest.controllers;
 
-import com.thomasmylonas.spring_rest.models_dtos.comment_dtos.StudentRequestDto;
-import com.thomasmylonas.spring_rest.models_dtos.comment_dtos.StudentResponseDto;
+import com.thomasmylonas.spring_rest.models_dtos.student_dtos.StudentRequestDto;
+import com.thomasmylonas.spring_rest.models_dtos.student_dtos.StudentResponseDto;
 import com.thomasmylonas.spring_rest.models_dtos.response_models.ResponseHandler;
 import com.thomasmylonas.spring_rest.models_dtos.response_models.ResponseSuccess;
 import com.thomasmylonas.spring_rest.services.StudentService;
@@ -67,7 +67,7 @@ public class StudentController {
 
     @RequestMapping(path = {"/all"}, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.CREATED)
-    public ResponseEntity<ResponseSuccess> saveAllPosts(@RequestBody List<StudentRequestDto> studentRequestDtos) { // "http://localhost:8080/api/v1/posts/all"
+    public ResponseEntity<ResponseSuccess> saveAllStudents(@RequestBody List<StudentRequestDto> studentRequestDtos) { // "http://localhost:8080/api/v1/students/all"
         List<StudentResponseDto> savedStudentResponseDtos = studentService.saveAllStudents(studentRequestDtos);
         final String message = "Created: The Students have been created successfully!";
         return ResponseHandler.buildResponse(message, HttpStatus.CREATED, Map.of("saved_students_response", savedStudentResponseDtos));
