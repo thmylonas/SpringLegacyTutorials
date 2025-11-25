@@ -4,13 +4,11 @@ import com.thomasmylonas.spring_rest.exceptions.RequestedResourceNotFoundExcepti
 import com.thomasmylonas.spring_rest.models_dtos.response_models.ResponseError;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 
 import java.time.LocalDateTime;
 
@@ -25,20 +23,12 @@ public class ExceptionsHandler {
         return buildResponseError(e, message, HttpStatus.NOT_FOUND, request);
     }
 
-    @ExceptionHandler(value = {HttpMessageNotReadableException.class})
+    @ExceptionHandler(value = {IllegalArgumentException.class})
     @ResponseStatus(value = HttpStatus.BAD_REQUEST) // 400: "Bad Request"
     @ResponseBody
-    public ResponseEntity<ResponseError> handleHttpMessageNotReadableException(HttpMessageNotReadableException e, WebRequest request) {
-        String message = "Malformed JSON request: " + e.getMessage();
-        return buildResponseError(e, message, HttpStatus.BAD_REQUEST, request);
-    }
-
-    @ExceptionHandler(value = {MethodArgumentTypeMismatchException.class})
-    @ResponseStatus(value = HttpStatus.BAD_REQUEST) // 400: "Bad Request"
-    @ResponseBody
-    public ResponseEntity<ResponseError> handleMethodArgumentTypeMismatchException(MethodArgumentTypeMismatchException e, WebRequest request) {
-        String message = "Type of path variable mismatch: " + e.getMessage();
-        return buildResponseError(e, message, HttpStatus.BAD_REQUEST, request);
+    public ResponseEntity<ResponseError> handleIllegalArgumentException(IllegalArgumentException e, WebRequest request) {
+        String message = "The request arguments are not valid: " + e.getMessage();
+        return buildResponseError(e, message, HttpStatus.NOT_FOUND, request);
     }
 
     @ExceptionHandler(value = {Exception.class})

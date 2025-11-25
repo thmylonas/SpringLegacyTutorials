@@ -9,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service(value = "studentService")
@@ -74,7 +75,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     private void initStudentsList() {
-        List<Student> students = TestDataProvider.STUDENTS;
+        List<Student> students = new ArrayList<>(TestDataProvider.STUDENTS);
         studentDao.saveAll(students);
     }
 }

@@ -177,8 +177,21 @@ pattern of the APIs. So, they need to return the resource to the Client.
 
 ========================================================================================================================
 
+About the SpringREST module
+-------------------------------
+
+This is Legacy SpringREST API:
+This means:
+- Legacy Spring configuration
+- Legacy use of Annotations
+
 In this API will not contain:
-- Validation Code
+- Validation Code using any validation library
+- No use of "Spring_Data_JPA" ("org.springframework.data.jpa.repository.JpaRepository<T, ID>")
 - HATEOAS
 - Return the "stacktrace"
 - The names as long they finalized, will not be changed
+
+In this API the validation will be done manually, as it is done in the "StudentDao"
+
+========================================================================================================================
