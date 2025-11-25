@@ -177,6 +177,31 @@ pattern of the APIs. So, they need to return the resource to the Client.
 
 ========================================================================================================================
 
+About Not_Used/Removed dependencies
+---------------------------------------
+
+Dependency_1:
+-----------------
+
+The dependencies:
+- "com.fasterxml.jackson.core/jackson-core"
+- "com.fasterxml.jackson.core/jackson-annotations"
+are removed from "pom.xml" file, because they are covered from:
+- the dependency "com.fasterxml.jackson.core/jackson-databind" (exists in this dependency's "pom.xml" file)
+
+<dependency> <!-- Removed -->
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-core</artifactId>
+    <version>2.13.3</version>
+</dependency>
+<dependency> <!-- Removed -->
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-annotations</artifactId>
+    <version>2.13.3</version>
+</dependency>
+
+========================================================================================================================
+
 About the SpringREST module
 -------------------------------
 
