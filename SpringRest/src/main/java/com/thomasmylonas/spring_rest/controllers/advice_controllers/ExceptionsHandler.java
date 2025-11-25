@@ -20,7 +20,7 @@ public class ExceptionsHandler {
     @ExceptionHandler(value = {RequestedResourceNotFoundException.class})
     @ResponseStatus(value = HttpStatus.NOT_FOUND) // 404: "Not Found"
     @ResponseBody
-    public ResponseEntity<ResponseError> handleResourceNotFoundException(RequestedResourceNotFoundException e, WebRequest request) {
+    public ResponseEntity<ResponseError> handleRequestedResourceNotFoundException(RequestedResourceNotFoundException e, WebRequest request) {
         String message = "The resource not found: " + e.getMessage();
         return buildResponseError(e, message, HttpStatus.NOT_FOUND, request);
     }
