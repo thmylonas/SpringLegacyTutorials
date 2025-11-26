@@ -130,7 +130,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- com.fasterxml.jackson.core: jackson-core, jackson-databind, jackson-annotations, jackson-dataformat-xml -->
+        <!-- com.fasterxml.jackson.core: jackson-databind, jackson-dataformat-xml, com.fasterxml.jackson.datatype/jackson-datatype-jsr310 -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>
@@ -141,7 +141,6 @@
             <artifactId>jackson-dataformat-xml</artifactId>
             <version>2.13.3</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/com.fasterxml.jackson.datatype/jackson-datatype-jsr310 -->
         <dependency>
             <groupId>com.fasterxml.jackson.datatype</groupId>
             <artifactId>jackson-datatype-jsr310</artifactId>
