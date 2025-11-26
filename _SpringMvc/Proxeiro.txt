@@ -202,6 +202,53 @@ are removed from "pom.xml" file, because they are covered from:
 
 ========================================================================================================================
 
+Jackson-serialization of "LocalDate/LocalDateTime" fields
+-------------------------------------------------------------
+
+Links:
+- https://stackoverflow.com/questions/29956175/json-java-8-localdatetime-format-in-spring-boot
+- https://stackoverflow.com/questions/53820977/jackson-converting-localdatetime
+
+In the next classes/records, we use "LocalDate/LocalDateTime" fields:
+
+    public record StudentResponseDto(
+            @JsonSerialize(using = LocalDateSerializer.class)
+            @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
+            LocalDate dateOfBirth,
+            // ...
+    ){}
+
+    public record ResponseSuccess(
+            @JsonSerialize(using = LocalDateTimeSerializer.class)
+            @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
+            LocalDateTime timestamp,
+            // ...
+    ){}
+
+    public record ResponseError(
+            @JsonSerialize(using = LocalDateTimeSerializer.class)
+            @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
+            LocalDateTime timestamp,
+            // ...
+    ){}
+
+These "LocalDate/LocalDateTime" fields to be able to be JSON-serialized, it is mandatory to add on them, the next annotations:
+- @com.fasterxml.jackson.databind.annotation.JsonSerialize(using = com.fasterxml.jackson.datatype.jsr310.ser.LocalDateSerializer.class)
+- @com.fasterxml.jackson.databind.annotation.JsonSerialize(using = com.fasterxml.jackson.datatype.jsr310.ser.LocalDateTimeSerializer.class)
+These annotations are part of the dependency "com.fasterxml.jackson.datatype/jackson-datatype-jsr310".
+In the opposite case Jackson library will end up to serialization errors.
+
+It seems that (I am not sure if this is correct) the next 2 points are valid:
+- [I am not sure] If the dependency "com.fasterxml.jackson.datatype/jackson-datatype-jsr310" exists in the "pom.xml",
+  these 2 annotations are not needed at all.
+- [I am not sure] Jackson makes an "Autoconfiguration", and adds these annotations by itself.
+
+Note:
+In these "SpringLegacyTutorials", the "com.fasterxml.jackson.*" dependencies are added in the "pom.xml" manually.
+In "SpringBoot", the "com.fasterxml.jackson.*" dependencies are provided by the "org.springframework.boot/spring-boot-dependencies".
+
+========================================================================================================================
+
 About the SpringREST module
 -------------------------------
 

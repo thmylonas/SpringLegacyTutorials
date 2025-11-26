@@ -11,6 +11,7 @@ import java.time.LocalDateTime;
 public record ResponseError(
         @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy HH:mm:ss")
         LocalDateTime timestamp,
+
         String statusCode,
         String message,
         String path // "request URL"
