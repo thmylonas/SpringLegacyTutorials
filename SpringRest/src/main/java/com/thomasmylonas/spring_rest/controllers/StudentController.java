@@ -36,6 +36,10 @@ public class StudentController {
     @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody
     public ResponseEntity<ResponseSuccess> findStudentById(@PathVariable(name = "id") Long id) { // "http://localhost:8080/api/v1/students/1"
+
+        if (id == null || id < 0) {
+            throw new IllegalArgumentException("The id is not valid!");
+        }
         StudentResponseDto studentResponseDto = studentService.findStudentById(id);
         final String message = "Success: The Student with the ID '" + id + "' is found!";
         return ResponseHandler.buildResponse(message, HttpStatus.OK, Map.of("student_response", studentResponseDto));
@@ -46,7 +50,7 @@ public class StudentController {
     @ResponseBody
     public ResponseEntity<ResponseSuccess> findAllStudents() { // "http://localhost:8080/api/v1/students"
         List<StudentResponseDto> studentResponseDtos = studentService.findAllStudents();
-        final String message = "Success: The Student are found!";
+        final String message = "Success: The Students are found!";
         return ResponseHandler.buildResponse(message, HttpStatus.OK, Map.of("students_response", studentResponseDtos));
     }
 
@@ -55,6 +59,9 @@ public class StudentController {
     @ResponseBody
     public ResponseEntity<ResponseSuccess> saveStudent(@RequestBody StudentRequestDto studentRequestDto) { // "http://localhost:8080/api/v1/students"
 
+        if (studentRequestDto == null) {
+            throw new IllegalArgumentException("The student is not valid (is null)!");
+        }
         StudentResponseDto savedStudentResponseDto = studentService.saveStudent(studentRequestDto);
         final String message = "Created: The Student has been created successfully!";
 
@@ -68,6 +75,10 @@ public class StudentController {
     @RequestMapping(path = {"/all"}, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.CREATED)
     public ResponseEntity<ResponseSuccess> saveAllStudents(@RequestBody List<StudentRequestDto> studentRequestDtos) { // "http://localhost:8080/api/v1/students/all"
+
+        if (studentRequestDtos == null || studentRequestDtos.isEmpty() || studentRequestDtos.contains(null)) {
+            throw new IllegalArgumentException("The students are not valid!");
+        }
         List<StudentResponseDto> savedStudentResponseDtos = studentService.saveAllStudents(studentRequestDtos);
         final String message = "Created: The Students have been created successfully!";
         return ResponseHandler.buildResponse(message, HttpStatus.CREATED, Map.of("saved_students_response", savedStudentResponseDtos));
@@ -77,6 +88,10 @@ public class StudentController {
     @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody
     public ResponseEntity<ResponseSuccess> updateStudent(@RequestBody StudentRequestDto studentRequestDto, @PathVariable(name = "id") Long id, ServletRequest servletRequest) { // "http://localhost:8080/api/v1/students/{id}"
+
+        if (id == null || id < 0 || studentRequestDto == null) {
+            throw new IllegalArgumentException("The arguments are not valid!");
+        }
         StudentResponseDto updatedStudentResponseDto = studentService.updateStudent(studentRequestDto, id);
         final String message = "Success: The Student with ID '" + id + "' has been updated successfully!";
         return ResponseHandler.buildResponse(message, HttpStatus.OK, Map.of("updated_student_response", updatedStudentResponseDto));
@@ -86,6 +101,10 @@ public class StudentController {
     @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody
     public ResponseEntity<ResponseSuccess> deleteStudentById(@PathVariable(name = "id") Long id) { // "http://localhost:8080/api/v1/students/{id}"
+
+        if (id == null || id < 0) {
+            throw new IllegalArgumentException("The id is not valid!");
+        }
         studentService.deleteStudentById(id);
         final String message = "Success: The Student with ID '" + id + "' has been deleted successfully!";
         return ResponseHandler.buildResponse(message, HttpStatus.OK, Map.of("message", message));
