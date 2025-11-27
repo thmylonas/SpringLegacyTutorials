@@ -24,7 +24,7 @@ import java.util.List;
 import java.util.Map;
 
 @Controller
-@RequestMapping(path = "/api/v1/students")
+@RequestMapping(path = {"/api/v1/students"})
 @RequiredArgsConstructor
 @Slf4j
 public class StudentController {
