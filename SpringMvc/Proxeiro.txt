@@ -165,6 +165,39 @@ Attention:
 
 ========================================================================================================================
 
+Use of "@EnableJpaRepositories" in "Spring_Legacy"
+------------------------------------------------------
+
+In case of "Spring_Legacy" (NO "SpringBoot"), to use:
+- "Spring_Data_JPA" ("org.springframework.data.jpa.repository.JpaRepository<T, ID>")
+we need to add the annotation "@org.springframework.data.jpa.repository.config.EnableJpaRepositories", over the "DataAccessConfig":
+
+    @Configuration @ComponentScan(basePackages = {...})
+    @org.springframework.data.jpa.repository.config.EnableJpaRepositories(basePackages = "path.to.repositories")
+    public class DataAccessConfig {...}
+
+The "@EnableJpaRepositories" annotation in "Spring_Data_JPA" is used to enable and configure Spring's support for "JPA" repositories.
+Its main function is to scan for, and create proxy implementations of repository interfaces that extend "Spring_Data" repository interfaces, such as "JpaRepository".
+This allows us to define repository interfaces with methods like "findById()" or "findByLastName()",
+and have Spring automatically create the necessary implementation for interacting with the database.
+
+Basic functionalities:
+- Enables repository scanning:
+  By default, it scans the package of the annotated configuration class for repository interfaces.
+- Specifies packages to scan:
+  We can use the "basePackages" attribute to explicitly define one or more packages to scan,
+  which is useful if the repositories are located in a different directory structure from the main configuration class.
+- Generates repository implementations:
+  Once found, Spring creates proxy objects for these interfaces, giving access to "CRUD" and custom query methods without writing any "SQL" code.
+- Configures repository infrastructure:
+  It provides attributes to configure various aspects of the repository infrastructure,
+  such as the transaction management behavior, the "EntityManagerFactory" to use, and whether to discover nested interfaces.
+- Disables default "SpringBoot" behavior:
+  This annotation overrides the default behavior of "SpringBoot",
+  which automatically enables "JPA" repositories based on the location of the "@SpringBootApplication" class.
+
+========================================================================================================================
+
 Attention:
 Pont_1:
 The Services in the "JsfPrimefacesTutorials", are servicing the StudentDao only.
