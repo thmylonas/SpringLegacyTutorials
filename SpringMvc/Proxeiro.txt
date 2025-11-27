@@ -38,7 +38,7 @@ public class RootConfig {}
 )
 public class WebConfig {}
 
-@ComponentScan(basePackages = {"com.packages.path.to.data_access_layer.repositories"},
+@ComponentScan(basePackages = {"com.packages.path.to.data_access_layer.daos"},
         excludeFilters = {
                 @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Configuration.class)
         }

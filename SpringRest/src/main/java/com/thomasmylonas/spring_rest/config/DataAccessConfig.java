@@ -21,7 +21,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import java.util.Properties;
 
 @Configuration
-@ComponentScan(basePackages = {"com.thomasmylonas.spring_rest.entities", "com.thomasmylonas.spring_rest.repositories"},
+@ComponentScan(basePackages = {"com.thomasmylonas.spring_rest.entities", "com.thomasmylonas.spring_rest.daos"},
         excludeFilters = {
                 @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Configuration.class)
         }
@@ -44,7 +44,7 @@ public class DataAccessConfig {
         //emfb.setPersistenceUnitName("StudentPU_H2");
         emfb.setDataSource(dataSource);
         emfb.setJpaVendorAdapter(jpaVendorAdapter);
-        emfb.setPackagesToScan("com.thomasmylonas.spring_rest.entities", "com.thomasmylonas.spring_rest.repositories");
+        emfb.setPackagesToScan("com.thomasmylonas.spring_rest.entities", "com.thomasmylonas.spring_rest.daos");
 
         Properties properties = new Properties();
         properties.setProperty("hibernate.hbm2ddl.auto", "update");

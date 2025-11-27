@@ -1,4 +1,4 @@
-package com.thomasmylonas.spring_rest.repositories;
+package com.thomasmylonas.spring_rest.daos;
 
 import com.thomasmylonas.spring_rest.entities.Student;
 import com.thomasmylonas.spring_rest.exceptions.RequestedResourceNotFoundException;
