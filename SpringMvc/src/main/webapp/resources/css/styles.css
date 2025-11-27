@@ -1,0 +1,8 @@
+/* General Styles for all WebSite */
+
+.body {
+    /*background-image: url("../../images/backgrounds/PinkBg.jpg");*/
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}

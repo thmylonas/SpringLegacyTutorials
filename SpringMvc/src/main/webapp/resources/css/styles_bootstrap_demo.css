@@ -1,0 +1,13 @@
+.bootstrap_carousel_wrapper {
+    margin-top: 16px;
+    margin-bottom: 30px;
+}
+
+.bootstrap_carousel_wrapper:nth-last-child(1) {
+    margin-bottom: 22px;
+}
+
+.bootstrap_widgets_wrapper {
+    margin-top: 16px;
+    margin-bottom: 25px;
+}

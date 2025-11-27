@@ -1,0 +1,194 @@
+/* Styles for "center_section" */
+
+.center_section {
+    height: 100%; /*150vh*/
+    background-color: rgba(102, 255, 255, 0.7); /*#66FFFFB2*/
+    border: 1px solid rgba(255, 0, 128, 1); /*#FF0080FF*/
+    border-radius: 5px;
+    box-shadow: 8px 5px 5px rgba(51, 77, 77, 1); /*#334D4DFF*/
+    font-family: Linotype Didot, Courgette, serif;
+    margin: 0 0 5px 0;
+}
+
+.center_section_title {
+    font-family: Linotype Didot, Courgette, serif;
+    font-size: 30px;
+    color: rgba(179, 0, 0, 1); /*#B30000FF*/
+    text-align: center;
+    text-decoration: none;
+    text-shadow: 4px 4px 4px rgba(51, 77, 77, 1); /*#334D4DFF*/
+    padding-top: 5px;
+    line-height: 40px;
+    margin: 0 10px 0 10px;
+}
+
+.center_section_title_link, .center_section_title_link:hover {
+    text-decoration: none;
+    color: rgba(179, 0, 0, 1); /*#B30000FF*/
+}
+
+.center_section_content {
+    /*height: 100%;*/ /* TODO: This needs to be fixed */
+    border: 1px solid blue;
+    padding: 10px;
+    margin-right: 8px;
+    margin-left: 7px;
+}
+
+/* Topics of a technology */
+
+.technology_topics_titles {
+    font-size: 18px;
+    font-weight: bold;
+    color: fuchsia;
+    margin-top: 13px;
+    margin-bottom: 10px;
+}
+
+.technology_topics_titles a, .technology_topics_titles a:hover {
+    color: fuchsia;
+    text-decoration: none;
+}
+
+.technology_topics_group_wrapper {
+    margin-bottom: 16px;
+    margin-left: 10px;
+}
+
+.technology_topics_group_wrapper div {
+    margin-top: 8px;
+}
+
+.technology_topics_list_wrapper {
+    margin-bottom: 20px;
+    margin-left: 10px;
+}
+
+.technology_topics_list_wrapper dt {
+    font-size: 18px;
+    font-weight: bold;
+    color: rgba(255, 0, 128, 1); /*#FF0080FF*/
+    text-decoration: none;
+    margin-top: 14px;
+}
+
+.technology_topics_list_wrapper dd {
+    margin-top: 4px;
+    margin-left: 10px;
+}
+
+dt:nth-child(1) {
+    margin-top: 0 !important;
+}
+
+.technology_topics_list_wrapper:nth-last-child(1) {
+    margin-bottom: 16px;
+}
+
+.technology_topics_list, .technology_topics_list:hover {
+    font-size: 16px;
+    font-weight: bold;
+    color: blue;
+    text-decoration: none;
+}
+
+.technology_topics_examples {
+    margin-top: 10px;
+}
+
+.not_used_technology_topics_contents {
+    margin-left: 5px;
+}
+
+/* Examples (from sites) */
+
+.examples_header_wrapper {
+    width: fit-content;
+    border: 1px solid rgba(255, 0, 128, 1); /*#FF0080FF*/
+    box-shadow: 2px 2px 5px rgba(51, 77, 77, 1); /*#334D4DFF*/
+    padding: 8px 10px;
+    margin-top: 18px;
+}
+
+.examples_header_title {
+    font-weight: bold;
+    color: blue;
+    margin-bottom: 10px;
+}
+
+.examples_header_link, .examples_header_link:hover {
+    font-weight: bold;
+    color: blue;
+    text-decoration: none;
+}
+
+.examples_header_notes {
+    color: green;
+    margin-top: 5px;
+    margin-left: 10px;
+}
+
+.examples_contents {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 20px;
+}
+
+.not_used_example_site_links_wrapper {
+    /*margin-top: 15px;*/ /* Maybe useful */
+}
+
+.example_site_link, .example_site_link:hover {
+    font-size: 16px;
+    color: green;
+    text-decoration: none;
+    margin-top: 28px;
+}
+
+.examples_cases_titles {
+    font-size: 16px;
+    font-style: italic;
+    font-weight: bold;
+    color: green;
+}
+
+.example_info_wrapper {
+    margin-bottom: 10px;
+}
+
+.example_info_label {
+    font-size: 16px;
+    /*font-weight: bold;*/ /* Maybe useful */
+    color: green;
+}
+
+.example_info_value {
+    color: rgba(255, 0, 128, 1); /*#FF0080FF*/
+}
+
+/* Others */
+
+.error_messages {
+    background-color: red;
+    color: white;
+}
+
+.ultraq_center_section_subtitle {
+    font-family: Linotype Didot, Courgette, serif;
+    font-size: 22px;
+    color: rgba(255, 0, 128, 1); /*#FF0080FF*/
+    text-align: center;
+    text-shadow: 4px 4px 4px rgba(51, 77, 77, 1); /*#334D4DFF*/
+    padding: 5px 0 5px 0;
+}
+
+.ultraq_home_center_section {
+    width: 100%;
+    height: 500px;
+    /*background-image: url("../../images/backgrounds/JavaCodingBg.jpg");*/
+    /*background-color: rgba(255, 255, 255, 0.2);*/
+    opacity: 0.6;
+    border-radius: 10px;
+    box-shadow: 8px 5px 5px rgba(51, 77, 77, 1); /*#334D4DFF*/
+    border: 1px solid rgba(255, 0, 128, 1); /*#FF0080FF*/
+}
