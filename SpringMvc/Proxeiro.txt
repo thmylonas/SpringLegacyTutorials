@@ -282,6 +282,56 @@ In "SpringBoot", the "com.fasterxml.jackson.*" dependencies are provided by the 
 
 ========================================================================================================================
 
+Run/Debug Configurations
+----------------------------
+
+Tomcat Server > Tomcat_v9.x.xx
+Name: Tomcat_v9.x.xx
+
+Server Tab
+--------------
+Application server: Tomcat_v9.x.xx
+Open browser:
+    - After launch > Default
+    - URL: http://localhost:8080/Xxxx
+On 'Update' action: Update resources [Appears only with: "war_exploded_artifact"]
+On frame deactivation: Update resources [Appears only with: "war_exploded_artifact"]
+JRE: xxx
+Tomcat Server Settings:
+    HTTP port: 8080
+Before launch:
+    - Run Maven Goal 'Xxxx: clean'
+    - Build
+    - Build 'jsf_primefaces_tutorials:war exploded' artifact
+
+Deployment Tab
+------------------
+Deploy at the server startup
+    - jsf_primefaces_tutorials:war exploded
+Application context: /Xxxx [Hidden at the end of Tab]
+                    [Default value: "/Xxxx_war" or "/Xxxx_war_exploded"]
+
+========================================================================================================================
+
+Run/Debug Configurations
+----------------------------
+
+Deployment Tab
+------------------
+Deploy at the server startup
+    - xx_xx:war exploded
+Application context: / [Hidden at the end of Tab] <---- [Attention: The path has to be "/"]
+                    [Default value: "/Xxxx_war" or "/Xxxx_war_exploded"]
+
+Attention:
+In the "Run/Debug Configurations > Deployment Tab > Application context" has to be "/"
+Different values, in combination with the:
+- ApplicationInitializer::getServletMappings
+
+....
+
+========================================================================================================================
+
 About the SpringREST module
 -------------------------------
 

@@ -27,7 +27,7 @@ public class WebConfig implements WebMvcConfigurer, ApplicationContextAware {
     @Bean
     public ViewResolver viewResolver() {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-        viewResolver.setPrefix("/WEB-INF/views/"); // "/views/"
+        viewResolver.setPrefix("/WEB-INF/views/");
         viewResolver.setSuffix(".html");
         //viewResolver.setOrder(100); //InternalResourceViewResolver - lowest priority
         //viewResolver.setViewClass(org.springframework.web.servlet.view.JstlView.class); // Error1 - Code: 500
@@ -37,8 +37,9 @@ public class WebConfig implements WebMvcConfigurer, ApplicationContextAware {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/webapp/**") // addResourceHandler("/resources/**")
-                .addResourceLocations("/resources/"); // addResourceLocations("/resources/")
+        registry
+                .addResourceHandler("/resources/**") //.addResourceHandler("/webapp/**")
+                .addResourceLocations("/resources/"); //.addResourceLocations("/resources/**")
     }
 
     /**
