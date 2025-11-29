@@ -1,0 +1,37 @@
+package com.thomasmylonas.spring_mvc.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.ComponentScan;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.web.servlet.ViewResolver;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
+import org.springframework.web.servlet.view.InternalResourceViewResolver;
+
+@Configuration
+@ComponentScan(basePackages = {"com.thomasmylonas.spring_mvc"})
+@EnableWebMvc
+public class MultipleResolversConfig {
+
+    /**
+     * We can only have one of the "InternalResourceViewResolver" in the context, because of the same reason mentioned in the javadoc:
+     *
+     * "When chaining ViewResolvers, an InternalResourceViewResolver always needs to be last,
+     * as it will attempt to resolve any view name, no matter whether the underlying resource actually exists."
+     *
+     * InternalResourceViewResolver always returns an answer (because it just delegates to the Servlet API,
+     * which always has an answer, even if it's wrong), so having two of them won't get solution,
+     * since the 2nd one will never be consulted.
+     * @return
+     */
+    @Bean
+    public ViewResolver viewResolver2() {
+        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+        viewResolver.setPrefix("/WEB-INF/multiple_resolvers/");
+        viewResolver.setSuffix(".xhtml");
+        viewResolver.setOrder(101); //InternalResourceViewResolver - lowest priority
+
+//        viewResolver.setViewClass(org.springframework.web.servlet.view.JstlView.class); // Error1 - Code: 500
+        viewResolver.setExposeContextBeansAsAttributes(true);
+        return viewResolver;
+    }
+}
