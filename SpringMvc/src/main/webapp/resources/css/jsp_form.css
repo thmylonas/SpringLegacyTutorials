@@ -1,3 +1,5 @@
+/* JSP Form */
+
 .container {
     font-family: Linotype Didot, Courgette, serif;
     width: 50%;
@@ -44,7 +46,7 @@ label {
     background-color: dodgerblue;
 }
 
-/* Form results */
+/* JSP Form results */
 
 .result {
     text-align: center;

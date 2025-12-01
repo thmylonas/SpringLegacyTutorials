@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/jsp_form.css"/>
 </head>
 <body class="body">
+<div class="page_title">
+    Demonstration of JSP Framework
+</div>
+
 <div class="container">
     <h2>Submit Form</h2>
     <form action="http://localhost:8080/spring-mvc/jsp-form-result" method="POST">
