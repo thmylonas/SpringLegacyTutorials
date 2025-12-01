@@ -28,7 +28,8 @@ public class WebConfig implements WebMvcConfigurer, ApplicationContextAware {
     public ViewResolver viewResolver() {
         InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
         viewResolver.setPrefix("/WEB-INF/views/");
-        viewResolver.setSuffix(".html");
+        viewResolver.setSuffix("");
+        //viewResolver.setSuffix(".html");
         //viewResolver.setOrder(100); //InternalResourceViewResolver - lowest priority
         //viewResolver.setViewClass(org.springframework.web.servlet.view.JstlView.class); // Error1 - Code: 500
         viewResolver.setExposeContextBeansAsAttributes(true);

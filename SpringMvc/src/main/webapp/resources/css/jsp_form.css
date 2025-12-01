@@ -1,0 +1,56 @@
+.container {
+    font-family: Linotype Didot, Courgette, serif;
+    width: 50%;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    color: fuchsia;
+    text-align: center;
+    font-style: italic;
+}
+
+form {
+    margin-top: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.name, .email, .submit {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    box-sizing: border-box;
+}
+
+.submit {
+    background-color: blue;
+    color: white;
+    cursor: pointer;
+}
+
+.submit:hover {
+    background-color: dodgerblue;
+}
+
+/* Form results */
+
+.result {
+    text-align: center;
+}
+
+.result_param {
+    color: lightseagreen;
+    font-style: italic;
+}
