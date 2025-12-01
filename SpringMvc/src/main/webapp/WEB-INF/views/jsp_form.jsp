@@ -1,9 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Submit Form</title>
+    <!-- Metadata -->
+    <meta name="description" content="JSP: Submit Form"/>
+
+    <title>JSP: Submit Form</title>
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/styles.css"/>
@@ -15,7 +18,7 @@
 </div>
 
 <div class="container">
-    <h2>Submit Form</h2>
+    <h2>JSP: Submit Form</h2>
     <form action="http://localhost:8080/spring-mvc/jsp-form-result" method="POST">
         <label for="name">Name:</label>
         <input id="name" type="text" name="name" class="name" required><br>

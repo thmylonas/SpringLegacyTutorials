@@ -1,9 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Form Result</title>
+    <!-- Metadata -->
+    <meta name="description" content="JSP: Form Result"/>
+
+    <title>JSP: Form Result</title>
 
     <!-- Stylesheets -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/styles.css"/>
@@ -15,7 +18,7 @@
 </div>
 
 <div class="container">
-    <h2>Form Result</h2>
+    <h2>JSP: Form Result</h2>
 
     <!-- Fetch the request parameters -->
     <% String name = request.getParameter("name"); %>
