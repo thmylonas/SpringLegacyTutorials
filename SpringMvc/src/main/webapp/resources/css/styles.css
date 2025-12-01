@@ -56,6 +56,18 @@
     text-decoration: none;
 }
 
+.topics_list {
+    color: #004085;
+    text-decoration: none !important;
+    font-size: 16px;
+}
+
+.topics_list:hover {
+    color: rgba(179, 0, 0, 1); /*#B30000FF*/
+    text-decoration: none !important;
+    font-size: 16px;
+}
+
 /* Bootstrap Widgets */
 
 .bootstrap_widgets_wrapper {

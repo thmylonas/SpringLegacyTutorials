@@ -13,6 +13,11 @@ public class HomeController {
         return "home.html"; // "home"
     }
 
+    @RequestMapping(path = {"/bootstrap-demo"}, method = RequestMethod.GET)
+    public String fetchBootstrapDemo() {
+        return "bootstrap_demo.html"; // "bootstrap_demo"
+    }
+
     @RequestMapping(path = {"/jsp-form"}, method = RequestMethod.GET)
     public String fetchJspForm() {
         return "jsp_form.jsp";
