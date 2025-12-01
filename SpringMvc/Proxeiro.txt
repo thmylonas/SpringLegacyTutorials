@@ -305,6 +305,55 @@ In "SpringBoot", the "com.fasterxml.jackson.*" dependencies are provided by the 
 
 ========================================================================================================================
 
+MultipartFormData
+
+--WebKitFormBoundaryqgkaBn8IHJCuNmiW
+Content-Disposition: form-data; name="firstName"
+
+Charles
+--WebKitFormBoundaryqgkaBn8IHJCuNmiW
+Content-Disposition: form-data; name="lastName"
+
+Xavier
+--WebKitFormBoundaryqgkaBn8IHJCuNmiW
+Content-Disposition: form-data; name="email"
+
+charles@xmen.com
+--WebKitFormBoundaryqgkaBn8IHJCuNmiW
+Content-Disposition: form-data; name="username"
+
+professorx
+--WebKitFormBoundaryqgkaBn8IHJCuNmiW
+Content-Disposition: form-data; name="password"
+
+letmein01
+--WebKitFormBoundaryqgkaBn8IHJCuNmiW
+Content-Disposition: form-data; name="profilePicture"; filename="me.jpg"
+Content-Type: image/jpeg
+
+[[ Binary image data goes here ]]
+--WebKitFormBoundaryqgkaBn8IHJCuNmiW--
+
+------------------------------
+
+public class ApplicationInitializer extends org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer {
+
+    // ...
+
+    /**
+     * We override this method, when we want to deal with "multipart-form data".
+     * This method is inherited from "AbstractDispatcherServletInitializer"
+     *
+     * @param registration The "javax.servlet.ServletRegistration.Dynamic"
+     */
+    @Override
+    protected void customizeRegistration(javax.servlet.ServletRegistration.Dynamic registration) {
+        registration.setMultipartConfig(new javax.servlet.MultipartConfigElement("/path/to/uploads"));
+    }
+}
+
+========================================================================================================================
+
 Run/Debug Configurations
 ----------------------------
 
