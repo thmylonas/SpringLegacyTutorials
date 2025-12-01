@@ -10,21 +10,21 @@ public class HomeController {
 
     @RequestMapping(path = {"", "/", "/home"}, method = RequestMethod.GET)
     public String fetchHomePage() {
-        return "home.html"; // "home"
+        return "html_views/home.html"; // "home"
     }
 
     @RequestMapping(path = {"/bootstrap-demo"}, method = RequestMethod.GET)
     public String fetchBootstrapDemo() {
-        return "bootstrap_demo.html"; // "bootstrap_demo"
+        return "html_views/bootstrap_demo.html"; // "bootstrap_demo"
     }
 
     @RequestMapping(path = {"/jsp-form"}, method = RequestMethod.GET)
     public String fetchJspForm() {
-        return "jsp_form.jsp";
+        return "jsp_views/jsp_form.jsp";
     }
 
     @RequestMapping(path = {"/jsp-form-result"}, method = RequestMethod.POST)
     public String fetchJspFormResult() {
-        return "jsp_form_result.jsp";
+        return "jsp_views/jsp_form_result.jsp";
     }
 }
