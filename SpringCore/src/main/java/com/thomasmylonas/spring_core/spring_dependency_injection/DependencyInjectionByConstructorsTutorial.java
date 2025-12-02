@@ -10,9 +10,11 @@ import com.thomasmylonas.spring_core.spring_dependency_injection._models.example
 import com.thomasmylonas.spring_core.spring_dependency_injection._models.example3.Book;
 import com.thomasmylonas.spring_core.spring_dependency_injection._models.example3.Library;
 import com.thomasmylonas.spring_core.spring_dependency_injection._models.example3.Teacher;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+@Slf4j
 public class DependencyInjectionByConstructorsTutorial extends AbstractSpringTutorials {
 
     private static final String EXAMPLE_1_CONFIG = "config/spring_dependency_injection_config/di_by_constructors/di_by_constructors_example1_config.xml";
@@ -25,40 +27,40 @@ public class DependencyInjectionByConstructorsTutorial extends AbstractSpringTut
         try (var context = new ClassPathXmlApplicationContext(EXAMPLE_1_CONFIG)) {
 
             GroupOfPeople byConstructorsGroupOfPeople = (GroupOfPeople) context.getBean("byConstructorsGroupOfPeople");
-            LOGGER.info("{}", byConstructorsGroupOfPeople);
+            log.info("{}", byConstructorsGroupOfPeople);
 
             // Russian singers beans (based on "Person*")
 
             Person1 byConstructorsAniLorak = (Person1) context.getBean("byConstructorsAniLorak");
-            LOGGER.info("{}", byConstructorsAniLorak);
+            log.info("{}", byConstructorsAniLorak);
 
             Person2 byConstructorsJasmine = (Person2) context.getBean("byConstructorsJasmine");
-            LOGGER.info("{}", byConstructorsJasmine);
+            log.info("{}", byConstructorsJasmine);
 
             Person3 byConstructorsLiubanya = (Person3) context.getBean("byConstructorsLiubanya");
-            LOGGER.info("{}", byConstructorsLiubanya);
+            log.info("{}", byConstructorsLiubanya);
 
             Person4 byConstructorsMarina = (Person4) context.getBean("byConstructorsMarina");
-            LOGGER.info("{}", byConstructorsMarina);
+            log.info("{}", byConstructorsMarina);
 
             // Rhythmic gymnastics girls beans (based on "Person1")
 
             Person1 byConstructorsSasha = (Person1) context.getBean("byConstructorsSasha");
-            LOGGER.info("{}", byConstructorsSasha);
+            log.info("{}", byConstructorsSasha);
 
             Person1 byConstructorsYana = (Person1) context.getBean("byConstructorsYana");
-            LOGGER.info("{}", byConstructorsYana);
+            log.info("{}", byConstructorsYana);
 
             Person1 byConstructorsZenya = (Person1) context.getBean("byConstructorsZenya");
-            LOGGER.info("{}", byConstructorsZenya);
+            log.info("{}", byConstructorsZenya);
 
             Person1 byConstructorsAlina = (Person1) context.getBean("byConstructorsAlina");
-            LOGGER.info("{}", byConstructorsAlina);
+            log.info("{}", byConstructorsAlina);
 
             Person1 byConstructorsMelita = (Person1) context.getBean("byConstructorsMelita");
-            LOGGER.info("{}", byConstructorsMelita);
+            log.info("{}", byConstructorsMelita);
         } catch (BeansException e) {
-            LOGGER.error("The bean could not be obtained!");
+            log.error("The bean could not be obtained!");
         }
     }
 
@@ -69,13 +71,13 @@ public class DependencyInjectionByConstructorsTutorial extends AbstractSpringTut
 
             // Case A
             Employee byConstructorsThomas1 = (Employee) context1.getBean("byConstructorsThomas1");
-            LOGGER.info("{}", byConstructorsThomas1);
+            log.info("{}", byConstructorsThomas1);
 
             // Case B
             Employee byConstructorsThomas2 = (Employee) context2.getBean("byConstructorsThomas2");
-            LOGGER.info("{}", byConstructorsThomas2);
+            log.info("{}", byConstructorsThomas2);
         } catch (BeansException e) {
-            LOGGER.error("The bean could not be obtained!");
+            log.error("The bean could not be obtained!");
         }
     }
 
@@ -84,43 +86,43 @@ public class DependencyInjectionByConstructorsTutorial extends AbstractSpringTut
         try (var context = new ClassPathXmlApplicationContext(EXAMPLE_3_CONFIG)) {
 
             Library byConstructorsLibrary = (Library) context.getBean("byConstructorsLibrary");
-            LOGGER.info("{}", byConstructorsLibrary);
+            log.info("{}", byConstructorsLibrary);
 
             // Teachers beans (based on "Teacher")
 
             Teacher byConstructorsSpilca = (Teacher) context.getBean("byConstructorsSpilca");
-            LOGGER.info("{}", byConstructorsSpilca);
+            log.info("{}", byConstructorsSpilca);
 
             Teacher byConstructorsPaumard = (Teacher) context.getBean("byConstructorsPaumard");
-            LOGGER.info("{}", byConstructorsPaumard);
+            log.info("{}", byConstructorsPaumard);
 
             Teacher byConstructorsSubramaniam = (Teacher) context.getBean("byConstructorsSubramaniam");
-            LOGGER.info("{}", byConstructorsSubramaniam);
+            log.info("{}", byConstructorsSubramaniam);
 
             Teacher byConstructorsMihalcea = (Teacher) context.getBean("byConstructorsMihalcea");
-            LOGGER.info("{}", byConstructorsMihalcea);
+            log.info("{}", byConstructorsMihalcea);
 
             // Books beans (based on "Book")
 
             Book byConstructorsSpringSecurityInAction2Edition = (Book) context.getBean("byConstructorsSpringSecurityInAction2Edition");
-            LOGGER.info("{}", byConstructorsSpringSecurityInAction2Edition);
+            log.info("{}", byConstructorsSpringSecurityInAction2Edition);
 
             Book byConstructorsJava8InAction = (Book) context.getBean("byConstructorsJava8InAction");
-            LOGGER.info("{}", byConstructorsJava8InAction);
+            log.info("{}", byConstructorsJava8InAction);
 
             Book byConstructorsFunctionalProgrammingInJava2Edition = (Book) context.getBean("byConstructorsFunctionalProgrammingInJava2Edition");
-            LOGGER.info("{}", byConstructorsFunctionalProgrammingInJava2Edition);
+            log.info("{}", byConstructorsFunctionalProgrammingInJava2Edition);
 
             Book byConstructorsHighPerformanceJavaPersistence = (Book) context.getBean("byConstructorsHighPerformanceJavaPersistence");
-            LOGGER.info("{}", byConstructorsHighPerformanceJavaPersistence);
+            log.info("{}", byConstructorsHighPerformanceJavaPersistence);
 
             Book byConstructorsZombiesOnPlane = (Book) context.getBean("byConstructorsZombiesOnPlane");
-            LOGGER.info("{}", byConstructorsZombiesOnPlane);
+            log.info("{}", byConstructorsZombiesOnPlane);
 
             Book byConstructorsZombiesOnTrain = (Book) context.getBean("byConstructorsZombiesOnTrain");
-            LOGGER.info("{}", byConstructorsZombiesOnTrain);
+            log.info("{}", byConstructorsZombiesOnTrain);
         } catch (BeansException e) {
-            LOGGER.error("The bean could not be obtained!");
+            log.error("The bean could not be obtained!");
         }
     }
 }

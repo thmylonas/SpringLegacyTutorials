@@ -1,6 +1,7 @@
 package com.thomasmylonas.spring_core.spring_dependency_injection;
 
 import com.thomasmylonas.spring_core._base.AbstractTest;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,6 +11,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 //import static org.junit.jupiter.api.Assertions.*;
 
+@Slf4j
 public class DependencyInjectionByConstructorsTutorialTest extends AbstractTest {
 
     private DependencyInjectionByConstructorsTutorial dependencyInjectionByConstructorsTutorial;
@@ -22,7 +24,7 @@ public class DependencyInjectionByConstructorsTutorialTest extends AbstractTest 
             context = new ClassPathXmlApplicationContext("config/app_config.xml");
             dependencyInjectionByConstructorsTutorial = (DependencyInjectionByConstructorsTutorial) context.getBean("dependencyInjectionByConstructorsTutorial");
         } catch (BeansException e) {
-            LOGGER.error("The bean could not be obtained!");
+            log.error("The bean could not be obtained!");
         }
     }
 

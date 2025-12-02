@@ -10,9 +10,11 @@ import com.thomasmylonas.spring_core.spring_dependency_injection._models.example
 import com.thomasmylonas.spring_core.spring_dependency_injection._models.example3.Book;
 import com.thomasmylonas.spring_core.spring_dependency_injection._models.example3.Library;
 import com.thomasmylonas.spring_core.spring_dependency_injection._models.example3.Teacher;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+@Slf4j
 public class DependencyInjectionBySettersTutorial extends AbstractSpringTutorials {
 
     private static final String EXAMPLE_1_CONFIG = "config/spring_dependency_injection_config/di_by_setters/di_by_setters_example1_config.xml";
@@ -25,40 +27,40 @@ public class DependencyInjectionBySettersTutorial extends AbstractSpringTutorial
         try (var context = new ClassPathXmlApplicationContext(EXAMPLE_1_CONFIG)) {
 
             GroupOfPeople bySettersGroupOfPeople = (GroupOfPeople) context.getBean("bySettersGroupOfPeople");
-            LOGGER.info("{}", bySettersGroupOfPeople);
+            log.info("{}", bySettersGroupOfPeople);
 
             // Russian singers beans (based on "Person*")
 
             Person1 bySettersAniLorak = (Person1) context.getBean("bySettersAniLorak");
-            LOGGER.info("{}", bySettersAniLorak);
+            log.info("{}", bySettersAniLorak);
 
             Person2 bySettersJasmine = (Person2) context.getBean("bySettersJasmine");
-            LOGGER.info("{}", bySettersJasmine);
+            log.info("{}", bySettersJasmine);
 
             Person3 bySettersLiubanya = (Person3) context.getBean("bySettersLiubanya");
-            LOGGER.info("{}", bySettersLiubanya);
+            log.info("{}", bySettersLiubanya);
 
             Person4 bySettersMarina = (Person4) context.getBean("bySettersMarina");
-            LOGGER.info("{}", bySettersMarina);
+            log.info("{}", bySettersMarina);
 
             // Rhythmic gymnastics girls beans (based on "Person1")
 
             Person1 bySettersSasha = (Person1) context.getBean("bySettersSasha");
-            LOGGER.info("{}", bySettersSasha);
+            log.info("{}", bySettersSasha);
 
             Person1 bySettersYana = (Person1) context.getBean("bySettersYana");
-            LOGGER.info("{}", bySettersYana);
+            log.info("{}", bySettersYana);
 
             Person1 bySettersZenya = (Person1) context.getBean("bySettersZenya");
-            LOGGER.info("{}", bySettersZenya);
+            log.info("{}", bySettersZenya);
 
             Person1 bySettersAlina = (Person1) context.getBean("bySettersAlina");
-            LOGGER.info("{}", bySettersAlina);
+            log.info("{}", bySettersAlina);
 
             Person1 bySettersMelita = (Person1) context.getBean("bySettersMelita");
-            LOGGER.info("{}", bySettersMelita);
+            log.info("{}", bySettersMelita);
         } catch (BeansException e) {
-            LOGGER.error("The bean could not be obtained!");
+            log.error("The bean could not be obtained!");
         }
     }
 
@@ -69,13 +71,13 @@ public class DependencyInjectionBySettersTutorial extends AbstractSpringTutorial
 
             // Case A
             Employee bySettersThomas1 = (Employee) context1.getBean("bySettersThomas1");
-            LOGGER.info("{}", bySettersThomas1);
+            log.info("{}", bySettersThomas1);
 
             // Case B
             Employee bySettersThomas2 = (Employee) context2.getBean("bySettersThomas2");
-            LOGGER.info("{}", bySettersThomas2);
+            log.info("{}", bySettersThomas2);
         } catch (BeansException e) {
-            LOGGER.error("The bean could not be obtained!");
+            log.error("The bean could not be obtained!");
         }
     }
 
@@ -84,43 +86,43 @@ public class DependencyInjectionBySettersTutorial extends AbstractSpringTutorial
         try (var context = new ClassPathXmlApplicationContext(EXAMPLE_3_CONFIG)) {
 
             Library bySettersLibrary = (Library) context.getBean("bySettersLibrary");
-            LOGGER.info("{}", bySettersLibrary);
+            log.info("{}", bySettersLibrary);
 
             // Teachers beans (based on "Teacher")
 
             Teacher bySettersSpilca = (Teacher) context.getBean("bySettersSpilca");
-            LOGGER.info("{}", bySettersSpilca);
+            log.info("{}", bySettersSpilca);
 
             Teacher bySettersPaumard = (Teacher) context.getBean("bySettersPaumard");
-            LOGGER.info("{}", bySettersPaumard);
+            log.info("{}", bySettersPaumard);
 
             Teacher bySettersSubramaniam = (Teacher) context.getBean("bySettersSubramaniam");
-            LOGGER.info("{}", bySettersSubramaniam);
+            log.info("{}", bySettersSubramaniam);
 
             Teacher bySettersMihalcea = (Teacher) context.getBean("bySettersMihalcea");
-            LOGGER.info("{}", bySettersMihalcea);
+            log.info("{}", bySettersMihalcea);
 
             // Books beans (based on "Book")
 
             Book bySettersSpringSecurityInAction2Edition = (Book) context.getBean("bySettersSpringSecurityInAction2Edition");
-            LOGGER.info("{}", bySettersSpringSecurityInAction2Edition);
+            log.info("{}", bySettersSpringSecurityInAction2Edition);
 
             Book bySettersJava8InAction = (Book) context.getBean("bySettersJava8InAction");
-            LOGGER.info("{}", bySettersJava8InAction);
+            log.info("{}", bySettersJava8InAction);
 
             Book bySettersFunctionalProgrammingInJava2Edition = (Book) context.getBean("bySettersFunctionalProgrammingInJava2Edition");
-            LOGGER.info("{}", bySettersFunctionalProgrammingInJava2Edition);
+            log.info("{}", bySettersFunctionalProgrammingInJava2Edition);
 
             Book bySettersHighPerformanceJavaPersistence = (Book) context.getBean("bySettersHighPerformanceJavaPersistence");
-            LOGGER.info("{}", bySettersHighPerformanceJavaPersistence);
+            log.info("{}", bySettersHighPerformanceJavaPersistence);
 
             Book bySettersZombiesOnPlane = (Book) context.getBean("bySettersZombiesOnPlane");
-            LOGGER.info("{}", bySettersZombiesOnPlane);
+            log.info("{}", bySettersZombiesOnPlane);
 
             Book bySettersZombiesOnTrain = (Book) context.getBean("bySettersZombiesOnTrain");
-            LOGGER.info("{}", bySettersZombiesOnTrain);
+            log.info("{}", bySettersZombiesOnTrain);
         } catch (BeansException e) {
-            LOGGER.error("The bean could not be obtained!");
+            log.error("The bean could not be obtained!");
         }
     }
 }

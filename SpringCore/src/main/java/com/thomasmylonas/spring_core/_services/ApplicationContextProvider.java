@@ -1,6 +1,7 @@
 package com.thomasmylonas.spring_core._services;
 
 import com.thomasmylonas.spring_core._base.AbstractService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
@@ -9,6 +10,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 /**
  * This class is Deprecated, because all of its methods are Deprecated
  */
+@Slf4j
 @Deprecated
 public class ApplicationContextProvider extends AbstractService {
 
@@ -41,7 +43,7 @@ public class ApplicationContextProvider extends AbstractService {
         try {
             return new AnnotationConfigApplicationContext(config); // NoSuchBeanDefinitionException, BeanCreationException, UnsatisfiedDependencyException, BeansException
         } catch (BeansException e) {
-            LOGGER.error("'{}::new' throws '{}': '{}'", AnnotationConfigApplicationContext.class.getSimpleName(), e.getClass().getName(), e.getMessage());
+            log.error("'{}::new' throws '{}': '{}'", AnnotationConfigApplicationContext.class.getSimpleName(), e.getClass().getName(), e.getMessage());
         }
         return null;
     }
@@ -84,13 +86,13 @@ public class ApplicationContextProvider extends AbstractService {
     public static Object getBean2(ApplicationContext context, String beanName) {
 
         if (context == null) {
-            LOGGER.error("Error while creating the ApplicationContext!");
+            log.error("Error while creating the ApplicationContext!");
             return null;
         }
         try {
             return context.getBean(beanName); // NoSuchBeanDefinitionException, BeanCreationException, UnsatisfiedDependencyException, BeansException
         } catch (BeansException e) {
-            LOGGER.error("'{}::getBean' throws '{}': '{}'", AnnotationConfigApplicationContext.class.getSimpleName(), e.getClass().getName(), e.getMessage());
+            log.error("'{}::getBean' throws '{}': '{}'", AnnotationConfigApplicationContext.class.getSimpleName(), e.getClass().getName(), e.getMessage());
         }
         return null;
     }
@@ -110,9 +112,9 @@ public class ApplicationContextProvider extends AbstractService {
         try (AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(configClazz)) { // Exception
             return context.getBean(beanName); // BeansException
         } catch (BeansException e) {
-            LOGGER.error("'{}::getBean' throws '{}': '{}'", AnnotationConfigApplicationContext.class.getSimpleName(), e.getClass().getName(), e.getMessage());
+            log.error("'{}::getBean' throws '{}': '{}'", AnnotationConfigApplicationContext.class.getSimpleName(), e.getClass().getName(), e.getMessage());
         } catch (Exception e) {
-            LOGGER.error("'{}::new' throws '{}': '{}'", AnnotationConfigApplicationContext.class.getSimpleName(), e.getClass().getName(), e.getMessage());
+            log.error("'{}::new' throws '{}': '{}'", AnnotationConfigApplicationContext.class.getSimpleName(), e.getClass().getName(), e.getMessage());
         }
         return null;
     }
@@ -132,9 +134,9 @@ public class ApplicationContextProvider extends AbstractService {
         try (ClassPathXmlApplicationContext context = new ClassPathXmlApplicationContext(config)) { // Exception
             return context.getBean(beanName); // BeansException
         } catch (BeansException e) {
-            LOGGER.error("'{}::getBean' throws '{}': '{}'", ClassPathXmlApplicationContext.class.getSimpleName(), e.getClass().getName(), e.getMessage());
+            log.error("'{}::getBean' throws '{}': '{}'", ClassPathXmlApplicationContext.class.getSimpleName(), e.getClass().getName(), e.getMessage());
         } catch (Exception e) {
-            LOGGER.error("'{}::new' throws '{}': '{}'", ClassPathXmlApplicationContext.class.getSimpleName(), e.getClass().getName(), e.getMessage());
+            log.error("'{}::new' throws '{}': '{}'", ClassPathXmlApplicationContext.class.getSimpleName(), e.getClass().getName(), e.getMessage());
         }
         return null;
     }

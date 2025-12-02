@@ -1,6 +1,7 @@
 package com.thomasmylonas.spring_core.spring_dependency_injection_alt;
 
 import com.thomasmylonas.spring_core._base.AbstractTest;
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,6 +11,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 //import static org.junit.jupiter.api.Assertions.*;
 
+@Slf4j
 public class DependencyInjectionAltTutorialTest extends AbstractTest {
 
     private DependencyInjectionAltTutorial dependencyInjectionAltTutorial;
@@ -22,7 +24,7 @@ public class DependencyInjectionAltTutorialTest extends AbstractTest {
             context = new ClassPathXmlApplicationContext("config/app_config.xml");
             dependencyInjectionAltTutorial = (DependencyInjectionAltTutorial) context.getBean("dependencyInjectionAltTutorial");
         } catch (BeansException e) {
-            LOGGER.error("The bean could not be obtained!");
+            log.error("The bean could not be obtained!");
         }
     }
 
