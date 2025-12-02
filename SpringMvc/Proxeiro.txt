@@ -389,6 +389,61 @@ public class MultipleResolversConfig {
 
 ========================================================================================================================
 
+The "InternalResourceViewResolver::setViewClass(org.springframework.web.servlet.view.JstlView.class);"
+----------------------------------------------------------------------------------------------------------
+
+Links:
+- https://stackoverflow.com/questions/32459400/why-do-i-need-a-view-class-to-resolve-jstl-views-in-spring-mvc
+- https://stackoverflow.com/questions/20268095/java-lang-noclassdeffounderror-javax-servlet-jsp-jstl-core-config
+
+The need of: "InternalResourceViewResolver::setViewClass(JstlView.class);"
+------------------------------------------------------------------------------
+
+In older Spring versions there was not "Automatic_Detection" of features. This has been introduced slowly in different Spring versions.
+The "InternalResourceViewResolver" did not have "Automatic_Detection" of "JSTL" in the early days,
+so it was required to always specify the "JstlView" as the viewClass, through the "Line_1" in the "WebConfig::viewResolver",
+like the following code snippet:
+
+    @Configuration @EnableWebMvc
+    public class WebConfig {
+        @Bean public ViewResolver viewResolver() {
+            InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+            viewResolver.setViewClass(org.springframework.web.servlet.view.JstlView.class); // Add this "Line_1"
+            // ...
+        }
+    }
+
+However, in newer versions of Spring has been added the feature "Automatic_Detection" of which viewClass to use.
+The addition was adding the next:
+- "InternalResourceViewResolver" uses "JstlView" as default (instead of "InternalResourceView") if the "JSTL"-API is present
+So the previous "Line_1" in the "WebConfig::viewResolver", is not needed any more.
+
+Error caused by: "InternalResourceViewResolver::setViewClass(JstlView.class);"
+----------------------------------------------------------------------------------
+
+[Error1-500: In my tutorials]
+HTTP Status 500 – Internal Server Error
+Message Handler processing failed; nested exception is java.lang.NoClassDefFoundError: javax/servlet/jsp/jstl/core/Config
+Description The server encountered an unexpected condition that prevented it from fulfilling the request.
+Exception:
+org.springframework.web.util.NestedServletException: Handler processing failed; nested exception is java.lang.NoClassDefFoundError: javax/servlet/jsp/jstl/core/Config
+	org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1095)
+java.lang.NoClassDefFoundError: javax/servlet/jsp/jstl/core/Config
+	org.springframework.web.servlet.support.JstlUtils.exposeLocalizationContext(JstlUtils.java:103)
+	org.springframework.web.servlet.view.JstlView.exposeHelpers(JstlView.java:137)
+	org.springframework.web.servlet.view.InternalResourceView.renderMergedOutputModel(InternalResourceView.java:145)
+
+Solution:
+-------------
+"JSTL" is provided out the box by a full-fledged "Java_EE_Container" such as:
+- "TomEE", "JBoss" "AS/EAP/WildFly", "Payara/GlassFish", "WebLogic", etc.
+but not by barebones "JSP/Servlet_Containers" such as:
+- Tomcat and Jetty
+So, we need to add in the "pom.xml" the dependency:
+- "javax.servlet/jstl/1.2"
+
+========================================================================================================================
+
 Run/Debug Configurations
 ----------------------------
 
