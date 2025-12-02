@@ -1,6 +1,5 @@
 package com.thomasmylonas.spring_core.spring_dependency_injection._models.example3;
 
-import com.thomasmylonas.spring_core._base.BaseModel;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +12,7 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 @SuppressWarnings(value = "all") // IntelliJ bug: "Could not autowire. No beans of X type found"
-public class Book implements BaseModel {
+public class Book {
 
     private String title;
     private String genre;
