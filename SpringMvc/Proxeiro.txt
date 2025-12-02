@@ -1,16 +1,14 @@
 How to add static CSS,JS files in the Spring MVC app (without Thymeleaf)
----------------------------------------------------------------------------
+----------------------------------------------------------------------------
+
 <head>
     <!-- Stylesheets -->
-    <link href="/SpringMvc/resources/css/styles_general/_styles_variables.css" rel="stylesheet"/>
-    <link href="/SpringMvc/resources/css/styles_general/student_alt_home.css" rel="stylesheet"/>
-    <!-- Stylesheets for Bootstrap -->
-    <link href="/SpringMvc/resources/css/boostrap_css_libs/bootstrap.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="/resources/css/styles.css"/>
+    <link rel="stylesheet" href="/resources/css/boostrap_css_libs/bootstrap_v4.6.1/bootstrap.min.css"/>
 </head>
 
 public class WebConfig implements WebMvcConfigurer {
-    @Override
-    public void addResourceHandlers(ResourceHandlerRegistry registry) {
+    @Override public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
     }
 }

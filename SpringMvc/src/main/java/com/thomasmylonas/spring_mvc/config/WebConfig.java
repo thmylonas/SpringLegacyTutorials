@@ -35,8 +35,7 @@ public class WebConfig implements WebMvcConfigurer, ApplicationContextAware {
 
     @Override
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry
-                .addResourceHandler("/resources/**") //.addResourceHandler("/webapp/**")
+        registry.addResourceHandler("/resources/**") //.addResourceHandler("/webapp/**")
                 .addResourceLocations("/resources/"); //.addResourceLocations("/resources/**")
     }
 
