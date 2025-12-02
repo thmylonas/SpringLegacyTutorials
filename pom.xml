@@ -1,26 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    <groupId>org.thomasmylonas</groupId>
+    <groupId>com.thomasmylonas</groupId>
     <artifactId>spring_legacy_tutorials</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>SpringLegacyTutorials</name>
-    <description>A tutorial application for Spring_Legacy_Framework (Core, AOP, JDBC, Web, etc.)</description>
-
+    <description>A tutorial application for Spring_Legacy_Framework (Core, AOP, JDBC, Web, Rest, etc.)</description>
     <properties>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
+        <maven.compiler.source>21</maven.compiler.source> <!-- Keep this version Un-Changed (see Proxeiro) -->
+        <maven.compiler.target>21</maven.compiler.target> <!-- Keep this version Un-Changed (see Proxeiro) -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <springframework.version>4.3.30.RELEASE</springframework.version> <!-- 5.3.22 -->
+        <springframework.version>5.3.39</springframework.version> <!-- 4.3.30.RELEASE, 5.3.22 -->
         <springframework.data.version>2.7.5</springframework.data.version> <!-- 2.7.2 -->
     </properties>
 
     <modules>
         <module>SpringCore</module>
+        <module>SpringMvc</module>
         <module>SpringRest</module>
     </modules>
 
@@ -56,27 +55,7 @@
             <version>${springframework.version}</version>
         </dependency>-->
 
-        <!-- JUnit API: org.junit.jupiter/junit-jupiter-engine -->
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>5.9.0</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>5.9.0</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.vintage</groupId>
-            <artifactId>junit-vintage-engine</artifactId>
-            <version>5.2.0</version>
-            <scope>test</scope>
-        </dependency>
-
-        <!-- org.slf4j/slf4j-api -->
+        <!-- Logging API: org.slf4j, org.apache.logging.log4j -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -96,6 +75,43 @@
             <groupId>org.apache.logging.log4j</groupId>
             <artifactId>log4j-core</artifactId>
             <version>2.18.0</version>
+        </dependency>
+
+        <!-- JUnit5 API: org.junit.jupiter/junit-jupiter-engine -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-engine</artifactId>
+            <version>5.9.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.9.0</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.vintage</groupId>
+            <artifactId>junit-vintage-engine</artifactId>
+            <version>5.2.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- com.fasterxml.jackson.core: jackson-databind, jackson-dataformat-xml, com.fasterxml.jackson.datatype/jackson-datatype-jsr310 -->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.13.3</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-xml</artifactId>
+            <version>2.13.3</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.datatype</groupId>
+            <artifactId>jackson-datatype-jsr310</artifactId>
+            <version>2.19.2</version>
         </dependency>
 
         <!-- Other tools -->
