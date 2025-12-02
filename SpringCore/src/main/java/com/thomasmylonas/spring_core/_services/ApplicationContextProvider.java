@@ -1,6 +1,5 @@
 package com.thomasmylonas.spring_core._services;
 
-import com.thomasmylonas.spring_core._base.AbstractService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;
@@ -12,7 +11,7 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
  */
 @Slf4j
 @Deprecated
-public class ApplicationContextProvider extends AbstractService {
+public class ApplicationContextProvider {
 
     /**
      * This method is Deprecated, because it adds code-complexity without reason
