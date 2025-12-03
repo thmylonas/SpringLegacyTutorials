@@ -214,28 +214,39 @@ About Not_Used/Removed dependencies
 Dependency_1:
 -----------------
 
-The dependencies:
-- "org.springframework/spring-aop"
+The dependency "org.springframework/spring-context" covers the dependencies (exist in this dependency's "pom.xml" file):
 - "org.springframework/spring-beans"
 - "org.springframework/spring-core"
 - "org.springframework/spring-expression"
-are covered from:
-- the dependency "org.springframework/spring-context" (exist in this dependency's "pom.xml" file)
+- "org.springframework/spring-aop"
 
 Dependency_2:
 -----------------
 
-The dependencies:
-- "org.springframework/spring-aop"
+The dependency "org.springframework/spring-webmvc" covers the dependencies (exist in this dependency's "pom.xml" file):
 - "org.springframework/spring-beans"
-- "org.springframework/spring-context"
 - "org.springframework/spring-core"
 - "org.springframework/spring-expression"
+- "org.springframework/spring-aop"
+- "org.springframework/spring-context"
 - "org.springframework/spring-web"
-are covered from:
-- the dependency "org.springframework/spring-webmvc" (exist in this dependency's "pom.xml" file)
 
 Dependency_3:
+-----------------
+
+The dependency "org.springframework/spring-hibernate" covers the dependencies (exist in this dependency's "pom.xml" file):
+- "org.springframework/spring-beans"
+- "org.springframework/spring-core"
+- "org.springframework/spring-aop"
+- "org.springframework/spring-jdbc" (lower lever than the "org.springframework/spring-data-jdbc")
+- "org.springframework/spring-dao"
+- "org.springframework/spring-orm"
+- "org.springframework/spring-web"
+- "org.springframework/spring-webmvc"
+- "org.hibernate/hibernate" (older version than the "org.hibernate/hibernate-core")
+- "javax.servlet/servlet-api" (fewer features than "javax.servlet/javax.servlet-api")
+
+Dependency_97:
 -----------------
 
 The dependency "org.springframework/spring-context-support" provides support for integrating common third-party libraries
@@ -245,7 +256,7 @@ into a Spring application context for:
 - Scheduling (CommonJ, Quartz), and
 - Template engines (FreeMarker, JasperReports, Velocity)
 
-Dependency_4:
+Dependency_98:
 -----------------
 
 The dependencies:
@@ -266,7 +277,7 @@ are removed from "pom.xml" file, because they are covered from:
 </dependency>
 
 
-Dependency_5:
+Dependency_99:
 -----------------
 
 The dependencies:
