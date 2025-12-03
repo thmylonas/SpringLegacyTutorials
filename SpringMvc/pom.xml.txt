@@ -4,19 +4,6 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
     <dependencies>
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <version>2.7.2</version>
-        </dependency>
-
-        <!-- org.hibernate -->
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>5.4.24.Final</version>
-            <!-- The latest version: "5.6.1.Final", 6.0.0.Final, fail to start the WebApp -->
-        </dependency>
 
         <!-- JUnit API: org.junit.jupiter/junit-jupiter-engine -->
         <dependency>

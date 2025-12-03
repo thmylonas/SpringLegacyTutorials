@@ -106,14 +106,15 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
-            <version>2.6.3</version>
+            <version>2.7.2</version> <!-- 2.6.3 -->
         </dependency>
 
         <!-- org.hibernate -->
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>5.4.3.Final</version> <!-- The latest version: "5.6.1.Final", fails to start the WebApp -->
+            <version>5.4.3.Final</version>
+            <!-- 5.4.24.Final --> <!-- The latest version: "5.6.1.Final", 6.0.0.Final, fail to start the WebApp -->
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
