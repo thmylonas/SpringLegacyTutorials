@@ -238,6 +238,16 @@ are covered from:
 Dependency_3:
 -----------------
 
+The dependency "org.springframework/spring-context-support" provides support for integrating common third-party libraries
+into a Spring application context for:
+- Caching (EhCache, Guava, JCache),
+- Mailing (JavaMail),
+- Scheduling (CommonJ, Quartz), and
+- Template engines (FreeMarker, JasperReports, Velocity)
+
+Dependency_4:
+-----------------
+
 The dependencies:
 - "com.fasterxml.jackson.core/jackson-core"
 - "com.fasterxml.jackson.core/jackson-annotations"
@@ -256,7 +266,7 @@ are removed from "pom.xml" file, because they are covered from:
 </dependency>
 
 
-Dependency_4:
+Dependency_5:
 -----------------
 
 The dependencies:
