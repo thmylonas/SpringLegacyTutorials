@@ -125,7 +125,7 @@
         <dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-catalina</artifactId>
-            <version>9.0.30</version>
+            <version>9.0.58</version> <!-- 9.0.30 -->
         </dependency>
         <dependency>
             <groupId>org.apache.tomcat</groupId>

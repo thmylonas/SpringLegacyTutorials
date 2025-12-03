@@ -37,17 +37,6 @@
             <version>19.3</version>
         </dependency>-->
 
-        <!-- org.apache.tomcat: tomcat-catalina, tomcat-dbcp, javax -->
-        <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-catalina</artifactId>
-            <version>9.0.58</version> <!-- 9.0.30 -->
-        </dependency>
-        <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-dbcp</artifactId>
-            <version>9.0.30</version>
-        </dependency>
         <dependency>
             <groupId>directory-naming</groupId>
             <artifactId>naming-java</artifactId>
