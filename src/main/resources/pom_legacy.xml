@@ -237,7 +237,7 @@
         -->
         <dependency>
             <groupId>com.oracle</groupId>
-            <artifactId>ojdbc8</artifactId>
+            <artifactId>ojdbc8</artifactId> <!-- ojdbc10 -->
             <version>19.3</version>
         </dependency>
         <dependency>
