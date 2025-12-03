@@ -44,14 +44,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- javax.servlet -->
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>javax.servlet-api</artifactId>
-            <version>4.0.1</version>
-            <scope>provided</scope>
-        </dependency>
-
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-jpa</artifactId>
@@ -69,13 +61,6 @@
             <artifactId>hibernate-core</artifactId>
             <version>5.4.24.Final</version>
             <!-- The latest version: "5.6.1.Final", 6.0.0.Final, fail to start the WebApp -->
-        </dependency>
-
-        <!-- jstl Library -->
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jstl</artifactId>
-            <version>1.2</version>
         </dependency>
 
         <!-- JUnit API: org.junit.jupiter/junit-jupiter-engine -->
