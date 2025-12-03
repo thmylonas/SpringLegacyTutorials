@@ -2,27 +2,6 @@
 
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
-    <modelVersion>4.0.0</modelVersion>
-
-    <groupId>com.thomasmylonas</groupId>
-    <artifactId>SpringMvcJsfPfWebApp</artifactId>
-    <version>1.0-SNAPSHOT</version>
-    <packaging>war</packaging>
-
-    <name>Web Application with JSF, Primefaces, Hibernate/JPA, Maven (no archetype)</name>
-    <url>http://localhost:8080/SpringMvcJsfPfWebApp</url>
-
-    <properties>
-        <!-- Set maven.compiler.source, maven.compiler.target -->
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
-
-        <!-- Set sourceEncoding -->
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-
-        <springframework.version>5.3.22</springframework.version> <!-- 5.3.20, 5.3.19, 5.3.14 -->
-        <springframework.data.version>2.7.2</springframework.data.version> <!-- 2.7.0, 2.6.4 -->
-    </properties>
 
     <dependencies>
         <dependency>
