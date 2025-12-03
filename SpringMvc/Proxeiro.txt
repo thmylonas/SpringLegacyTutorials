@@ -217,6 +217,17 @@ Dependency_1:
 The dependencies:
 - "org.springframework/spring-aop"
 - "org.springframework/spring-beans"
+- "org.springframework/spring-core"
+- "org.springframework/spring-expression"
+are covered from:
+- the dependency "org.springframework/spring-context" (exist in this dependency's "pom.xml" file)
+
+Dependency_2:
+-----------------
+
+The dependencies:
+- "org.springframework/spring-aop"
+- "org.springframework/spring-beans"
 - "org.springframework/spring-context"
 - "org.springframework/spring-core"
 - "org.springframework/spring-expression"
@@ -224,7 +235,7 @@ The dependencies:
 are covered from:
 - the dependency "org.springframework/spring-webmvc" (exist in this dependency's "pom.xml" file)
 
-Dependency_2:
+Dependency_3:
 -----------------
 
 The dependencies:
@@ -245,7 +256,7 @@ are removed from "pom.xml" file, because they are covered from:
 </dependency>
 
 
-Dependency_3:
+Dependency_4:
 -----------------
 
 The dependencies:
