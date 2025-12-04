@@ -265,7 +265,7 @@ Dependency_6:
 
 The dependency "org.springframework.plugin/spring-plugin-core", I do not know what it is used for.
 
-Dependency_97:
+Dependency_7:
 -----------------
 
 The dependency "org.springframework/spring-context-support" provides support for integrating common third-party libraries
@@ -274,6 +274,8 @@ into a Spring application context for:
 - Mailing (JavaMail),
 - Scheduling (CommonJ, Quartz), and
 - Template engines (FreeMarker, JasperReports, Velocity)
+
+----------------------
 
 Dependency_98:
 -----------------
