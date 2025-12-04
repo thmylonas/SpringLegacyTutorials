@@ -275,6 +275,38 @@ into a Spring application context for:
 - Scheduling (CommonJ, Quartz), and
 - Template engines (FreeMarker, JasperReports, Velocity)
 
+Dependency_8:
+-----------------
+
+The dependency "javax/javaee-web-api" covers the dependencies (exist in this dependency's "pom.xml" file):
+- "javax.servlet/javax.servlet-api"
+- "javax.servlet.jsp/javax.servlet.jsp-api"
+- "javax.el/javax.el-api"
+- "javax.servlet.jsp.jstl/javax.servlet.jsp.jstl-api"
+- "org.glassfish/javax.faces"
+- "javax.faces/javax.faces-api"
+- "javax.ws.rs/javax.ws.rs-api"
+- "javax.websocket"
+- "javax.websocket-api"
+- "javax.json/javax.json-api"
+- "javax.annotation/javax.annotation-api"
+- "javax.ejb/javax.ejb-api"
+- "javax.transaction/javax.transaction-api"
+- "org.eclipse.persistence/javax.persistence"
+- "javax.validation/validation-api"
+- "javax.interceptor/javax.interceptor-api"
+- "javax.enterprise/cdi-api"
+- "javax.inject/javax.inject"
+
+Dependency_9:
+-----------------
+
+The dependency "javax.mvc/javax.mvc-api" covers the dependencies (exist in this dependency's "pom.xml" file):
+- "jakarta.ws.rs/jakarta.ws.rs-api"
+- "javax.enterprise/cdi-api"
+- "javax.validation/validation-api"
+- "jakarta.annotation/jakarta.annotation-api"
+
 ----------------------
 
 Dependency_98:
