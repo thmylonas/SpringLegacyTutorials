@@ -253,6 +253,18 @@ The dependency "org.springframework.data/spring-data-jpa" covers the dependencie
 - "org.springframework.data/spring-data-commons"
 - and others
 
+Dependency_5:
+-----------------
+
+The dependency "org.springframework.hateoas/spring-hateoas" covers the dependencies (exist in this dependency's "pom.xml" file):
+- "org.springframework.plugin/spring-plugin-core" (I do not know what it is used for)
+- and others
+
+Dependency_6:
+-----------------
+
+The dependency "org.springframework.plugin/spring-plugin-core", I do not know what it is used for.
+
 Dependency_97:
 -----------------
 
