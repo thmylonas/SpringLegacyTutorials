@@ -136,19 +136,6 @@
 
         <!-- javax -->
         <dependency>
-            <groupId>directory-naming</groupId>
-            <artifactId>naming-java</artifactId>
-            <version>0.8</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>javax.jms</groupId>
-            <artifactId>javax.jms-api</artifactId>
-            <version>2.0.1</version>
-            <scope>provided</scope>
-        </dependency>
-
-        <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>4.0.1</version>
@@ -179,6 +166,18 @@
             <groupId>javax.mvc</groupId>
             <artifactId>javax.mvc-api</artifactId>
             <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.jms</groupId>
+            <artifactId>javax.jms-api</artifactId>
+            <version>2.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>directory-naming</groupId>
+            <artifactId>naming-java</artifactId>
+            <version>0.8</version>
+            <scope>test</scope>
         </dependency>
 
         <!--

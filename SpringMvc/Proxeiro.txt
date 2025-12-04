@@ -338,6 +338,33 @@ The dependencies:
 are covered from:
 - the dependency "org.apache.tomcat/tomcat-catalina" (exist in this dependency's "pom.xml" file)
 
+Dependency_100:
+-----------------
+
+The dependency "directory-naming/naming-java" is removed from "pom.xml" file, because I do not know what it is used for.
+The right dependency which should be used is "javax.naming/jndi".
+Although the dependency "javax.naming/jndi" is part of Java_EE dependencies,
+it seems (I am not sure) that is used from Tomcat server.
+I guess (I am not sure), that the dependency "javax.naming/jndi" is covered by the dependency "org.apache.tomcat/tomcat-catalina/9.0.58".
+
+<dependency> <!-- Removed -->
+    <groupId>directory-naming</groupId>
+    <artifactId>naming-java</artifactId>
+    <version>0.8</version>
+    <scope>test</scope>
+</dependency>
+
+Dependency_101:
+-----------------
+
+The dependency "org.apache.tomcat/tomcat-dbcp" is removed from "pom.xml" file, because I do not know what it is used for.
+
+<dependency> <!-- Removed -->
+    <groupId>org.apache.tomcat</groupId>
+    <artifactId>tomcat-dbcp</artifactId>
+    <version>9.0.30</version>
+</dependency>
+
 ========================================================================================================================
 
 Jackson-serialization of "LocalDate/LocalDateTime" fields
