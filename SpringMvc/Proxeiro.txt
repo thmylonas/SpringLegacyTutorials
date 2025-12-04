@@ -307,10 +307,8 @@ The dependency "javax.mvc/javax.mvc-api" covers the dependencies (exist in this 
 - "javax.validation/validation-api"
 - "jakarta.annotation/jakarta.annotation-api"
 
-----------------------
-
-Dependency_98:
------------------
+Dependency_10:
+------------------
 
 The dependencies:
 - "com.fasterxml.jackson.core/jackson-core"
@@ -328,6 +326,18 @@ are removed from "pom.xml" file, because they are covered from:
     <artifactId>jackson-annotations</artifactId>
     <version>2.13.3</version>
 </dependency>
+
+Dependency_11:
+------------------
+
+Link:
+- https://github.com/FasterXML/jackson-dataformat-xml
+
+The dependency "com.fasterxml.jackson.dataformat/jackson-dataformat-xml" contains Jackson extension component for:
+- reading and writing XML encoded data
+- supporting "JAXB" annotations is provided by "JAXB" annotation module
+
+----------------------------------------
 
 Dependency_99:
 -----------------
