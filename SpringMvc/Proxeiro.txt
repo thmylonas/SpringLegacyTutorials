@@ -281,7 +281,7 @@ Dependency_8:
 The dependency "javax/javaee-web-api" covers the dependencies (exist in this dependency's "pom.xml" file):
 - "javax.servlet/javax.servlet-api"
 - "javax.servlet.jsp/javax.servlet.jsp-api"
-- "javax.el/javax.el-api"
+- "javax.el/javax.el-api" (Covered from the dependency "com.sun.faces/jsf-api" (exists in this dependency's "pom.xml" file))
 - "javax.servlet.jsp.jstl/javax.servlet.jsp.jstl-api"
 - "org.glassfish/javax.faces"
 - "javax.faces/javax.faces-api"

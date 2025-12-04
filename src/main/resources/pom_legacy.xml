@@ -146,24 +146,11 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
-        <!--
-        The dependency "javax.el/javax.el-api" is covered from the dependency "com.sun.faces/jsf-api" (exists in this dependency's pom)
-        -->
-        <dependency>
-            <groupId>javax.el</groupId>
-            <artifactId>javax.el-api</artifactId>
-            <version>3.0.1-b06</version>
-        </dependency>
         <dependency>
             <groupId>directory-naming</groupId>
             <artifactId>naming-java</artifactId>
             <version>0.8</version>
             <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>javax.inject</groupId>
-            <artifactId>javax.inject</artifactId>
-            <version>1</version>
         </dependency>
         <dependency>
             <groupId>javax.jms</groupId>
@@ -172,6 +159,16 @@
             <scope>provided</scope>
         </dependency>
 
+        <dependency>
+            <groupId>javax.el</groupId>
+            <artifactId>javax.el-api</artifactId>
+            <version>3.0.1-b06</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.inject</groupId>
+            <artifactId>javax.inject</artifactId>
+            <version>1</version>
+        </dependency>
         <dependency>
             <groupId>javax</groupId>
             <artifactId>javaee-web-api</artifactId>
