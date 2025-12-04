@@ -335,7 +335,7 @@ Link:
 
 The dependency "com.fasterxml.jackson.dataformat/jackson-dataformat-xml" contains Jackson extension component for:
 - reading and writing XML encoded data
-- supporting "JAXB" annotations is provided by "JAXB" annotation module
+- supporting "JAXB" annotations which are provided by "JAXB" annotation module
 
 ----------------------------------------
 
