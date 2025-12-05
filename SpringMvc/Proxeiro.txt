@@ -310,12 +310,11 @@ The dependency "javax.mvc/javax.mvc-api" covers the dependencies (exist in this 
 Dependency_10:
 ------------------
 
-The dependencies:
+The dependency "com.fasterxml.jackson.core/jackson-databind" covers the dependencies (exist in this dependency's "pom.xml" file):
 - "com.fasterxml.jackson.core/jackson-core"
 - "com.fasterxml.jackson.core/jackson-annotations"
-are removed from "pom.xml" file, because they are covered from:
-- the dependency "com.fasterxml.jackson.core/jackson-databind" (exist in this dependency's "pom.xml" file)
 
+So, they are removed from "pom.xml" file:
 <dependency> <!-- Removed -->
     <groupId>com.fasterxml.jackson.core</groupId>
     <artifactId>jackson-core</artifactId>
@@ -335,18 +334,16 @@ Link:
 
 The dependency "com.fasterxml.jackson.dataformat/jackson-dataformat-xml" contains Jackson extension component for:
 - reading and writing XML encoded data
-- supporting "JAXB" annotations which are provided by "JAXB" annotation module
+- supporting "JAXB" annotations, which are provided by "JAXB" annotation module
 
 ----------------------------------------
 
 Dependency_99:
 -----------------
 
-The dependencies:
+The dependency "org.apache.tomcat/tomcat-catalina" covers the dependencies (exist in this dependency's "pom.xml" file):
 - "org.apache.tomcat/tomcat-servlet-api" (no need for extra dependency)
 - "org.apache.tomcat/tomcat-jsp-api" (no need for extra dependency)
-are covered from:
-- the dependency "org.apache.tomcat/tomcat-catalina" (exist in this dependency's "pom.xml" file)
 
 Dependency_100:
 -----------------
