@@ -24,7 +24,7 @@
     </modules>
 
     <dependencies>
-        <!-- Logging API: org.slf4j, org.apache.logging.log4j -->
+        <!-- Logging: org.slf4j, org.apache.logging.log4j -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
