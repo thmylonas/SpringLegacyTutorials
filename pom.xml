@@ -46,7 +46,7 @@
             <version>2.18.0</version>
         </dependency>
 
-        <!-- JUnit5 API: org.junit.jupiter/junit-jupiter-engine -->
+        <!-- JUnit5: org.junit.jupiter/junit-jupiter-engine -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
@@ -66,7 +66,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- com.fasterxml.jackson.core: jackson-databind, jackson-dataformat-xml, com.fasterxml.jackson.datatype/jackson-datatype-jsr310 -->
+        <!-- com.fasterxml.jackson.core: jackson-databind, com.fasterxml.jackson.dataformat/jackson-dataformat-xml, com.fasterxml.jackson.datatype/jackson-datatype-jsr310 -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-databind</artifactId>

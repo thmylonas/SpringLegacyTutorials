@@ -232,7 +232,7 @@
             <version>8.0.28</version>
         </dependency>
 
-        <!-- Logging API: org.slf4j, org.apache.logging.log4j -->
+        <!-- Logging: org.slf4j, org.apache.logging.log4j -->
         <dependency>
             <groupId>org.slf4j</groupId>
             <artifactId>slf4j-api</artifactId>
@@ -254,7 +254,7 @@
             <version>2.18.0</version>
         </dependency>
 
-        <!-- JUnit4 API: junit -->
+        <!-- JUnit4: junit -->
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
@@ -262,7 +262,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- JUnit5 API: org.junit.jupiter/junit-jupiter-engine -->
+        <!-- JUnit5: org.junit.jupiter/junit-jupiter-engine -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-engine</artifactId>
@@ -282,7 +282,7 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- com.fasterxml.jackson.core: jackson-databind, jackson-dataformat-xml, com.fasterxml.jackson.datatype/jackson-datatype-jsr310 -->
+        <!-- com.fasterxml.jackson.core: jackson-databind, com.fasterxml.jackson.dataformat/jackson-dataformat-xml, com.fasterxml.jackson.datatype/jackson-datatype-jsr310 -->
         <dependency>
             <groupId>com.fasterxml.jackson.core</groupId>
             <artifactId>jackson-core</artifactId>
@@ -316,7 +316,7 @@
             <version>1.0.2.Final</version>
         </dependency>
         <dependency>
-            <!-- In older versions of "hibernate", the "hibernate-entitymanager" was mandatory -->
+            <!-- In older versions of "hibernate", the dependency "org.hibernate/hibernate-entitymanager" was mandatory -->
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
             <version>4.3.1.Final</version>
