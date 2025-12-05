@@ -341,33 +341,15 @@ The dependency "com.fasterxml.jackson.dataformat/jackson-dataformat-xml" contain
 - reading and writing XML encoded data
 - supporting "JAXB" annotations, which are provided by "JAXB" annotation module
 
-----------------------------------------
-
-Dependency_99:
------------------
+Dependency_13:
+------------------
 
 The dependency "org.apache.tomcat/tomcat-catalina" covers the dependencies (exist in this dependency's "pom.xml" file):
 - "org.apache.tomcat/tomcat-servlet-api" (no need for extra dependency)
 - "org.apache.tomcat/tomcat-jsp-api" (no need for extra dependency)
 
-Dependency_100:
------------------
-
-The dependency "directory-naming/naming-java" is removed from "pom.xml" file, because I do not know what it is used for.
-The right dependency which should be used is "javax.naming/jndi".
-Although the dependency "javax.naming/jndi" is part of Java_EE dependencies,
-it seems (I am not sure) that is used from Tomcat server.
-I guess (I am not sure), that the dependency "javax.naming/jndi" is covered by the dependency "org.apache.tomcat/tomcat-catalina/9.0.58".
-
-<dependency> <!-- Removed -->
-    <groupId>directory-naming</groupId>
-    <artifactId>naming-java</artifactId>
-    <version>0.8</version>
-    <scope>test</scope>
-</dependency>
-
-Dependency_101:
------------------
+Dependency_14:
+------------------
 
 Links:
 - https://stackoverflow.com/questions/4711943/tomcat-dbcp-vs-commons-dbcp
@@ -384,8 +366,24 @@ are removed from "pom.xml" file, because I do not know what they are used for.
     <version>9.0.30</version>
 </dependency>
 
-Dependency_102:
------------------
+Dependency_15:
+------------------
+
+The dependency "directory-naming/naming-java" is removed from "pom.xml" file, because I do not know what it is used for.
+The right dependency which should be used is "javax.naming/jndi".
+Although the dependency "javax.naming/jndi" is part of Java_EE dependencies,
+it seems (I am not sure) that is used from Tomcat server.
+I guess (I am not sure), that the dependency "javax.naming/jndi" is covered by the dependency "org.apache.tomcat/tomcat-catalina/9.0.58".
+
+<dependency> <!-- Removed -->
+    <groupId>directory-naming</groupId>
+    <artifactId>naming-java</artifactId>
+    <version>0.8</version>
+    <scope>test</scope>
+</dependency>
+
+Dependency_16:
+------------------
 
 The dependencies:
 - "org.hibernate.javax.persistence/hibernate-jpa-2.1-api"
