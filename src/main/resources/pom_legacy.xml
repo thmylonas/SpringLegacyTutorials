@@ -309,9 +309,8 @@
             <version>2.19.2</version>
         </dependency>
 
-        <!-- Others -->
+        <!-- hibernate/javax.persistence (Other dependencies) -->
         <dependency>
-            <!-- Not sure if this dependency is correct -->
             <groupId>org.hibernate.javax.persistence</groupId>
             <artifactId>hibernate-jpa-2.1-api</artifactId>
             <version>1.0.2.Final</version>
@@ -328,6 +327,8 @@
             <version>SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
+
+        <!-- org.eclipse.persistence -->
         <dependency>
             <groupId>org.eclipse.persistence</groupId>
             <artifactId>eclipselink</artifactId>

@@ -379,6 +379,14 @@ are removed from "pom.xml" file, because I do not know what they are used for.
     <version>9.0.30</version>
 </dependency>
 
+Dependency_102:
+-----------------
+
+The dependencies:
+- "org.hibernate.javax.persistence/hibernate-jpa-2.1-api"
+- "unknown.binary/hibernate-jpamodelgen-4.3.1.Final"
+I do not know what they are used for.
+
 ========================================================================================================================
 
 Jackson-serialization of "LocalDate/LocalDateTime" fields
