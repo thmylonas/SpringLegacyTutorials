@@ -364,7 +364,14 @@ I guess (I am not sure), that the dependency "javax.naming/jndi" is covered by t
 Dependency_101:
 -----------------
 
-The dependency "org.apache.tomcat/tomcat-dbcp" is removed from "pom.xml" file, because I do not know what it is used for.
+Links:
+- https://stackoverflow.com/questions/4711943/tomcat-dbcp-vs-commons-dbcp
+- https://tomcat.apache.org/tomcat-7.0-doc/jdbc-pool.html#Introduction
+
+The dependencies:
+- "org.apache.tomcat/tomcat-dbcp" (renamed version of "org.apache.commons/commons-dbcp2")
+- "org.apache.commons/commons-dbcp2"
+are removed from "pom.xml" file, because I do not know what they are used for.
 
 <dependency> <!-- Removed -->
     <groupId>org.apache.tomcat</groupId>

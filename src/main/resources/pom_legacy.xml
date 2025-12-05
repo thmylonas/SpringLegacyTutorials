@@ -152,7 +152,7 @@
             <version>7.0.1.Final</version> <!-- 6.1.1.Final -->
         </dependency>
 
-        <!-- org.apache.tomcat (tomcat-catalina, tomcat-dbcp) -->
+        <!-- org.apache.tomcat (tomcat-catalina, tomcat-dbcp), org.apache.commons/commons-dbcp2 -->
         <dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-catalina</artifactId>
@@ -162,6 +162,11 @@
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-dbcp</artifactId>
             <version>9.0.30</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-dbcp2</artifactId>
+            <version>2.1.1</version>
         </dependency>
 
         <!-- javax -->
@@ -316,11 +321,6 @@
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-entitymanager</artifactId>
             <version>4.3.1.Final</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.commons</groupId>
-            <artifactId>commons-dbcp2</artifactId>
-            <version>2.1.1</version>
         </dependency>
         <dependency>
             <groupId>unknown.binary</groupId>
