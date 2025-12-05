@@ -13,7 +13,6 @@
     <description>Spring_Legacy_Framework/SpringMvc</description>
 
     <dependencies>
-        <!-- org.apache.tomcat: tomcat-catalina, tomcat-dbcp, javax -->
         <dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-catalina</artifactId>

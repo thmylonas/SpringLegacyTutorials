@@ -32,7 +32,6 @@
             <version>19.3</version>
         </dependency>-->
 
-        <!-- org.apache.tomcat: tomcat-catalina, tomcat-dbcp, javax -->
         <dependency>
             <groupId>org.apache.tomcat</groupId>
             <artifactId>tomcat-catalina</artifactId>
