@@ -342,9 +342,9 @@
         </dependency>
     </dependencies>
 
+    <!-- Legacy pom-build (copied from somewhere) -->
     <build>
         <finalName>Project_Name</finalName>
-        <sourceDirectory>src</sourceDirectory>
         <pluginManagement> <!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
             <plugins>
                 <plugin>
@@ -363,15 +363,9 @@
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
-                    <version>3.8.0</version>
                     <configuration>
-                        <source>11</source>
-                        <target>11</target>
-                        <compilerArguments>
-                            <endorseddirs>${endorsed.dir}</endorseddirs>
-                        </compilerArguments>
-                        <!--<release>10</release>
-                        <verbose>true</verbose>-->
+                        <source>21</source>
+                        <target>21</target>
                     </configuration>
                 </plugin>
                 <plugin>
@@ -379,13 +373,8 @@
                     <version>2.22.1</version>
                 </plugin>
                 <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-war-plugin</artifactId>
-                    <version>3.2.2</version> <!-- 3.2.1 -->
-                    <configuration>
-                        <warSourceDirectory>WebContent</warSourceDirectory>
-                        <failOnMissingWebXml>false</failOnMissingWebXml>
-                    </configuration>
+                    <version>3.2.2</version>
                 </plugin>
                 <plugin>
                     <artifactId>maven-install-plugin</artifactId>
@@ -395,86 +384,7 @@
                     <artifactId>maven-deploy-plugin</artifactId>
                     <version>2.8.2</version>
                 </plugin>
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-dependency-plugin</artifactId>
-                    <version>2.6</version>
-                    <executions>
-                        <execution>
-                            <phase>validate</phase>
-                            <goals>
-                                <goal>copy</goal>
-                            </goals>
-                            <configuration>
-                                <outputDirectory>${endorsed.dir}</outputDirectory>
-                                <silent>true</silent>
-                                <artifactItems>
-                                    <artifactItem>
-                                        <groupId>javax</groupId>
-                                        <artifactId>javaee-endorsed-api</artifactId>
-                                        <version>7.0</version>
-                                        <type>war</type>
-                                    </artifactItem>
-                                </artifactItems>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
-                <plugin>
-                    <groupId>org.codehaus.mojo</groupId>
-                    <artifactId>exec-maven-plugin</artifactId>
-                    <version>1.2.1</version>
-                </plugin>
             </plugins>
         </pluginManagement>
     </build>
 </project>
-
-        <!--
-        // Legacy pom-build (copied from somewhere)
-
-        <build>
-            <finalName>Project_Name</finalName>
-            <pluginManagement>// lock down plugins versions to avoid using Maven defaults (may be moved to parent pom)
-                <plugins>
-                    <plugin>
-                        <artifactId>maven-clean-plugin</artifactId>
-                        <version>3.1.0</version>
-                    </plugin>
-                    // see http://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_war_packaging
-                    <plugin>
-                        <artifactId>maven-resources-plugin</artifactId>
-                        <version>3.0.2</version>
-                    </plugin>
-                    <plugin>
-                        <artifactId>maven-compiler-plugin</artifactId>
-                        <version>3.8.0</version>
-                    </plugin>
-                    <plugin>
-                        <groupId>org.apache.maven.plugins</groupId>
-                        <artifactId>maven-compiler-plugin</artifactId>
-                        <configuration>
-                            <source>21</source>
-                            <target>21</target>
-                        </configuration>
-                    </plugin>
-                    <plugin>
-                        <artifactId>maven-surefire-plugin</artifactId>
-                        <version>2.22.1</version>
-                    </plugin>
-                    <plugin>
-                        <artifactId>maven-war-plugin</artifactId>
-                        <version>3.2.2</version>
-                    </plugin>
-                    <plugin>
-                        <artifactId>maven-install-plugin</artifactId>
-                        <version>2.5.2</version>
-                    </plugin>
-                    <plugin>
-                        <artifactId>maven-deploy-plugin</artifactId>
-                        <version>2.8.2</version>
-                    </plugin>
-                </plugins>
-            </pluginManagement>
-        </build>
-        -->
