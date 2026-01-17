@@ -1,5 +1,6 @@
 package com.thomasmylonas.spring_rest.models_dtos.response_models;
 
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -22,6 +23,6 @@ public class ResponseHandler {
                 .path(path)
                 .data(data)
                 .build();
-        return ResponseEntity.status(status).body(responseSuccess);
+        return ResponseEntity.status(status).header(HttpHeaders.LOCATION, path).body(responseSuccess);
     }
 }
