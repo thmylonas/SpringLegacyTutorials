@@ -15,6 +15,5 @@ public record ResponseError(
         String statusCode,
         String message,
         String path // "request URL"
-        //,String stacktrace // It is not required for this project
 ) {
 }
