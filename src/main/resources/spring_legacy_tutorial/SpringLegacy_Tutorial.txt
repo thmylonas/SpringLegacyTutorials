@@ -162,190 +162,6 @@ So, they need to return the resource to the Client.
 
 ========================================================================================================================
 
-About Not_Used/Removed dependencies
----------------------------------------
-
-Dependency_1:
------------------
-
-The dependency "org.springframework/spring-context" covers the dependencies (exist in this dependency's "pom.xml" file):
-- "org.springframework/spring-beans"
-- "org.springframework/spring-core"
-- "org.springframework/spring-expression"
-- "org.springframework/spring-aop"
-
-Dependency_2:
------------------
-
-The dependency "org.springframework/spring-webmvc" covers the dependencies (exist in this dependency's "pom.xml" file):
-- "org.springframework/spring-beans"
-- "org.springframework/spring-core"
-- "org.springframework/spring-expression"
-- "org.springframework/spring-aop"
-- "org.springframework/spring-context"
-- "org.springframework/spring-web"
-
-Dependency_3:
------------------
-
-The dependency "org.springframework/spring-hibernate" covers the dependencies (exist in this dependency's "pom.xml" file):
-- "org.springframework/spring-beans"
-- "org.springframework/spring-core"
-- "org.springframework/spring-aop"
-- "org.springframework/spring-jdbc" (lower lever than the "org.springframework/spring-data-jdbc")
-- "org.springframework/spring-dao"
-- "org.springframework/spring-orm"
-- "org.springframework/spring-web"
-- "org.springframework/spring-webmvc"
-- "org.hibernate/hibernate" (older version than the "org.hibernate/hibernate-core")
-- "javax.servlet/servlet-api" (fewer features than "javax.servlet/javax.servlet-api")
-
-Dependency_4:
------------------
-
-The dependency "org.springframework.data/spring-data-jpa" covers the dependencies (exist in this dependency's "pom.xml" file):
-- "org.springframework.data/spring-data-commons"
-- and others
-
-Dependency_5:
------------------
-
-The dependency "org.springframework.hateoas/spring-hateoas" covers the dependencies (exist in this dependency's "pom.xml" file):
-- "org.springframework.plugin/spring-plugin-core" (I do not know what it is used for)
-- and others
-
-Dependency_6:
------------------
-
-The dependency "org.springframework.plugin/spring-plugin-core", I do not know what it is used for.
-
-Dependency_7:
------------------
-
-The dependency "org.springframework/spring-context-support" provides support for integrating common third-party libraries
-into a Spring application context for:
-- Caching (EhCache, Guava, JCache),
-- Mailing (JavaMail),
-- Scheduling (CommonJ, Quartz), and
-- Template engines (FreeMarker, JasperReports, Velocity)
-
-Dependency_8:
------------------
-
-The dependency "org.hibernate/hibernate-entitymanager" was mandatory, in older versions of "hibernate".
-
-Dependency_9:
------------------
-
-The dependency "javax/javaee-web-api" covers the dependencies (exist in this dependency's "pom.xml" file):
-- "javax.servlet/javax.servlet-api"
-- "javax.servlet.jsp/javax.servlet.jsp-api"
-- "javax.el/javax.el-api" (Covered from the dependency "com.sun.faces/jsf-api" (exists in this dependency's "pom.xml" file))
-- "javax.servlet.jsp.jstl/javax.servlet.jsp.jstl-api"
-- "org.glassfish/javax.faces"
-- "javax.faces/javax.faces-api"
-- "javax.ws.rs/javax.ws.rs-api"
-- "javax.websocket"
-- "javax.websocket-api"
-- "javax.json/javax.json-api"
-- "javax.annotation/javax.annotation-api"
-- "javax.ejb/javax.ejb-api"
-- "javax.transaction/javax.transaction-api"
-- "org.eclipse.persistence/javax.persistence"
-- "javax.validation/validation-api"
-- "javax.interceptor/javax.interceptor-api"
-- "javax.enterprise/cdi-api"
-- "javax.inject/javax.inject"
-
-Dependency_10:
-------------------
-
-The dependency "javax.mvc/javax.mvc-api" covers the dependencies (exist in this dependency's "pom.xml" file):
-- "jakarta.ws.rs/jakarta.ws.rs-api"
-- "javax.enterprise/cdi-api"
-- "javax.validation/validation-api"
-- "jakarta.annotation/jakarta.annotation-api"
-
-Dependency_11:
-------------------
-
-The dependency "com.fasterxml.jackson.core/jackson-databind" covers the dependencies (exist in this dependency's "pom.xml" file):
-- "com.fasterxml.jackson.core/jackson-core"
-- "com.fasterxml.jackson.core/jackson-annotations"
-
-So, they are removed from "pom.xml" file:
-<dependency> <!-- Removed -->
-    <groupId>com.fasterxml.jackson.core</groupId>
-    <artifactId>jackson-core</artifactId>
-    <version>2.13.3</version>
-</dependency>
-<dependency> <!-- Removed -->
-    <groupId>com.fasterxml.jackson.core</groupId>
-    <artifactId>jackson-annotations</artifactId>
-    <version>2.13.3</version>
-</dependency>
-
-Dependency_12:
-------------------
-
-Link:
-- https://github.com/FasterXML/jackson-dataformat-xml
-
-The dependency "com.fasterxml.jackson.dataformat/jackson-dataformat-xml" contains Jackson extension component for:
-- reading and writing XML encoded data
-- supporting "JAXB" annotations, which are provided by "JAXB" annotation module
-
-Dependency_13:
-------------------
-
-The dependency "org.apache.tomcat/tomcat-catalina" covers the dependencies (exist in this dependency's "pom.xml" file):
-- "org.apache.tomcat/tomcat-servlet-api" (no need for extra dependency)
-- "org.apache.tomcat/tomcat-jsp-api" (no need for extra dependency)
-
-Dependency_14:
-------------------
-
-Links:
-- https://stackoverflow.com/questions/4711943/tomcat-dbcp-vs-commons-dbcp
-- https://tomcat.apache.org/tomcat-7.0-doc/jdbc-pool.html#Introduction
-
-The dependencies:
-- "org.apache.tomcat/tomcat-dbcp" (renamed version of "org.apache.commons/commons-dbcp2")
-- "org.apache.commons/commons-dbcp2"
-are removed from "pom.xml" file, because I do not know what they are used for.
-
-<dependency> <!-- Removed -->
-    <groupId>org.apache.tomcat</groupId>
-    <artifactId>tomcat-dbcp</artifactId>
-    <version>9.0.30</version>
-</dependency>
-
-Dependency_15:
-------------------
-
-The dependency "directory-naming/naming-java" is removed from "pom.xml" file, because I do not know what it is used for.
-The right dependency which should be used is "javax.naming/jndi".
-Although the dependency "javax.naming/jndi" is part of Java_EE dependencies,
-it seems (I am not sure) that is used from Tomcat server.
-I guess (I am not sure), that the dependency "javax.naming/jndi" is covered by the dependency "org.apache.tomcat/tomcat-catalina/9.0.58".
-
-<dependency> <!-- Removed -->
-    <groupId>directory-naming</groupId>
-    <artifactId>naming-java</artifactId>
-    <version>0.8</version>
-    <scope>test</scope>
-</dependency>
-
-Dependency_16:
-------------------
-
-The dependencies:
-- "org.hibernate.javax.persistence/hibernate-jpa-2.1-api"
-- "unknown.binary/hibernate-jpamodelgen-4.3.1.Final"
-I do not know what they are used for.
-
-========================================================================================================================
-
 Jackson-serialization of "LocalDate/LocalDateTime" fields
 -------------------------------------------------------------
 
@@ -527,6 +343,190 @@ but not by barebones "JSP/Servlet_Containers" such as:
 - Tomcat and Jetty
 So, we need to add in the "pom.xml" the dependency:
 - "javax.servlet/jstl/1.2"
+
+========================================================================================================================
+
+About Not_Used/Removed dependencies
+---------------------------------------
+
+Dependency_1:
+-----------------
+
+The dependency "org.springframework/spring-context" covers the dependencies (exist in this dependency's "pom.xml" file):
+- "org.springframework/spring-beans"
+- "org.springframework/spring-core"
+- "org.springframework/spring-expression"
+- "org.springframework/spring-aop"
+
+Dependency_2:
+-----------------
+
+The dependency "org.springframework/spring-webmvc" covers the dependencies (exist in this dependency's "pom.xml" file):
+- "org.springframework/spring-beans"
+- "org.springframework/spring-core"
+- "org.springframework/spring-expression"
+- "org.springframework/spring-aop"
+- "org.springframework/spring-context"
+- "org.springframework/spring-web"
+
+Dependency_3:
+-----------------
+
+The dependency "org.springframework/spring-hibernate" covers the dependencies (exist in this dependency's "pom.xml" file):
+- "org.springframework/spring-beans"
+- "org.springframework/spring-core"
+- "org.springframework/spring-aop"
+- "org.springframework/spring-jdbc" (lower lever than the "org.springframework/spring-data-jdbc")
+- "org.springframework/spring-dao"
+- "org.springframework/spring-orm"
+- "org.springframework/spring-web"
+- "org.springframework/spring-webmvc"
+- "org.hibernate/hibernate" (older version than the "org.hibernate/hibernate-core")
+- "javax.servlet/servlet-api" (fewer features than "javax.servlet/javax.servlet-api")
+
+Dependency_4:
+-----------------
+
+The dependency "org.springframework.data/spring-data-jpa" covers the dependencies (exist in this dependency's "pom.xml" file):
+- "org.springframework.data/spring-data-commons"
+- and others
+
+Dependency_5:
+-----------------
+
+The dependency "org.springframework.hateoas/spring-hateoas" covers the dependencies (exist in this dependency's "pom.xml" file):
+- "org.springframework.plugin/spring-plugin-core" (I do not know what it is used for)
+- and others
+
+Dependency_6:
+-----------------
+
+The dependency "org.springframework.plugin/spring-plugin-core", I do not know what it is used for.
+
+Dependency_7:
+-----------------
+
+The dependency "org.springframework/spring-context-support" provides support for integrating common third-party libraries
+into a Spring application context for:
+- Caching (EhCache, Guava, JCache),
+- Mailing (JavaMail),
+- Scheduling (CommonJ, Quartz), and
+- Template engines (FreeMarker, JasperReports, Velocity)
+
+Dependency_8:
+-----------------
+
+The dependency "org.hibernate/hibernate-entitymanager" was mandatory, in older versions of "hibernate".
+
+Dependency_9:
+-----------------
+
+The dependency "javax/javaee-web-api" covers the dependencies (exist in this dependency's "pom.xml" file):
+- "javax.servlet/javax.servlet-api"
+- "javax.servlet.jsp/javax.servlet.jsp-api"
+- "javax.el/javax.el-api" (Covered from the dependency "com.sun.faces/jsf-api" (exists in this dependency's "pom.xml" file))
+- "javax.servlet.jsp.jstl/javax.servlet.jsp.jstl-api"
+- "org.glassfish/javax.faces"
+- "javax.faces/javax.faces-api"
+- "javax.ws.rs/javax.ws.rs-api"
+- "javax.websocket"
+- "javax.websocket-api"
+- "javax.json/javax.json-api"
+- "javax.annotation/javax.annotation-api"
+- "javax.ejb/javax.ejb-api"
+- "javax.transaction/javax.transaction-api"
+- "org.eclipse.persistence/javax.persistence"
+- "javax.validation/validation-api"
+- "javax.interceptor/javax.interceptor-api"
+- "javax.enterprise/cdi-api"
+- "javax.inject/javax.inject"
+
+Dependency_10:
+------------------
+
+The dependency "javax.mvc/javax.mvc-api" covers the dependencies (exist in this dependency's "pom.xml" file):
+- "jakarta.ws.rs/jakarta.ws.rs-api"
+- "javax.enterprise/cdi-api"
+- "javax.validation/validation-api"
+- "jakarta.annotation/jakarta.annotation-api"
+
+Dependency_11:
+------------------
+
+The dependency "com.fasterxml.jackson.core/jackson-databind" covers the dependencies (exist in this dependency's "pom.xml" file):
+- "com.fasterxml.jackson.core/jackson-core"
+- "com.fasterxml.jackson.core/jackson-annotations"
+
+So, they are removed from "pom.xml" file:
+<dependency> <!-- Removed -->
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-core</artifactId>
+    <version>2.13.3</version>
+</dependency>
+<dependency> <!-- Removed -->
+    <groupId>com.fasterxml.jackson.core</groupId>
+    <artifactId>jackson-annotations</artifactId>
+    <version>2.13.3</version>
+</dependency>
+
+Dependency_12:
+------------------
+
+Link:
+- https://github.com/FasterXML/jackson-dataformat-xml
+
+The dependency "com.fasterxml.jackson.dataformat/jackson-dataformat-xml" contains Jackson extension component for:
+- reading and writing XML encoded data
+- supporting "JAXB" annotations, which are provided by "JAXB" annotation module
+
+Dependency_13:
+------------------
+
+The dependency "org.apache.tomcat/tomcat-catalina" covers the dependencies (exist in this dependency's "pom.xml" file):
+- "org.apache.tomcat/tomcat-servlet-api" (no need for extra dependency)
+- "org.apache.tomcat/tomcat-jsp-api" (no need for extra dependency)
+
+Dependency_14:
+------------------
+
+Links:
+- https://stackoverflow.com/questions/4711943/tomcat-dbcp-vs-commons-dbcp
+- https://tomcat.apache.org/tomcat-7.0-doc/jdbc-pool.html#Introduction
+
+The dependencies:
+- "org.apache.tomcat/tomcat-dbcp" (renamed version of "org.apache.commons/commons-dbcp2")
+- "org.apache.commons/commons-dbcp2"
+are removed from "pom.xml" file, because I do not know what they are used for.
+
+<dependency> <!-- Removed -->
+    <groupId>org.apache.tomcat</groupId>
+    <artifactId>tomcat-dbcp</artifactId>
+    <version>9.0.30</version>
+</dependency>
+
+Dependency_15:
+------------------
+
+The dependency "directory-naming/naming-java" is removed from "pom.xml" file, because I do not know what it is used for.
+The right dependency which should be used is "javax.naming/jndi".
+Although the dependency "javax.naming/jndi" is part of Java_EE dependencies,
+it seems (I am not sure) that is used from Tomcat server.
+I guess (I am not sure), that the dependency "javax.naming/jndi" is covered by the dependency "org.apache.tomcat/tomcat-catalina/9.0.58".
+
+<dependency> <!-- Removed -->
+    <groupId>directory-naming</groupId>
+    <artifactId>naming-java</artifactId>
+    <version>0.8</version>
+    <scope>test</scope>
+</dependency>
+
+Dependency_16:
+------------------
+
+The dependencies:
+- "org.hibernate.javax.persistence/hibernate-jpa-2.1-api"
+- "unknown.binary/hibernate-jpamodelgen-4.3.1.Final"
+I do not know what they are used for.
 
 ========================================================================================================================
 
