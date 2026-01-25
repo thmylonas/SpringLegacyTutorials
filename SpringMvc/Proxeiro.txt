@@ -57,13 +57,10 @@ public class RootConfig {}
 
 ========================================================================================================================
 
-<!-- https://mvnrepository.com/artifact/org.hibernate/hibernate-validator -->
-<dependency>
-    <groupId>org.hibernate</groupId>
-    <artifactId>hibernate-validator</artifactId>
-    <version>6.1.1.Final</version>
-</dependency>
-The following is for @Valid annotation on @RequestBody
+APIs Validation
+-------------------
+In "SpringLegacy" to make APIs Validation (use of "@Valid"), we need the next dependency:
+- "org.hibernate/hibernate-validator/7.0.1.Final" // 6.1.1.Final
 
 ========================================================================================================================
 
@@ -194,17 +191,23 @@ Basic functionalities:
   This annotation overrides the default behavior of "SpringBoot",
   which automatically enables "JPA" repositories based on the location of the "@SpringBootApplication" class.
 
+Significant Note:
+---------------------
+"SpringBoot" automatically enables "JPA" repositories based on the location of the "@SpringBootApplication" class.
+So, there is no need to use the Annotation:
+- @org.springframework.data.jpa.repository.config.EnableJpaRepositories(basePackages = "path.to.repositories")
+
 ========================================================================================================================
 
 Attention:
 Pont_1:
 The Services in the "JsfPrimefacesTutorials", are servicing the StudentDao only.
-In that case returning something in some of their methods was not useful in anything.
+In that case returning something from some of their methods was not useful in anything.
 Their purpose was completely different.
 
 Pont_2:
-The Services in this project, are servicing an API. This means that the Service needs to follow the
-pattern of the APIs. So, they need to return the resource to the Client.
+The Services in this project, are servicing an API. This means that the Service needs to follow the pattern of the APIs.
+So, they need to return the resource to the Client.
 
 ========================================================================================================================
 
@@ -471,9 +474,6 @@ Content-Type: image/jpeg
 ------------------------------
 
 public class ApplicationInitializer extends org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer {
-
-    // ...
-
     /**
      * We override this method, when we want to deal with "multipart-form data".
      * This method is inherited from "AbstractDispatcherServletInitializer"
@@ -484,6 +484,7 @@ public class ApplicationInitializer extends org.springframework.web.servlet.supp
     protected void customizeRegistration(javax.servlet.ServletRegistration.Dynamic registration) {
         registration.setMultipartConfig(new javax.servlet.MultipartConfigElement("/path/to/uploads"));
     }
+    // ...
 }
 
 ========================================================================================================================
