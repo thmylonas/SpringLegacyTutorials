@@ -102,6 +102,144 @@ Attention:
 
 ========================================================================================================================
 
+[SpringMvc] Using "Multiple_Resolvers"
+------------------------------------------
+
+@org.springframework.context.annotation.Configuration
+@org.springframework.context.annotation.ComponentScan(basePackages = {"com.thomasmylonas.spring_mvc"})
+@org.springframework.web.servlet.config.annotation.EnableWebMvc
+public class MultipleResolversConfig {
+    /**
+     * Link:
+     * - https://stackoverflow.com/questions/25055610/creating-multiple-internalresourceviewresolver
+     * We can only have one of the "InternalResourceViewResolver" in the context, because of the same reason mentioned in the Javadoc:
+     * <p>
+     * * <Javadoc>
+     * * When chaining ViewResolvers, an "org.springframework.web.servlet.view.InternalResourceViewResolver" always needs to be last,
+     * * as it will attempt to resolve any view name, no matter whether the underlying resource actually exists.
+     * * </Javadoc>
+     * <p>
+     * The "org.springframework.web.servlet.view.InternalResourceViewResolver" always returns an answer (because it just delegates to the Servlet API,
+     * which always has an answer, even if it's wrong), so having two of them won't get solution, since the 2nd one will never be consulted.
+     *
+     * @return The ViewResolver
+     */
+    @org.springframework.context.annotation.Bean
+    public org.springframework.web.servlet.ViewResolver viewResolver() {
+        org.springframework.web.servlet.view.InternalResourceViewResolver viewResolver = new org.springframework.web.servlet.view.InternalResourceViewResolver();
+        viewResolver.setPrefix("/WEB-INF/views/");
+        viewResolver.setSuffix(""); //viewResolver.setSuffix(".html");viewResolver.setSuffix(".xhtml");
+        viewResolver.setOrder(101); //viewResolver.setOrder(100); // InternalResourceViewResolver - lowest priority
+        viewResolver.setExposeContextBeansAsAttributes(true);
+        return viewResolver;
+    }
+}
+
+========================================================================================================================
+
+[SpringMvc] The "InternalResourceViewResolver::setViewClass(org.springframework.web.servlet.view.JstlView.class);"
+----------------------------------------------------------------------------------------------------------------------
+
+Links:
+- https://stackoverflow.com/questions/32459400/why-do-i-need-a-view-class-to-resolve-jstl-views-in-spring-mvc
+- https://stackoverflow.com/questions/20268095/java-lang-noclassdeffounderror-javax-servlet-jsp-jstl-core-config
+
+The need of: "InternalResourceViewResolver::setViewClass(JstlView.class);"
+------------------------------------------------------------------------------
+
+In older Spring versions there was not "Automatic_Detection" of features. This has been introduced slowly in different Spring versions.
+The "InternalResourceViewResolver" did not have "Automatic_Detection" of "JSTL" in the early days,
+so it was required to always specify the "JstlView" as the viewClass, through the "Line_1" in the "WebConfig::viewResolver",
+like the following code snippet:
+
+    @Configuration @EnableWebMvc
+    public class WebConfig {
+        @Bean public ViewResolver viewResolver() {
+            InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+            viewResolver.setViewClass(org.springframework.web.servlet.view.JstlView.class); // Add this "Line_1"
+            // ...
+        }
+    }
+
+However, in newer versions of Spring has been added the feature "Automatic_Detection" of which viewClass to use.
+The addition was adding the next:
+- "InternalResourceViewResolver" uses "JstlView" as default (instead of "InternalResourceView") if the "JSTL"-API is present
+So the previous "Line_1" in the "WebConfig::viewResolver", is not needed any more.
+
+Error caused by: "InternalResourceViewResolver::setViewClass(JstlView.class);"
+----------------------------------------------------------------------------------
+
+[Error1-500: In my tutorials]
+HTTP Status 500 – Internal Server Error
+Message Handler processing failed; nested exception is java.lang.NoClassDefFoundError: javax/servlet/jsp/jstl/core/Config
+Description The server encountered an unexpected condition that prevented it from fulfilling the request.
+Exception:
+org.springframework.web.util.NestedServletException: Handler processing failed; nested exception is java.lang.NoClassDefFoundError: javax/servlet/jsp/jstl/core/Config
+	org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1095)
+java.lang.NoClassDefFoundError: javax/servlet/jsp/jstl/core/Config
+	org.springframework.web.servlet.support.JstlUtils.exposeLocalizationContext(JstlUtils.java:103)
+	org.springframework.web.servlet.view.JstlView.exposeHelpers(JstlView.java:137)
+	org.springframework.web.servlet.view.InternalResourceView.renderMergedOutputModel(InternalResourceView.java:145)
+
+Solution:
+-------------
+"JSTL" is provided out the box by a full-fledged "Java_EE_Container" such as:
+- "TomEE", "JBoss" "AS/EAP/WildFly", "Payara/GlassFish", "WebLogic", etc.
+but not by barebones "JSP/Servlet_Containers" such as:
+- Tomcat and Jetty
+So, we need to add in the "pom.xml" the dependency:
+- "javax.servlet/jstl/1.2"
+
+========================================================================================================================
+
+[SpringMvc] MultipartFormData
+---------------------------------
+
+--WebKitFormBoundaryqgkaBn8IHJCuNmiW
+Content-Disposition: form-data; name="firstName"
+
+Charles
+--WebKitFormBoundaryqgkaBn8IHJCuNmiW
+Content-Disposition: form-data; name="lastName"
+
+Xavier
+--WebKitFormBoundaryqgkaBn8IHJCuNmiW
+Content-Disposition: form-data; name="email"
+
+charles@xmen.com
+--WebKitFormBoundaryqgkaBn8IHJCuNmiW
+Content-Disposition: form-data; name="username"
+
+professorx
+--WebKitFormBoundaryqgkaBn8IHJCuNmiW
+Content-Disposition: form-data; name="password"
+
+letmein01
+--WebKitFormBoundaryqgkaBn8IHJCuNmiW
+Content-Disposition: form-data; name="profilePicture"; filename="me.jpg"
+Content-Type: image/jpeg
+
+[[ Binary image data goes here ]]
+--WebKitFormBoundaryqgkaBn8IHJCuNmiW--
+
+---------------
+
+public class ApplicationInitializer extends org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer {
+    /**
+     * We override this method, when we want to deal with "multipart-form data".
+     * This method is inherited from "AbstractDispatcherServletInitializer"
+     *
+     * @param registration The "javax.servlet.ServletRegistration.Dynamic"
+     */
+    @Override
+    protected void customizeRegistration(javax.servlet.ServletRegistration.Dynamic registration) {
+        registration.setMultipartConfig(new javax.servlet.MultipartConfigElement("/path/to/uploads"));
+    }
+    // ...
+}
+
+========================================================================================================================
+
 [SpringRest] APIs Validation
 --------------------------------
 In "SpringLegacy" to make APIs Validation (use of "@Valid"), we need the next dependency:
@@ -162,8 +300,8 @@ So, they need to return the resource to the Client.
 
 ========================================================================================================================
 
-Jackson-serialization of "LocalDate/LocalDateTime" fields
--------------------------------------------------------------
+[SpringRest] Jackson-serialization of "LocalDate/LocalDateTime" fields
+--------------------------------------------------------------------------
 
 Links:
 - https://stackoverflow.com/questions/29956175/json-java-8-localdatetime-format-in-spring-boot
@@ -206,143 +344,6 @@ It seems that (I am not sure if this is correct) the next 2 points are valid:
 Note:
 In these "SpringLegacyTutorials", the "com.fasterxml.jackson.*" dependencies are added in the "pom.xml" manually.
 In "SpringBoot", the "com.fasterxml.jackson.*" dependencies are provided by the "org.springframework.boot/spring-boot-dependencies".
-
-========================================================================================================================
-
-Using "Multiple_Resolvers"
-------------------------------
-
-@org.springframework.context.annotation.Configuration
-@org.springframework.context.annotation.ComponentScan(basePackages = {"com.thomasmylonas.spring_mvc"})
-@org.springframework.web.servlet.config.annotation.EnableWebMvc
-public class MultipleResolversConfig {
-    /**
-     * Link:
-     * - https://stackoverflow.com/questions/25055610/creating-multiple-internalresourceviewresolver
-     * We can only have one of the "InternalResourceViewResolver" in the context, because of the same reason mentioned in the Javadoc:
-     * <p>
-     * * <Javadoc>
-     * * When chaining ViewResolvers, an "org.springframework.web.servlet.view.InternalResourceViewResolver" always needs to be last,
-     * * as it will attempt to resolve any view name, no matter whether the underlying resource actually exists.
-     * * </Javadoc>
-     * <p>
-     * The "org.springframework.web.servlet.view.InternalResourceViewResolver" always returns an answer (because it just delegates to the Servlet API,
-     * which always has an answer, even if it's wrong), so having two of them won't get solution, since the 2nd one will never be consulted.
-     *
-     * @return The ViewResolver
-     */
-    @org.springframework.context.annotation.Bean
-    public org.springframework.web.servlet.ViewResolver viewResolver() {
-        org.springframework.web.servlet.view.InternalResourceViewResolver viewResolver = new org.springframework.web.servlet.view.InternalResourceViewResolver();
-        viewResolver.setPrefix("/WEB-INF/views/");
-        viewResolver.setSuffix(""); //viewResolver.setSuffix(".html");viewResolver.setSuffix(".xhtml");
-        viewResolver.setOrder(101); //viewResolver.setOrder(100); // InternalResourceViewResolver - lowest priority
-        viewResolver.setExposeContextBeansAsAttributes(true);
-        return viewResolver;
-    }
-}
-
-========================================================================================================================
-
-The "InternalResourceViewResolver::setViewClass(org.springframework.web.servlet.view.JstlView.class);"
-----------------------------------------------------------------------------------------------------------
-
-Links:
-- https://stackoverflow.com/questions/32459400/why-do-i-need-a-view-class-to-resolve-jstl-views-in-spring-mvc
-- https://stackoverflow.com/questions/20268095/java-lang-noclassdeffounderror-javax-servlet-jsp-jstl-core-config
-
-The need of: "InternalResourceViewResolver::setViewClass(JstlView.class);"
-------------------------------------------------------------------------------
-
-In older Spring versions there was not "Automatic_Detection" of features. This has been introduced slowly in different Spring versions.
-The "InternalResourceViewResolver" did not have "Automatic_Detection" of "JSTL" in the early days,
-so it was required to always specify the "JstlView" as the viewClass, through the "Line_1" in the "WebConfig::viewResolver",
-like the following code snippet:
-
-    @Configuration @EnableWebMvc
-    public class WebConfig {
-        @Bean public ViewResolver viewResolver() {
-            InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-            viewResolver.setViewClass(org.springframework.web.servlet.view.JstlView.class); // Add this "Line_1"
-            // ...
-        }
-    }
-
-However, in newer versions of Spring has been added the feature "Automatic_Detection" of which viewClass to use.
-The addition was adding the next:
-- "InternalResourceViewResolver" uses "JstlView" as default (instead of "InternalResourceView") if the "JSTL"-API is present
-So the previous "Line_1" in the "WebConfig::viewResolver", is not needed any more.
-
-Error caused by: "InternalResourceViewResolver::setViewClass(JstlView.class);"
-----------------------------------------------------------------------------------
-
-[Error1-500: In my tutorials]
-HTTP Status 500 – Internal Server Error
-Message Handler processing failed; nested exception is java.lang.NoClassDefFoundError: javax/servlet/jsp/jstl/core/Config
-Description The server encountered an unexpected condition that prevented it from fulfilling the request.
-Exception:
-org.springframework.web.util.NestedServletException: Handler processing failed; nested exception is java.lang.NoClassDefFoundError: javax/servlet/jsp/jstl/core/Config
-	org.springframework.web.servlet.DispatcherServlet.doDispatch(DispatcherServlet.java:1095)
-java.lang.NoClassDefFoundError: javax/servlet/jsp/jstl/core/Config
-	org.springframework.web.servlet.support.JstlUtils.exposeLocalizationContext(JstlUtils.java:103)
-	org.springframework.web.servlet.view.JstlView.exposeHelpers(JstlView.java:137)
-	org.springframework.web.servlet.view.InternalResourceView.renderMergedOutputModel(InternalResourceView.java:145)
-
-Solution:
--------------
-"JSTL" is provided out the box by a full-fledged "Java_EE_Container" such as:
-- "TomEE", "JBoss" "AS/EAP/WildFly", "Payara/GlassFish", "WebLogic", etc.
-but not by barebones "JSP/Servlet_Containers" such as:
-- Tomcat and Jetty
-So, we need to add in the "pom.xml" the dependency:
-- "javax.servlet/jstl/1.2"
-
-========================================================================================================================
-
-MultipartFormData
----------------------
---WebKitFormBoundaryqgkaBn8IHJCuNmiW
-Content-Disposition: form-data; name="firstName"
-
-Charles
---WebKitFormBoundaryqgkaBn8IHJCuNmiW
-Content-Disposition: form-data; name="lastName"
-
-Xavier
---WebKitFormBoundaryqgkaBn8IHJCuNmiW
-Content-Disposition: form-data; name="email"
-
-charles@xmen.com
---WebKitFormBoundaryqgkaBn8IHJCuNmiW
-Content-Disposition: form-data; name="username"
-
-professorx
---WebKitFormBoundaryqgkaBn8IHJCuNmiW
-Content-Disposition: form-data; name="password"
-
-letmein01
---WebKitFormBoundaryqgkaBn8IHJCuNmiW
-Content-Disposition: form-data; name="profilePicture"; filename="me.jpg"
-Content-Type: image/jpeg
-
-[[ Binary image data goes here ]]
---WebKitFormBoundaryqgkaBn8IHJCuNmiW--
-
-------------------------------
-
-public class ApplicationInitializer extends org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer {
-    /**
-     * We override this method, when we want to deal with "multipart-form data".
-     * This method is inherited from "AbstractDispatcherServletInitializer"
-     *
-     * @param registration The "javax.servlet.ServletRegistration.Dynamic"
-     */
-    @Override
-    protected void customizeRegistration(javax.servlet.ServletRegistration.Dynamic registration) {
-        registration.setMultipartConfig(new javax.servlet.MultipartConfigElement("/path/to/uploads"));
-    }
-    // ...
-}
 
 ========================================================================================================================
 
