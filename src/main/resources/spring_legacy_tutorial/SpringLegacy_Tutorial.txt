@@ -286,20 +286,6 @@ So, there is no need to use the Annotation:
 
 ========================================================================================================================
 
-[SpringRest] About the Services
------------------------------------
-
-Point_1:
-The Services in the "JsfPrimefacesTutorials", are servicing the StudentDao only.
-In that case returning something from some of their methods was not useful in anything.
-Their purpose was completely different.
-
-Point_2:
-The Services in the "SpringRest" module, are servicing an API. This means that the Service needs to follow the pattern of the APIs.
-So, they need to return the resource to the Client.
-
-========================================================================================================================
-
 [SpringRest] Jackson-serialization of "LocalDate/LocalDateTime" fields
 --------------------------------------------------------------------------
 
@@ -344,6 +330,20 @@ It seems that (I am not sure if this is correct) the next 2 points are valid:
 Note:
 In these "SpringLegacyTutorials", the "com.fasterxml.jackson.*" dependencies are added in the "pom.xml" manually.
 In "SpringBoot", the "com.fasterxml.jackson.*" dependencies are provided by the "org.springframework.boot/spring-boot-dependencies".
+
+========================================================================================================================
+
+[SpringRest] About the Services
+-----------------------------------
+
+Point_1:
+The Services in the "JsfPrimefacesTutorials", are servicing the StudentDao only.
+In that case returning something from some of their methods was not useful in anything.
+Their purpose was completely different.
+
+Point_2:
+The Services in the "SpringRest" module, are servicing an API. This means that the Service needs to follow the pattern of the APIs.
+So, they need to return the resource to the Client.
 
 ========================================================================================================================
 
