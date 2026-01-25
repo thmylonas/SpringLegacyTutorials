@@ -1,18 +1,100 @@
-About the SpringREST module
--------------------------------
+========================================================================================================================
+========================================= Significant Steps to run the project =========================================
+========================================================================================================================
 
-This is Legacy SpringREST API:
+[Step_1]
+
+Run/Debug Configurations
+----------------------------
+
+Tomcat Server > Tomcat_v9.x.xx-REST
+Name: Tomcat_v9.x.xx-REST
+
+Server Tab
+--------------
+Application server: Tomcat_v9.x.xx
+Open browser:
+    - After launch > Default
+    - URL: http://localhost:8080
+On 'Update' action: Update resources [Appears only with: "war_exploded_artifact"]
+On frame deactivation: Update resources [Appears only with: "war_exploded_artifact"]
+JRE: xxx
+Tomcat Server Settings:
+    HTTP port: 8080
+Before launch:
+    - Run Maven Goal 'SpringRest: clean'
+    - Build
+    - Build 'spring_rest:war exploded' artifact
+
+Deployment Tab
+------------------
+Deploy at the server startup
+    - spring_rest:war exploded
+Application context: / [Hidden at the end of Tab]
+                    [Default value: "/SpringRest_war" or "/SpringRest_war_exploded"]
+
+========================================================================================================================
+
+[Step_2]
+
+Start the project, create the DB and the "Students" table [*]
+-----------------------------------------------------------------
+
+This can be done with the next steps:
+- Start the project, by starting the "Tomcat_v9.x.xx-REST" server
+
+The database "studentdb.mv.db" will be created in the user's home directory:
+- C:/Users/%user_name%/studentdb.mv.db
+
+========================================================================================================================
+
+[Step_3]
+
+Start the "H2_Server" through the IntelliJ_Database_Tools ("In-Disk-H2_Database")
+-------------------------------------------------------------------------------------
+
+This step does not create the DB and the "Students" table (see [*])
+
+Create a new Data Source with the next configuration:
+- Name: "<DB_Name>"
+- Connection type: "Embedded"
+- Driver: "H2"
+- Path: "~/xxx.mv.db"
+- Authentication: "User & Password"
+- User: sa
+- Password:
+- URL: "jdbc:h2:~/studentdb;AUTO_SERVER=TRUE;DB_CLOSE_DELAY=-1"
+
+========================================================================================================================
+
+[Step_4]
+
+Start the "H2_Server" in the browser WebApp "H2 Console" ("In-Disk-H2_Database")
+------------------------------------------------------------------------------------
+
+This step does not create the DB and the "Students" table (see [*])
+
+Run the script:
+- resources/db_files/h2_db_files/h2_scripts/Start_H2_InDisk_Database.bat
+
+========================================================================================================================
+
+About the "SpringREST" module
+---------------------------------
+
+This module is a Legacy "SpringREST" API:
 This means:
 - Legacy Spring configuration
 - Legacy use of Annotations
 
-In this API will not contain:
-- Validation Code using any validation library
-- No use of "Spring_Data_JPA" ("org.springframework.data.jpa.repository.JpaRepository<T, ID>")
-- HATEOAS
-- Return the "stacktrace"
-- The names as long they finalized, will not be changed
+This API does NOT contain the next:
+- NO Validation Code using any validation library ("org.hibernate/hibernate-validator/7.0.1.Final")
+- NO use of "Spring_Data_JPA" ("org.springframework.data.jpa.repository.JpaRepository<T, ID>")
+- NO use of "HATEOAS"
+- NO Return of any "stacktrace"
 
-In this API the validation will be done manually, as it is done in the "StudentDao"
+Significant Notes:
+- The names as long as they will be finalized, they will not be changed
+- In this API the validation will be done manually, as it is done in the "StudentDao"
 
 ========================================================================================================================
