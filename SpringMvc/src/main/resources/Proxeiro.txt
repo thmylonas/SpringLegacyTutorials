@@ -1,0 +1,34 @@
+========================================================================================================================
+========================================= Significant Steps to run the project =========================================
+========================================================================================================================
+
+Run/Debug Configurations
+----------------------------
+
+Tomcat Server > Tomcat_v9.x.xx-MVC
+Name: Tomcat_v9.x.xx-MVC
+
+Server Tab
+--------------
+Application server: Tomcat_v9.x.xx
+Open browser:
+    - After launch > Default
+    - URL: http://localhost:8080/spring-mvc
+On 'Update' action: Update resources [Appears only with: "war_exploded_artifact"]
+On frame deactivation: Update resources [Appears only with: "war_exploded_artifact"]
+JRE: xxx
+Tomcat Server Settings:
+    HTTP port: 8080
+Before launch:
+    - Run Maven Goal 'SpringMvc: clean'
+    - Build
+    - Build 'spring_mvc:war exploded' artifact
+
+Deployment Tab
+------------------
+Deploy at the server startup
+    - spring_mvc:war exploded
+Application context: / [Hidden at the end of Tab]
+                    [Default value: "/SpringMvc_war" or "/SpringMvc_war_exploded"]
+
+========================================================================================================================
