@@ -83,57 +83,6 @@ If "public class WebConfig implements WebMvcConfigurer":
 
 ========================================================================================================================
 
-Significant error
----------------------
-
-With the URL:
-- "jdbc:h2:~/studentdb;AUTO_SERVER=TRUE;DB_CLOSE_DELAY=-1"
-H2 needs everytime we run the project, to delete the "~/studentdb", so, it will create a new one.
-
-Console Error:
-------------------
-[RMI TCP Connection(2)-127.0.0.1] ERROR org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentImpl - Could not fetch the SequenceInformation from the database
-org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "min_value" not found [42122-232]
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514) ~[h2-2.3.232.jar:2.3.232]
-	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489) ~[h2-2.3.232.jar:2.3.232]
-	at org.h2.message.DbException.get(DbException.java:223) ~[h2-2.3.232.jar:2.3.232]
-	at org.h2.message.DbException.get(DbException.java:199) ~[h2-2.3.232.jar:2.3.232]
-	at org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3492) ~[h2-2.3.232.jar:2.3.232]
-	at org.h2.jdbc.JdbcResultSet.getLong(JdbcResultSet.java:745) ~[h2-2.3.232.jar:2.3.232]
-	at org.hibernate.tool.schema.extract.internal.SequenceInformationExtractorLegacyImpl.resultSetMinValue(SequenceInformationExtractorLegacyImpl.java:134) ~[hibernate-core-5.4.3.Final.jar:5.4.3.Final]
-	at org.hibernate.tool.schema.extract.internal.SequenceInformationExtractorLegacyImpl.extractMetadata(SequenceInformationExtractorLegacyImpl.java:60) ~[hibernate-core-5.4.3.Final.jar:5.4.3.Final]
-	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentImpl.sequenceInformationList(JdbcEnvironmentImpl.java:403) ~[hibernate-core-5.4.3.Final.jar:5.4.3.Final]
-Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in DataAccessConfig:
-Factory method 'entityManagerFactory' threw exception; nested exception is javax.persistence.PersistenceException:
-[PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.SQLGrammarException: Unable to build DatabaseInformation
-
-Cause of error:
--------------------
-The error caused by the older dependency: "org.hibernate/hibernate-core/5.4.3.Final"
-
-Solution:
--------------
-Links:
-- https://github.com/h2database/h2database/issues/2625
-The error solved by the newer dependency: "org.hibernate/hibernate-core/5.6.1.Final"
-
-========================================================================================================================
-
-Other error - Not analyzed
-------------------------------
-org.springframework.beans.factory.UnsatisfiedDependencyException:
-Error creating bean with name 'studentDao' defined in file
-Unsatisfied dependency expressed through constructor parameter 0;
-nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException:
-Error creating bean with name 'entityManagerFactory'
-defined in com.thomasmylonas.spring_rest.config.DataAccessConfig:
-Unsatisfied dependency expressed through method 'entityManagerFactory' parameter 0;
-nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException:
-No qualifying bean of type 'javax.sql.DataSource' available: expected at least 1 bean which qualifies as autowire candidate.
-Dependency annotations: {}
-
-========================================================================================================================
-
 The minimum Configuration to run a SpringMVC/SpringREST web application is:
 
 @Configuration
@@ -583,3 +532,54 @@ So, we need to add in the "pom.xml" the dependency:
 
 Questions/Problems/Issues
 -----------------------------
+
+Significant error
+---------------------
+
+With the URL:
+- "jdbc:h2:~/studentdb;AUTO_SERVER=TRUE;DB_CLOSE_DELAY=-1"
+H2 needs everytime we run the project, to delete the "~/studentdb", so, it will create a new one.
+
+Console Error:
+------------------
+[RMI TCP Connection(2)-127.0.0.1] ERROR org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentImpl - Could not fetch the SequenceInformation from the database
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Column "min_value" not found [42122-232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:514) ~[h2-2.3.232.jar:2.3.232]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:489) ~[h2-2.3.232.jar:2.3.232]
+	at org.h2.message.DbException.get(DbException.java:223) ~[h2-2.3.232.jar:2.3.232]
+	at org.h2.message.DbException.get(DbException.java:199) ~[h2-2.3.232.jar:2.3.232]
+	at org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3492) ~[h2-2.3.232.jar:2.3.232]
+	at org.h2.jdbc.JdbcResultSet.getLong(JdbcResultSet.java:745) ~[h2-2.3.232.jar:2.3.232]
+	at org.hibernate.tool.schema.extract.internal.SequenceInformationExtractorLegacyImpl.resultSetMinValue(SequenceInformationExtractorLegacyImpl.java:134) ~[hibernate-core-5.4.3.Final.jar:5.4.3.Final]
+	at org.hibernate.tool.schema.extract.internal.SequenceInformationExtractorLegacyImpl.extractMetadata(SequenceInformationExtractorLegacyImpl.java:60) ~[hibernate-core-5.4.3.Final.jar:5.4.3.Final]
+	at org.hibernate.engine.jdbc.env.internal.JdbcEnvironmentImpl.sequenceInformationList(JdbcEnvironmentImpl.java:403) ~[hibernate-core-5.4.3.Final.jar:5.4.3.Final]
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'entityManagerFactory' defined in DataAccessConfig:
+Factory method 'entityManagerFactory' threw exception; nested exception is javax.persistence.PersistenceException:
+[PersistenceUnit: default] Unable to build Hibernate SessionFactory; nested exception is org.hibernate.exception.SQLGrammarException: Unable to build DatabaseInformation
+
+Cause of error:
+-------------------
+The error caused by the older dependency: "org.hibernate/hibernate-core/5.4.3.Final"
+
+Solution:
+-------------
+Links:
+- https://github.com/h2database/h2database/issues/2625
+The error solved by the newer dependency: "org.hibernate/hibernate-core/5.6.1.Final"
+
+========================================================================================================================
+
+Other error - Not analyzed
+------------------------------
+org.springframework.beans.factory.UnsatisfiedDependencyException:
+Error creating bean with name 'studentDao' defined in file
+Unsatisfied dependency expressed through constructor parameter 0;
+nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException:
+Error creating bean with name 'entityManagerFactory'
+defined in com.thomasmylonas.spring_rest.config.DataAccessConfig:
+Unsatisfied dependency expressed through method 'entityManagerFactory' parameter 0;
+nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException:
+No qualifying bean of type 'javax.sql.DataSource' available: expected at least 1 bean which qualifies as autowire candidate.
+Dependency annotations: {}
+
+========================================================================================================================
