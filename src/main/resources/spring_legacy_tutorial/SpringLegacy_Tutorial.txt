@@ -1,3 +1,6 @@
+The Configuration and the "ComponentScan"
+---------------------------------------------
+
 1. Right configuration of "ComponentScan"
 
 We have to exclude: "@ComponentScan.Filter(type = FilterType.ANNOTATION, value = Configuration.class)"
@@ -40,7 +43,10 @@ public class RootConfig {}
 
 ========================================================================================================================
 
-The minimum Configuration to run a SpringMVC/SpringREST web application is:
+Configuration in "SpringLegacy" "Web_Application"
+-----------------------------------------------------
+
+The minimum Configuration to run a "SpringLegacy" "Web_Application" is:
 
 @Configuration
 @ComponentScan(basePackages = {"path.to.controllers"})
@@ -58,6 +64,9 @@ Attention:
 - The "public class WebConfig extends org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter" is NOT mandatory
 
 ========================================================================================================================
+
+About the "WebMvcConfigurer"
+--------------------------------
 
 If "public class WebConfig implements WebMvcConfigurer":
 - In Springframework version_4.x.xx, we need to implement all the "WebMvcConfigurer" interface's methods
