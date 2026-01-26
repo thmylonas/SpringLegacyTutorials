@@ -1,3 +1,23 @@
+Java_Version / Spring_Framework_Version [/ Spring_Data_Version]
+-------------------------------------------------------------------
+
+Wrong combination of "Java_Version / Spring_Framework_Version":
+- for a "Spring_Framework_Version", if the "Java_Version" is less than the "Correct_Combination"
+leads to the next error:
+    Caused by: org.springframework.core.NestedIOException: ASM ClassReader failed to parse class file -
+    probably due to a new Java class file version that isn't supported yet:
+    file target\spring_rest-1.0-SNAPSHOT\WEB-INF\classes\com\thomasmylonas\spring_rest\ApplicationInitializer.class;
+    nested exception is java.lang.IllegalArgumentException: Unsupported class file major version 59/60/61/63/64/65
+
+The "Correct_Combinations" of "Java_Version / Spring_Framework_Version" (after testing), are the following:
+- 9 / 4.3.30.RELEASE
+- 14 / 5.2.1.RELEASE [/ 2.1.9.RELEASE] [initial version in 2019]
+- 19 / 5.3.22
+- 21 / 5.3.39
+- 6.x.x: Does not work - Needs Jakarta/Tomcat_10
+
+========================================================================================================================
+
 How to add static CSS,JS files in the Spring MVC app (without Thymeleaf)
 ----------------------------------------------------------------------------
 
@@ -54,26 +74,6 @@ public class DataAccessConfig {}
 public class RootConfig {}
 
 3. Be careful, the "@WebFilter" is not a Spring bean, and is not in the "Spring Container". It is a Web Container"'s (Tomcat) object
-
-========================================================================================================================
-
-Java_Version / Spring_Framework_Version [/ Spring_Data_Version]
--------------------------------------------------------------------
-
-Wrong combination of "Java_Version / Spring_Framework_Version":
-- for a "Spring_Framework_Version", if the "Java_Version" is less than the "Correct_Combination"
-leads to the next error:
-    Caused by: org.springframework.core.NestedIOException: ASM ClassReader failed to parse class file -
-    probably due to a new Java class file version that isn't supported yet:
-    file target\spring_rest-1.0-SNAPSHOT\WEB-INF\classes\com\thomasmylonas\spring_rest\ApplicationInitializer.class;
-    nested exception is java.lang.IllegalArgumentException: Unsupported class file major version 59/60/61/63/64/65
-
-The "Correct_Combinations" of "Java_Version / Spring_Framework_Version" (after testing), are the following:
-- 9 / 4.3.30.RELEASE
-- 14 / 5.2.1.RELEASE [/ 2.1.9.RELEASE] [initial version in 2019]
-- 19 / 5.3.22
-- 21 / 5.3.39
-- 6.x.x: Does not work - Needs Jakarta/Tomcat_10
 
 ========================================================================================================================
 
