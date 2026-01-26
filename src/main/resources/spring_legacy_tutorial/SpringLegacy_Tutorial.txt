@@ -60,12 +60,6 @@ public class RootConfig {}
 
 ========================================================================================================================
 
-If "public class WebConfig implements WebMvcConfigurer":
-- In Springframework version_4.x.xx, we need to implement all the "WebMvcConfigurer" interface's methods
-- In Springframework version_5.x.xx, we DO NOT need to implement any of the "WebMvcConfigurer" interface's methods (default methods)
-
-========================================================================================================================
-
 The minimum Configuration to run a SpringMVC/SpringREST web application is:
 
 @Configuration
@@ -82,6 +76,12 @@ public class ApplicationInitializer extends org.springframework.web.servlet.supp
 Attention:
 - The "public class WebConfig implements org.springframework.web.servlet.config.annotation.WebMvcConfigurer" is NOT mandatory
 - The "public class WebConfig extends org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter" is NOT mandatory
+
+========================================================================================================================
+
+If "public class WebConfig implements WebMvcConfigurer":
+- In Springframework version_4.x.xx, we need to implement all the "WebMvcConfigurer" interface's methods
+- In Springframework version_5.x.xx, we DO NOT need to implement any of the "WebMvcConfigurer" interface's methods (default methods)
 
 ========================================================================================================================
 
