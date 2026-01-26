@@ -138,8 +138,7 @@ The need of: "InternalResourceViewResolver::setViewClass(JstlView.class);"
 
 In older Spring versions there was not "Automatic_Detection" of features. This has been introduced slowly in different Spring versions.
 The "InternalResourceViewResolver" did not have "Automatic_Detection" of "JSTL" in the early days,
-so it was required to always specify the "JstlView" as the viewClass, through the "Line_1" in the "WebConfig::viewResolver",
-like the following code snippet:
+so it was required to always specify the "JstlView" as the viewClass, through the "Line_1" in the "WebConfig::viewResolver":
 
     @Configuration @EnableWebMvc
     public class WebConfig {
