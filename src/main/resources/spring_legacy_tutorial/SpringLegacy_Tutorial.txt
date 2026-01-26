@@ -18,23 +18,6 @@ The "Correct_Combinations" of "Java_Version / Spring_Framework_Version" (after t
 
 ========================================================================================================================
 
-How to add static CSS,JS files in the Spring MVC app (without Thymeleaf)
-----------------------------------------------------------------------------
-
-<head>
-    <!-- Stylesheets -->
-    <link rel="stylesheet" href="/resources/css/styles.css"/>
-    <link rel="stylesheet" href="/resources/css/boostrap_css_libs/bootstrap_v4.6.1/bootstrap.min.css"/>
-</head>
-
-public class WebConfig implements WebMvcConfigurer {
-    @Override public void addResourceHandlers(ResourceHandlerRegistry registry) {
-        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
-    }
-}
-
-========================================================================================================================
-
 1. Right configuration of "ComponentScan"
 
 We have to exclude: "@ComponentScan.Filter(type = FilterType.ANNOTATION, value = Configuration.class)"
@@ -99,6 +82,23 @@ public class ApplicationInitializer extends org.springframework.web.servlet.supp
 Attention:
 - The "public class WebConfig implements org.springframework.web.servlet.config.annotation.WebMvcConfigurer" is NOT mandatory
 - The "public class WebConfig extends org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter" is NOT mandatory
+
+========================================================================================================================
+
+How to add static CSS,JS files in the Spring MVC app (without Thymeleaf)
+----------------------------------------------------------------------------
+
+<head>
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="/resources/css/styles.css"/>
+    <link rel="stylesheet" href="/resources/css/boostrap_css_libs/bootstrap_v4.6.1/bootstrap.min.css"/>
+</head>
+
+public class WebConfig implements WebMvcConfigurer {
+    @Override public void addResourceHandlers(ResourceHandlerRegistry registry) {
+        registry.addResourceHandler("/resources/**").addResourceLocations("/resources/");
+    }
+}
 
 ========================================================================================================================
 
