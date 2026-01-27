@@ -1,4 +1,4 @@
-[JpaHibernateApp] [SpringLegacyTutorials] [JsfPrimefacesTutorials] [pom_dependencies_legacy.xml]
+[JpaHibernateApp/2.18.0] [SpringLegacyTutorials/2.18.0] [JsfPrimefacesTutorials/2.18.0] [pom_dependencies_legacy.xml/2.18.0]
 <dependency>
     <groupId>org.slf4j</groupId>
     <artifactId>slf4j-api</artifactId>
@@ -12,15 +12,15 @@
 <dependency>
     <groupId>org.apache.logging.log4j</groupId>
     <artifactId>log4j-api</artifactId>
-    <version>2.18.0</version>
+    <version>2.20.0</version> <!-- 2.18.0, 2.17.2 -->
 </dependency>
 <dependency>
     <groupId>org.apache.logging.log4j</groupId>
     <artifactId>log4j-core</artifactId>
-    <version>2.18.0</version>
+    <version>2.20.0</version> <!-- 2.18.0, 2.17.2 -->
 </dependency>
 ========================================================================================================================
-[JavaJdkTutorials] [JavaAdvancedTutorials] [JavaTestingTutorials]
+[JavaJdkTutorials/2.20.0] [JavaAdvancedTutorials/2.20.0] [JavaTestingTutorials/2.20.0]
 <dependency>
     <groupId>org.apache.logging.log4j</groupId>
     <artifactId>log4j-slf4j-impl</artifactId>
@@ -29,24 +29,24 @@
 <dependency>
     <groupId>org.apache.logging.log4j</groupId>
     <artifactId>log4j-api</artifactId>
-    <version>2.20.0</version>
+    <version>2.20.0</version> <!-- 2.18.0, 2.17.2 -->
 </dependency>
 <dependency>
     <groupId>org.apache.logging.log4j</groupId>
     <artifactId>log4j-core</artifactId>
-    <version>2.20.0</version>
+    <version>2.20.0</version> <!-- 2.18.0, 2.17.2 -->
 </dependency>
 ========================================================================================================================
-[MyWebsiteWebApp]
+[MyWebsiteWebApp/2.17.2]
 <dependency>
     <groupId>org.apache.logging.log4j</groupId>
     <artifactId>log4j-api</artifactId>
-    <version>2.17.2</version>
+    <version>2.20.0</version> <!-- 2.18.0, 2.17.2 -->
 </dependency>
 <dependency>
     <groupId>org.apache.logging.log4j</groupId>
     <artifactId>log4j-core</artifactId>
-    <version>2.17.2</version>
+    <version>2.20.0</version> <!-- 2.18.0, 2.17.2 -->
 </dependency>
 ========================================================================================================================
 [JavaAdvancedTutorials-2]
