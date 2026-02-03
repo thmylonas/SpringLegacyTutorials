@@ -35,7 +35,7 @@ public class StudentController {
     @RequestMapping(path = {"/{id}"}, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody
-    public ResponseEntity<ResponseSuccess> findStudentById(@PathVariable(name = "id") Long id) { // "http://localhost:8080/api/v1/students/1"
+    public ResponseEntity<ResponseSuccess> findStudentById(@PathVariable(name = "id") Long id) { // "http://localhost:8080/api/v1/students/{id}"
 
         if (id == null || id < 0) {
             throw new IllegalArgumentException("The id is not valid!");
