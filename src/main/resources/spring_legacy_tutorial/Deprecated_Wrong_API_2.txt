@@ -1,0 +1,248 @@
+Old/Deprecated/Wrong API
+============================
+
+Notes:
+- The next classes are part of a different old project.
+- These are my first tries to develop an API.
+- All the next code is completely wrong (found/copied by Googling)
+
+/**
+ * An Old-times Entity: The code is all wrong (found/copied by Googling)
+ */
+@Entity @Table(name = "Client")
+//@Embeddable
+@lombok.Getter @lombok.Setter @lombok.NoArgsConstructor @lombok.AllArgsConstructor @lombok.Builder
+public class Client {
+    @Id @GeneratedValue(generator = "ID_GENERATOR")
+    private Long id;
+    private String firstName;
+    private String lastName;
+    private int age;
+    //private String username;
+    //private String password;
+    private int numberOfApplicationsPerDay;
+}
+
+/**
+ * An Old-times Model: The code is all wrong (found/copied by Googling)
+ */
+@Component("client")
+@Embeddable
+@lombok.Getter @lombok.Setter @lombok.NoArgsConstructor @lombok.AllArgsConstructor @lombok.Builder
+public class ClientModel {
+    private String firstName;
+    private String lastName;
+    private int age;
+    private int numberOfApplicationsPerDay;
+}
+
+/**
+ * An Old-times Model: The code is all wrong (found/copied by Googling)
+ */
+@lombok.Getter @lombok.AllArgsConstructor
+public class ReturnError {
+    private int code;
+    private String message;
+}
+
+/**
+ * An Old-times RuntimeException: The code is all wrong (found/copied by Googling)
+ */
+@org.springframework.web.bind.annotation.ResponseStatus(
+        value = org.springframework.http.HttpStatus.NOT_FOUND, // 404: "Not Found"
+        reason = "Resource not found"
+)
+@lombok.Getter @lombok.AllArgsConstructor
+public class ResourceNotFoundException extends RuntimeException {
+    private long id;
+}
+
+/**
+ * An Old-times RuntimeException: The code is all wrong (found/copied by Googling)
+ */
+@org.springframework.web.bind.annotation.ResponseStatus(
+        value = org.springframework.http.HttpStatus.NOT_FOUND, // 404: "Not Found"
+        reason = "Issued Applications not found"
+)
+public class IssuedApplicationsNotFoundException extends RuntimeException {
+}
+
+/**
+ * An Old-times RuntimeException: The code is all wrong (found/copied by Googling)
+ */
+@org.springframework.web.bind.annotation.ResponseStatus(
+        value = org.springframework.http.HttpStatus.CONFLICT, // 409: "Conflict"
+        reason = "Resource already existsException"
+)
+@lombok.Getter @lombok.AllArgsConstructor
+public class ResourceAlreadyExistsException extends RuntimeException {
+    private String resource;
+}
+
+/**
+ * An Old-times RuntimeException: The code is all wrong (found/copied by Googling)
+ */
+@org.springframework.web.bind.annotation.ResponseStatus(
+        value = org.springframework.http.HttpStatus.BAD_REQUEST, // 400: "Bad Request"
+        reason = "Bad Request - InvalidInput"
+)
+public class InvalidInputException extends RuntimeException {
+}
+
+/**
+ * An Old-times RuntimeException: The code is all wrong (found/copied by Googling)
+ */
+@org.springframework.web.bind.annotation.ResponseStatus(
+        value = org.springframework.http.HttpStatus.BAD_REQUEST, // 400: "Bad Request"
+        reason = "The Loan is in high risk"
+)
+public class HighRiskLoanException extends RuntimeException {
+}
+
+/**
+ * An Old-times Controller: The code is all wrong (found/copied by Googling)
+ */
+@RestController
+@RequestMapping(path = {"/api/v1/loan_applications"})
+@RequiredArgsConstructor
+public class LoanApplicationController {
+
+    private final LoanApplicationRepository loanApplicationRepository;
+
+    @GetMapping(value = "/{loan_application_id}")
+    public LoanApplication getLoanApplication(@PathVariable("loan_application_id") long id) {
+        LoanApplication loanApplication = loanApplicationRepository.getOne(id);
+        if (loanApplication == null) {throw new ResourceNotFoundException(id);}
+        return loanApplication;
+    }
+
+    @GetMapping(value = "/{loan_application_id}")
+    public ResponseEntity<?> getById2(@PathVariable("loan_application_id") long id) {
+        LoanApplication loanApplication = loanApplicationRepository.getOne(id);
+        if (loanApplication == null) {
+            ReturnError error = new ReturnError(404, "Resource[" + id + "] not found");
+            return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
+        }
+        return new ResponseEntity<>(loanApplication, HttpStatus.OK); // HTTP Status Code 200
+    }
+
+    @GetMapping(value = "/{loan_application_id}")
+    public ResponseEntity<LoanApplication> getById1(@PathVariable("loan_application_id") long id) {
+        LoanApplication loanApplication = loanApplicationRepository.getOne(id);
+        HttpStatus status = loanApplication != null ? HttpStatus.OK : HttpStatus.NOT_FOUND;
+        return new ResponseEntity<>(loanApplication, status); // Problem: if(loanApplication==null) what will be sent?
+    }
+
+    @GetMapping(value = "/findByStatus")
+    public List<LoanApplication> getAllByStatus(EnumStatus[] status) {
+        return loanApplicationRepository.findAllByStatus(status);
+    }
+
+    @GetMapping
+    public List<LoanApplication> getAll() {
+        List<LoanApplication> issuedApplicationsList = loanApplicationRepository.findAll();
+        if (issuedApplicationsList.isEmpty()) {throw new IssuedApplicationsNotFoundException();}
+        return issuedApplicationsList;
+    }
+
+    @PostMapping
+    @org.springframework.web.bind.annotation.ResponseStatus(HttpStatus.CREATED) // HTTP Status Code 201
+    public @ResponseBody LoanApplication save1(@RequestBody LoanApplication loanApplication) {
+        return loanApplicationRepository.save(loanApplication);
+    }
+
+    @PostMapping
+    public ResponseEntity<LoanApplication> save2(@RequestBody LoanApplication loanApplication) {
+        LoanApplication loanApplicationResponse = loanApplicationRepository.save(loanApplication);
+        org.springframework.http.HttpHeaders headers = new org.springframework.http.HttpHeaders();
+        // Hardcode the location "URI"
+        URI locationUri = URI.create("http://localhost:8080/app_name/loanApplication/" + loanApplicationResponse.getId());
+        headers.setLocation(locationUri); // Set the location header
+        return new ResponseEntity<>(loanApplicationResponse, headers, HttpStatus.CREATED);
+    }
+
+    @PostMapping
+    public ResponseEntity<LoanApplication> save3(@RequestBody LoanApplication loanApplication, org.springframework.web.util.UriComponentsBuilder ucb) { // Given a UriComponentsBuilder
+        LoanApplication loanApplicationResponse = loanApplicationRepository.save(loanApplication);
+        org.springframework.http.HttpHeaders headers = new org.springframework.http.HttpHeaders();
+        // Calculate the location "URI"
+        URI locationUri = ucb.path("/loanApplication/").path(String.valueOf(loanApplicationResponse.getId())).build().toUri();
+        headers.setLocation(locationUri); // Set the location header
+        return new ResponseEntity<>(loanApplicationResponse, headers, HttpStatus.CREATED);
+    }
+
+    @PostMapping
+    public ResponseEntity<LoanApplication> postLoanApplication(@RequestBody LoanApplication loanApplication, org.springframework.web.util.UriComponentsBuilder ucb) {
+        Date submissionTime = loanApplication.getSubmissionTime();
+        highRiskLoanValidation(submissionTime);
+        //if(input not valid) {throw new InvalidInputException();}
+        if (loanApplicationRepository.existsById(loanApplication.getId())) {throw new ResourceAlreadyExistsException("LoanApplication");}
+        LoanApplication loanApplicationResponse = loanApplicationRepository.save(loanApplication);
+        org.springframework.http.HttpHeaders headers = new org.springframework.http.HttpHeaders();
+        // Calculate the location "URI"
+        URI locationUri = ucb.path("/loanApplication/").path(String.valueOf(loanApplicationResponse.getId())).build().toUri();
+        headers.setLocation(locationUri); // Set the location header
+        return new ResponseEntity<>(loanApplicationResponse, headers, HttpStatus.CREATED);
+    }
+
+    @PostMapping
+    public ResponseEntity<Void> _alt_postLoanApplication(@RequestBody LoanApplication loanApplication, org.springframework.web.util.UriComponentsBuilder ucb) {
+        Date submissionTime = loanApplication.getSubmissionTime();
+        highRiskLoanValidation(submissionTime);
+        //if(input not valid) {throw new InvalidInputException();}
+        if (loanApplicationRepository.existsById(loanApplication.getId())) {
+            //log.warning("LoanApplication already exists");
+            return new ResponseEntity<>(HttpStatus.CONFLICT); // HTTP Status Code 409
+        }
+        loanApplicationRepository.save(loanApplication);
+        org.springframework.http.HttpHeaders headers = new org.springframework.http.HttpHeaders();
+        headers.setLocation(ucb.path("/loanApplication/{id}").buildAndExpand(loanApplication.getId()).toUri());
+        return new ResponseEntity<>(headers, HttpStatus.CREATED);
+    }
+}
+
+/**
+ * An Old-times ControllerAdvice: The code is all wrong (found/copied by Googling)
+ */
+@RestControllerAdvice
+public class ExceptionHandlerController {
+
+    @org.springframework.web.bind.annotation.ExceptionHandler(ResourceNotFoundException.class)
+    @org.springframework.web.bind.annotation.ResponseStatus(HttpStatus.NOT_FOUND) // HTTP Status Code 404
+    public ReturnError resourceNotFound(ResourceNotFoundException e) {
+        long id = e.getId();
+        return new ReturnError(404, "Resource[" + id + "] not found");
+    }
+
+    @org.springframework.web.bind.annotation.ExceptionHandler(ResourceNotFoundException.class)
+    @org.springframework.web.bind.annotation.ResponseStatus(HttpStatus.NOT_FOUND) // HTTP Status Code 404
+    public ResponseEntity<ReturnError> resourceResponseEntityNotFound(ResourceNotFoundException e) {
+        long id = e.getId();
+        ReturnError error = new ReturnError(404, "Resource[" + id + "] not found");
+        return new ResponseEntity<>(error, HttpStatus.NOT_FOUND); // HTTP Status Code 404
+    }
+
+    @org.springframework.web.bind.annotation.ExceptionHandler(IssuedApplicationsNotFoundException.class)
+    @org.springframework.web.bind.annotation.ResponseStatus(HttpStatus.NOT_FOUND) // HTTP Status Code 404
+    public ReturnError issuedApplicationsNotFound(IssuedApplicationsNotFoundException e) {
+        return new ReturnError(404, "IssuedApplications not found");
+    }
+
+    @org.springframework.web.bind.annotation.ExceptionHandler(InvalidInputException.class)
+    @org.springframework.web.bind.annotation.ResponseStatus(HttpStatus.BAD_REQUEST) // HTTP Status Code 400
+    public ReturnError invalidInput(InvalidInputException e) {
+        return new ReturnError(400, "Bad Request - InvalidInput");
+    }
+
+    @org.springframework.web.bind.annotation.ExceptionHandler(HighRiskLoanException.class)
+    @org.springframework.web.bind.annotation.ResponseStatus(HttpStatus.BAD_REQUEST) // HTTP Status Code 400
+    public ReturnError invalidInput(HighRiskLoanException e) {
+        return new ReturnError(400, "The Loan request is rejected because it is in high risk");
+    }
+
+    @org.springframework.web.bind.annotation.ExceptionHandler(ResourceAlreadyExistsException.class)
+    @org.springframework.web.bind.annotation.ResponseStatus(HttpStatus.CONFLICT) // HTTP Status Code 409
+    public ReturnError resourceAlreadyExists(ResourceAlreadyExistsException e) {
+        return new ReturnError(409, e.getResource() + " already exists");
+    }
+}
