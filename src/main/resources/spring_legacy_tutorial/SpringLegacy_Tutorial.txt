@@ -485,7 +485,7 @@ The dependency "javax.annotation/javax.annotation-api/1.3.2" is needed for the n
 - others
 
 The dependency "javax.annotation/javax.annotation-api/1.3.2" is covered from:
-- the dependency "org.apache.tomcat/tomcat-catalina/9.0.58" (I do not know how it is covered, and from where) [see Dependency_13]
+- the dependency "org.apache.tomcat/tomcat-catalina/9.0.58" (I do not know how it is covered, and from where) [see "Dependency_13"]
 
 Dependency_15:
 ------------------
