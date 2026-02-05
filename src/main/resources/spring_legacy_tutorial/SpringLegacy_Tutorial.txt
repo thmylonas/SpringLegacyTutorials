@@ -568,3 +568,100 @@ No qualifying bean of type 'javax.sql.DataSource' available: expected at least 1
 Dependency annotations: {}
 
 ========================================================================================================================
+
+TO_DO these extra cleaning...
+
+@Configuration
+@ComponentScan(
+        basePackages = {"com.thomasmylonas.my_website_web_app"},
+        excludeFilters = {
+                @ComponentScan.Filter(type = FilterType.REGEX, pattern = {"com.thomasmylonas.my_website_web_app.servlet_dispatcher_web_components.controllers.*"}),
+                //@ComponentScan.Filter(type = FilterType.REGEX, pattern = {"com.thomasmylonas.my_website_web_app.data_access.*"}),
+                @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Configuration.class),
+        }
+)
+public class RootConfig {
+}
+
+@Configuration
+@ComponentScan(basePackages = {"com.thomasmylonas.display_consume_apis_web_app"},
+        excludeFilters = {
+                @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Repository.class),
+                @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Controller.class),
+                @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Configuration.class)
+        }
+)
+public class RootConfig {
+}
+
+@Configuration
+@ComponentScan(basePackages = {"com.thomasmylonas.loan_system_api_app"}
+        //, excludeFilters = {@ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.ANNOTATION, value = org.springframework.web.servlet.config.annotation.EnableWebMvc.class)}
+)
+public class RootConfig {
+
+    /*// I do not know what it is used for...
+    @Bean
+    public org.springframework.beans.factory.config.BeanPostProcessor persistenceTranslation() {
+        return new org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor();
+    }*/
+}
+
+@Configuration
+@ComponentScan(basePackages = {"com.thomasmylonas.school_api_web_app"},
+        excludeFilters = {
+                @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Repository.class),
+                @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Controller.class),
+                @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Configuration.class)
+        }
+)
+public class RootConfig {
+}
+
+--------------------------------------------------------------------------------------------------------
+
+// includeFilters = {@ComponentScan.Filter(type = FilterType.REGEX, pattern = "com.thomasmylonas.my_website_web_app.*")},
+// excludeFilters = {@ComponentScan.Filter(type = FilterType.REGEX, pattern = "com.thomasmylonas.my_website_web_app.servlet_dispatcher_web_components.controllers.*")}
+// excludeFilters = {@ComponentScan.Filter(type = FilterType.REGEX, pattern = {"com.thomasmylonas.my_website_web_app.servlet_dispatcher_web_components.controllers.*"})}
+// excludeFilters = {@ComponentScan.Filter(type = FilterType.REGEX, pattern = {"com.thomasmylonas.my_website_web_app.servlet_dispatcher_web_components.controllers.*Controller.java"})} // Complete failure...
+// excludeFilters = {@ComponentScan.Filter(type = FilterType.REGEX, pattern = {".*[Controller]"})} // Complete failure...
+--------------------------------------------------------------------------------------------------------
+// The PagesLevel1Controller is created: "2 times" - Errrrroooorrrr
+@ComponentScan(
+    basePackages = {"com.thomasmylonas.my_website_web_app"},
+    excludeFilters = {
+        @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = {PagesLevel1Controller.class}),
+    }
+)
+--------------------------------------------------------------------------------------------------------
+// The PagesLevel1Controller is created: "1 time"
+@ComponentScan(
+    basePackages = {"com.thomasmylonas.my_website_web_app"},
+    excludeFilters = {
+        @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = {PagesLevel1Controller.class}),
+        @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Configuration.class),
+    }
+)
+--------------------------------------------------------------------------------------------------------
+@ComponentScan(
+    basePackages = {
+        "com.thomasmylonas.my_website_web_app.view_layer",
+        "com.thomasmylonas.my_website_web_app.exceptionhandlers_exceptions",
+        "com.thomasmylonas.my_website_web_app.service_layer.models"}
+    }
+)
+--------------------------------------------------------------------------------------------------------
+// Special cases...
+excludeFilters = {
+//    ... ,
+    @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Configuration.class), // Without this, it does not work...
+//    @ComponentScan.Filter(type = FilterType.ANNOTATION, value = EnableWebMvc.class) // NOT working...
+        }
+//,useDefaultFilters = false // This gives complete failure...
+--------------------------------------------------------------------------------------------------------
+[Solution]
+excludeFilters = {
+//    @ComponentScan.Filter(type = FilterType.REGEX, pattern = {".*Controller"}), // This works OK, as the next line...
+    @ComponentScan.Filter(type = FilterType.REGEX, pattern = {"com.thomasmylonas.my_website_web_app.servlet_dispatcher_web_components.controllers.*"}),
+    @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Configuration.class),
+}
