@@ -1,8 +1,9 @@
 package com.thomasmylonas.spring_rest.helpers;
 
 import java.io.IOException;
-import java.time.LocalDate;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 import java.util.stream.Collectors;
@@ -76,7 +77,9 @@ public abstract class HelperClass {
         return Arrays.stream(array).collect(Collectors.joining(delimPrefixSuffix[0], delimPrefixSuffix[1], delimPrefixSuffix[2]));
     }
 
-    public static LocalDate buildDate(int year, int month, int day) {
-        return LocalDate.of(year, month, day);
+    public static Date buildDate(int year, int month, int day) {
+        Calendar cal = Calendar.getInstance();
+        cal.set(year, month, day); // cal.set(1972, Calendar.SEPTEMBER, 24);
+        return cal.getTime();
     }
 }

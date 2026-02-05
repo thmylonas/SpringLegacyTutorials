@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.context.request.WebRequest;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 
 @ControllerAdvice
 public class ExceptionsHandler {
@@ -42,7 +42,7 @@ public class ExceptionsHandler {
     private ResponseEntity<ResponseError> buildResponseError(Exception e, String message, HttpStatus status, WebRequest request) {
 
         ResponseError responseError = ResponseError.builder()
-                .timestamp(LocalDateTime.now())
+                .timestamp(new Date())
                 .statusCode(status.toString())
                 .message(message)
                 .path(request.getDescription(false))

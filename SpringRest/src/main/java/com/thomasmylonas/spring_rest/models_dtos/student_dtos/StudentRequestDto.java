@@ -5,10 +5,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.thomasmylonas.spring_rest.entities.enums.Status;
 import lombok.Builder;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 @Builder
 public record StudentRequestDto(
+        @JsonProperty(value = "id")
         Long id,
 
         @JsonProperty(value = "last_name")
@@ -19,13 +20,15 @@ public record StudentRequestDto(
 
         @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
         @JsonProperty(value = "date_of_birth")
-        LocalDate dateOfBirth,
+        Date dateOfBirth,
 
+        @JsonProperty(value = "absences")
         Integer absences,
 
         @JsonProperty(value = "department_id")
         String departmentId,
 
+        @JsonProperty(value = "status")
         Status status
 ) {
 }

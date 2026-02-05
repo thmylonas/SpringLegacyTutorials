@@ -17,7 +17,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-import java.time.LocalDate;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import java.util.Date;
 
 @Entity(name = "Student")
 @Table(name = "Students")
@@ -42,7 +44,8 @@ public class Student {
     private String firstName;
 
     @Column(name = "Date_Of_Birth")
-    private LocalDate dateOfBirth;
+    @Temporal(TemporalType.DATE)
+    private Date dateOfBirth;
 
     @Column(name = "Absences")
     private Integer absences;

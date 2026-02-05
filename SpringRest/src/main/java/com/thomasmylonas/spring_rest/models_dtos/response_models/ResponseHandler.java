@@ -5,7 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.Map;
 
 public class ResponseHandler {
@@ -17,7 +17,7 @@ public class ResponseHandler {
     public static ResponseEntity<ResponseSuccess> buildResponse(String message, HttpStatus status, String path, Map<String, ?> data) {
 
         ResponseSuccess responseSuccess = ResponseSuccess.builder()
-                .timestamp(LocalDateTime.now())
+                .timestamp(new Date())
                 .statusCode(status.toString())
                 .message(message)
                 .path(path)

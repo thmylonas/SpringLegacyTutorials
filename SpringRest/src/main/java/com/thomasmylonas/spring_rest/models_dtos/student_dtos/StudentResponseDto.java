@@ -5,7 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import com.thomasmylonas.spring_rest.entities.enums.Status;
 import lombok.Builder;
 
-import java.time.LocalDate;
+import java.util.Date;
 
 @Builder
 public record StudentResponseDto(
@@ -20,7 +20,7 @@ public record StudentResponseDto(
 
         @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy")
         @JsonProperty(value = "date_of_birth")
-        LocalDate dateOfBirth,
+        Date dateOfBirth,
 
         @JsonProperty(value = "absences")
         Integer absences,
