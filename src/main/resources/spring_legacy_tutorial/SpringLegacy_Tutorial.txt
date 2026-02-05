@@ -479,6 +479,17 @@ The dependency "org.apache.tomcat/tomcat-catalina/9.0.58" covers the dependencie
 Dependency_14:
 ------------------
 
+The dependency "javax.annotation/javax.annotation-api/1.3.2" is needed for the next annotations:
+- @javax.annotation.PostConstruct
+- @javax.annotation.PreDestroy
+- others
+
+The dependency "javax.annotation/javax.annotation-api/1.3.2" is covered from:
+- the dependency "org.apache.tomcat/tomcat-catalina/9.0.58" (I do not know how it is covered, and from where) [see Dependency_13]
+
+Dependency_15:
+------------------
+
 Links:
 - https://stackoverflow.com/questions/4711943/tomcat-dbcp-vs-commons-dbcp
 - https://tomcat.apache.org/tomcat-7.0-doc/jdbc-pool.html#Introduction
@@ -494,7 +505,7 @@ are removed from "pom.xml" file, because I do not know what they are used for.
     <version>9.0.30</version>
 </dependency>
 
-Dependency_15:
+Dependency_16:
 ------------------
 
 The dependency "directory-naming/naming-java" is removed from "pom.xml" file, because I do not know what it is used for.
@@ -510,7 +521,7 @@ I guess (I am not sure), that the dependency "javax.naming/jndi" is covered by t
     <scope>test</scope>
 </dependency>
 
-Dependency_16:
+Dependency_17:
 ------------------
 
 The dependencies:
