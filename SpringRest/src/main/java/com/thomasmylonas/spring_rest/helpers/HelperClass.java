@@ -16,6 +16,8 @@ import java.util.stream.Collectors;
  */
 public abstract class HelperClass {
 
+    public static final String DEFAULT_TIMEZONE = "Europe/Prague"; // "Europe/Budapest", TimeZone.getDefault().getID()
+
     /**
      * A String[] with the pattern: [delimiter, prefix, suffix], where:
      * delimiter: ", ",
