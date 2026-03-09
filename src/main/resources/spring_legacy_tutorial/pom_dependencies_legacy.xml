@@ -11,7 +11,7 @@
     <properties>
         <!-- Set maven.compiler.source, maven.compiler.target -->
         <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
+        <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
 
         <!-- Set sourceEncoding -->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
