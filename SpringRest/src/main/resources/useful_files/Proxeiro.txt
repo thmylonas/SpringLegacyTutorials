@@ -75,7 +75,7 @@ Start the "H2_Server" in the browser WebApp "H2 Console" ("In-Disk-H2_Database")
 This step does not create the DB and the "Students" table (see [*])
 
 Run the script:
-- resources/db_files/h2_db_files/h2_scripts/Start_H2_InDisk_Database.bat
+- resources/db_files/h2_db_files/h2_scripts/StartH2InDiskDatabaseScript.bat
 
 ========================================================================================================================
 
