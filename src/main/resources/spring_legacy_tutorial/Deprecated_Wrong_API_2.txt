@@ -100,6 +100,17 @@ public class HighRiskLoanException extends RuntimeException {
 }
 
 /**
+ * An Old-times RuntimeException: The code is all wrong (found/copied by Googling)
+ * If the input is invalid (e.g. negative id)
+ */
+@org.springframework.web.bind.annotation.ResponseStatus(
+        value = org.springframework.http.HttpStatus.BAD_REQUEST, // 400: "Bad Request"
+        reason = ""
+)
+public class InvalidInputSuppliedException extends RuntimeException {
+}
+
+/**
  * An Old-times Controller: The code is all wrong (found/copied by Googling)
  */
 @RestController
