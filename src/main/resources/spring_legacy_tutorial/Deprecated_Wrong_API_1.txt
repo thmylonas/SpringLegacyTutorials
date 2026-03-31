@@ -147,6 +147,10 @@ public class StudentController {
     @org.springframework.web.bind.annotation.GetMapping(value = "/{studentId}")
     public Student studentById4(@org.springframework.web.bind.annotation.PathVariable("studentId") long id) {
 
+        if (id < 1) { //|| !UsefulUtils.isInteger(String.valueOf(id))
+            //log.info("400 - Invalid ID supplied");
+            throw new IllegalArgumentException("400 - Invalid ID supplied");
+        }
         Student student = studentDao.findById(id);
         if (student == null) {
             throw new RequestedResourceNotFoundException(id, "The resource not found!");
