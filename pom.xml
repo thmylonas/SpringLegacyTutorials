@@ -7,7 +7,7 @@
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
     <name>SpringLegacyTutorials</name>
-    <description>A tutorial application for Spring_Legacy_Framework (Core, AOP, JDBC, Web, Rest, etc.)</description>
+    <description>A tutorial application on Spring_Legacy_Framework (Core, AOP, JDBC, Web, Rest, etc.)</description>
     <properties>
         <maven.compiler.source>21</maven.compiler.source> <!-- Keep this version Un-Changed (see Proxeiro) -->
         <maven.compiler.target>${maven.compiler.source}</maven.compiler.target>
