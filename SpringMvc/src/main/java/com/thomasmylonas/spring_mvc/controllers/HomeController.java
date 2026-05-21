@@ -9,22 +9,22 @@ import org.springframework.web.bind.annotation.RequestMethod;
 public class HomeController {
 
     @RequestMapping(path = {"", "/", "/home"}, method = RequestMethod.GET)
-    public String fetchHomePage() {
+    public String homePage() {
         return "html_views/home.html"; // "home"
     }
 
     @RequestMapping(path = {"/bootstrap-demo"}, method = RequestMethod.GET)
-    public String fetchBootstrapDemo() {
+    public String bootstrapDemo() {
         return "html_views/bootstrap_demo.html"; // "bootstrap_demo"
     }
 
     @RequestMapping(path = {"/jsp-form"}, method = RequestMethod.GET)
-    public String fetchJspForm() {
+    public String jspForm() {
         return "jsp_views/jsp_form.jsp";
     }
 
     @RequestMapping(path = {"/jsp-form-result"}, method = RequestMethod.POST)
-    public String fetchJspFormResult() {
+    public String jspFormResult() {
         return "jsp_views/jsp_form_result.jsp";
     }
 }
