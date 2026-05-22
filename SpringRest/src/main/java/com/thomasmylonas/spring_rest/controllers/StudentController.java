@@ -6,7 +6,6 @@ import com.thomasmylonas.spring_rest.models_dtos.response_models.ResponseHandler
 import com.thomasmylonas.spring_rest.models_dtos.response_models.ResponseSuccess;
 import com.thomasmylonas.spring_rest.services.StudentService;
 import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -26,7 +25,6 @@ import java.util.Map;
 @Controller
 @RequestMapping(path = {"/api/v1/students"})
 @RequiredArgsConstructor
-@Slf4j
 public class StudentController {
 
     private static final String REQUEST_MAPPING = "/api/v1/students";
