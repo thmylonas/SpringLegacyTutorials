@@ -3,11 +3,9 @@ package com.thomasmylonas.spring_rest.services;
 import com.thomasmylonas.spring_rest.entities.Student;
 import com.thomasmylonas.spring_rest.models_dtos.student_dtos.StudentRequestDto;
 import com.thomasmylonas.spring_rest.models_dtos.student_dtos.StudentResponseDto;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
-@RequiredArgsConstructor
 public class StudentMapper {
 
     public Student toStudent(StudentRequestDto studentRequestDto) {
