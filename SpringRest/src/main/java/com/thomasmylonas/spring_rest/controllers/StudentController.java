@@ -2,7 +2,7 @@ package com.thomasmylonas.spring_rest.controllers;
 
 import com.thomasmylonas.spring_rest.dtos.student_dtos.StudentRequestDto;
 import com.thomasmylonas.spring_rest.dtos.student_dtos.StudentResponseDto;
-import com.thomasmylonas.spring_rest.models.ResponseHandler;
+import com.thomasmylonas.spring_rest.models.ResponseBuilder;
 import com.thomasmylonas.spring_rest.models.ResponseSuccess;
 import com.thomasmylonas.spring_rest.services.StudentService;
 import lombok.RequiredArgsConstructor;
@@ -28,7 +28,9 @@ import java.util.Map;
 public class StudentController {
 
     private static final String REQUEST_MAPPING = "/api/v1/students";
+
     private final StudentService studentService;
+    private final ResponseBuilder responseBuilder;
 
     @RequestMapping(path = {"/{id}"}, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
@@ -40,7 +42,7 @@ public class StudentController {
         }
         StudentResponseDto studentResponseDto = studentService.findStudentById(id);
         final String message = "Success: The Student with the ID '" + id + "' is found!";
-        return ResponseHandler.buildResponse(message, HttpStatus.OK, Map.of("student_response", studentResponseDto));
+        return responseBuilder.buildResponseSuccess(message, HttpStatus.OK, Map.of("student_response", studentResponseDto));
     }
 
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -49,7 +51,7 @@ public class StudentController {
     public ResponseEntity<ResponseSuccess> findAllStudents() { // "http://localhost:8080/api/v1/students"
         List<StudentResponseDto> studentResponseDtos = studentService.findAllStudents();
         final String message = "Success: The Students are found!";
-        return ResponseHandler.buildResponse(message, HttpStatus.OK, Map.of("students_response", studentResponseDtos));
+        return responseBuilder.buildResponseSuccess(message, HttpStatus.OK, Map.of("students_response", studentResponseDtos));
     }
 
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -67,7 +69,7 @@ public class StudentController {
                 .path(REQUEST_MAPPING + "/{id}")
                 .buildAndExpand(savedStudentResponseDto.id())
                 .toUriString();
-        return ResponseHandler.buildResponse(message, HttpStatus.CREATED, savedStudentUri, Map.of("saved_student_response", savedStudentResponseDto));
+        return responseBuilder.buildResponseSuccess(message, HttpStatus.CREATED, savedStudentUri, Map.of("saved_student_response", savedStudentResponseDto));
     }
 
     @RequestMapping(path = {"/all"}, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -79,7 +81,7 @@ public class StudentController {
         }
         List<StudentResponseDto> savedStudentResponseDtos = studentService.saveAllStudents(studentRequestDtos);
         final String message = "Created: The Students have been created successfully!";
-        return ResponseHandler.buildResponse(message, HttpStatus.CREATED, Map.of("saved_students_response", savedStudentResponseDtos));
+        return responseBuilder.buildResponseSuccess(message, HttpStatus.CREATED, Map.of("saved_students_response", savedStudentResponseDtos));
     }
 
     @RequestMapping(path = {"/{id}"}, method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
@@ -92,7 +94,7 @@ public class StudentController {
         }
         StudentResponseDto updatedStudentResponseDto = studentService.updateStudent(studentRequestDto, id);
         final String message = "Success: The Student with ID '" + id + "' has been updated successfully!";
-        return ResponseHandler.buildResponse(message, HttpStatus.OK, Map.of("updated_student_response", updatedStudentResponseDto));
+        return responseBuilder.buildResponseSuccess(message, HttpStatus.OK, Map.of("updated_student_response", updatedStudentResponseDto));
     }
 
     @RequestMapping(path = {"/{id}"}, method = RequestMethod.DELETE)
@@ -105,6 +107,6 @@ public class StudentController {
         }
         studentService.deleteStudentById(id);
         final String message = "Success: The Student with ID '" + id + "' has been deleted successfully!";
-        return ResponseHandler.buildResponse(message, HttpStatus.OK, Map.of("message", message));
+        return responseBuilder.buildResponseSuccess(message, HttpStatus.OK, Map.of("message", message));
     }
 }
