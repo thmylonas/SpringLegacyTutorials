@@ -2,8 +2,8 @@ package com.thomasmylonas.spring_rest.services;
 
 import com.thomasmylonas.spring_rest.entities.Student;
 import com.thomasmylonas.spring_rest.helpers.TestDataProvider;
-import com.thomasmylonas.spring_rest.models_dtos.student_dtos.StudentRequestDto;
-import com.thomasmylonas.spring_rest.models_dtos.student_dtos.StudentResponseDto;
+import com.thomasmylonas.spring_rest.dtos.student_dtos.StudentRequestDto;
+import com.thomasmylonas.spring_rest.dtos.student_dtos.StudentResponseDto;
 import com.thomasmylonas.spring_rest.daos.StudentDao;
 import com.thomasmylonas.spring_rest.services.mappers.StudentMapper;
 import lombok.RequiredArgsConstructor;

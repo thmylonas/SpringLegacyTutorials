@@ -1,9 +1,9 @@
 package com.thomasmylonas.spring_rest.controllers;
 
-import com.thomasmylonas.spring_rest.models_dtos.student_dtos.StudentRequestDto;
-import com.thomasmylonas.spring_rest.models_dtos.student_dtos.StudentResponseDto;
-import com.thomasmylonas.spring_rest.response_models.ResponseHandler;
-import com.thomasmylonas.spring_rest.response_models.ResponseSuccess;
+import com.thomasmylonas.spring_rest.dtos.student_dtos.StudentRequestDto;
+import com.thomasmylonas.spring_rest.dtos.student_dtos.StudentResponseDto;
+import com.thomasmylonas.spring_rest.models.ResponseHandler;
+import com.thomasmylonas.spring_rest.models.ResponseSuccess;
 import com.thomasmylonas.spring_rest.services.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

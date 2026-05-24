@@ -1,8 +1,8 @@
 package com.thomasmylonas.spring_rest.services;
 
 import com.thomasmylonas.spring_rest.exceptions.RequestedResourceNotFoundException;
-import com.thomasmylonas.spring_rest.models_dtos.student_dtos.StudentRequestDto;
-import com.thomasmylonas.spring_rest.models_dtos.student_dtos.StudentResponseDto;
+import com.thomasmylonas.spring_rest.dtos.student_dtos.StudentRequestDto;
+import com.thomasmylonas.spring_rest.dtos.student_dtos.StudentResponseDto;
 
 import java.util.List;
 

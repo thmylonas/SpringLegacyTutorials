@@ -1,4 +1,4 @@
-package com.thomasmylonas.spring_rest.response_models;
+package com.thomasmylonas.spring_rest.models;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
