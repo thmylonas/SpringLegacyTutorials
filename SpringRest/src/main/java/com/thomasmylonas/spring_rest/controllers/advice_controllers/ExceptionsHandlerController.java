@@ -1,7 +1,7 @@
 package com.thomasmylonas.spring_rest.controllers.advice_controllers;
 
 import com.thomasmylonas.spring_rest.exceptions.RequestedResourceNotFoundException;
-import com.thomasmylonas.spring_rest.models_dtos.response_models.ResponseError;
+import com.thomasmylonas.spring_rest.response_models.ResponseError;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
