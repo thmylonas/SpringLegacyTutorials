@@ -1,7 +1,7 @@
 package com.thomasmylonas.spring_rest.helpers;
 
 import com.thomasmylonas.spring_rest.entities.Student;
-import com.thomasmylonas.spring_rest.entities.enums.Status;
+import com.thomasmylonas.spring_rest.enums.Status;
 
 import java.util.Calendar;
 import java.util.List;

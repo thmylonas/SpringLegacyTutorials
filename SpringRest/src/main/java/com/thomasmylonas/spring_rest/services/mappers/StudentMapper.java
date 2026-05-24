@@ -1,4 +1,4 @@
-package com.thomasmylonas.spring_rest.services;
+package com.thomasmylonas.spring_rest.services.mappers;
 
 import com.thomasmylonas.spring_rest.entities.Student;
 import com.thomasmylonas.spring_rest.models_dtos.student_dtos.StudentRequestDto;

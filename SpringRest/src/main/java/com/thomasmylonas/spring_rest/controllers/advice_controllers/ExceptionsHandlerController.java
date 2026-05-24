@@ -13,7 +13,7 @@ import org.springframework.web.context.request.WebRequest;
 import java.util.Date;
 
 @ControllerAdvice
-public class ExceptionsHandler {
+public class ExceptionsHandlerController {
 
     @ExceptionHandler(value = {RequestedResourceNotFoundException.class})
     @ResponseStatus(value = HttpStatus.NOT_FOUND) // 404: "Not Found"

@@ -2,7 +2,7 @@ package com.thomasmylonas.spring_rest.models_dtos.student_dtos;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.thomasmylonas.spring_rest.entities.enums.Status;
+import com.thomasmylonas.spring_rest.enums.Status;
 import lombok.Builder;
 
 import java.util.Date;
