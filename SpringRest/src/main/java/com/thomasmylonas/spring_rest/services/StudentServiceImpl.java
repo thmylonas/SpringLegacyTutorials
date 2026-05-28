@@ -1,6 +1,7 @@
 package com.thomasmylonas.spring_rest.services;
 
 import com.thomasmylonas.spring_rest.entities.Student;
+import com.thomasmylonas.spring_rest.exceptions.RequestedResourceNotFoundException;
 import com.thomasmylonas.spring_rest.helpers.TestDataProvider;
 import com.thomasmylonas.spring_rest.dtos.student_dtos.StudentRequestDto;
 import com.thomasmylonas.spring_rest.dtos.student_dtos.StudentResponseDto;
@@ -26,7 +27,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public StudentResponseDto findStudentById(Long id) {
+    public StudentResponseDto findStudentById(Long id) throws IllegalArgumentException, RequestedResourceNotFoundException {
         Student student = studentDao.findById(id); // IllegalArgumentException, RequestedResourceNotFoundException
         return studentMapper.fromStudent(student);
     }
@@ -38,7 +39,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public StudentResponseDto saveStudent(StudentRequestDto studentRequestDto) {
+    public StudentResponseDto saveStudent(StudentRequestDto studentRequestDto) throws IllegalArgumentException {
 
         if (studentRequestDto == null) {
             throw new IllegalArgumentException("The studentRequestDto is not valid (is null)!");
@@ -49,7 +50,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public List<StudentResponseDto> saveAllStudents(List<StudentRequestDto> studentRequestDtos) {
+    public List<StudentResponseDto> saveAllStudents(List<StudentRequestDto> studentRequestDtos) throws IllegalArgumentException {
 
         if (studentRequestDtos == null || studentRequestDtos.contains(null)) {
             throw new IllegalArgumentException("The studentRequestDtos are not valid (are null)!");
@@ -60,7 +61,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public StudentResponseDto updateStudent(StudentRequestDto studentRequestDto, Long id) {
+    public StudentResponseDto updateStudent(StudentRequestDto studentRequestDto, Long id) throws IllegalArgumentException, RequestedResourceNotFoundException {
 
         if (studentRequestDto == null) {
             throw new IllegalArgumentException("The studentRequestDto is not valid (is null)!");
@@ -71,7 +72,7 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public void deleteStudentById(Long id) {
+    public void deleteStudentById(Long id) throws IllegalArgumentException {
         studentDao.deleteById(id); // IllegalArgumentException
     }
 
