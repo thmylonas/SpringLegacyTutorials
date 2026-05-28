@@ -12,23 +12,23 @@ import java.util.Map;
 @Service
 public class ResponseBuilder {
 
-    public ResponseEntity<ResponseSuccess> buildResponseSuccess(String message, HttpStatus status, Map<String, ?> data) {
-        return buildResponseSuccess(message, status, ServletUriComponentsBuilder.fromCurrentRequest().toUriString(), data);
+    public ResponseEntity<ResponseSuccess> buildResponseSuccess(HttpStatus httpStatus, String message, Map<String, ?> data) {
+        return buildResponseSuccess(httpStatus, message, ServletUriComponentsBuilder.fromCurrentRequest().toUriString(), data);
     }
 
-    public ResponseEntity<ResponseSuccess> buildResponseSuccess(String message, HttpStatus status, String path, Map<String, ?> data) {
+    public ResponseEntity<ResponseSuccess> buildResponseSuccess(HttpStatus httpStatus, String message, String path, Map<String, ?> data) {
 
         ResponseSuccess responseSuccess = ResponseSuccess.builder()
                 .timestamp(new Date())
-                .statusCode(status.toString())
+                .statusCode(httpStatus.toString())
                 .message(message)
                 .path(path)
                 .data(data)
                 .build();
-        return ResponseEntity.status(status).header(HttpHeaders.LOCATION, path).body(responseSuccess);
+        return ResponseEntity.status(httpStatus).header(HttpHeaders.LOCATION, path).body(responseSuccess);
     }
 
-    public ResponseEntity<ResponseError> buildResponseError(Exception e, HttpStatus httpStatus, Map<String, ?> errorMessages) {
+    public ResponseEntity<ResponseError> buildResponseError(HttpStatus httpStatus, Map<String, ?> errorMessages) {
 
         ResponseError responseError = ResponseError.builder()
                 .timestamp(new Date())
