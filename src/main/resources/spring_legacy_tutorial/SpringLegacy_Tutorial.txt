@@ -74,8 +74,8 @@ If "public class WebConfig implements WebMvcConfigurer":
 
 ========================================================================================================================
 
-How to add static CSS,JS files in the Spring MVC app (without Thymeleaf)
-----------------------------------------------------------------------------
+[SpringMvc] How to add static CSS,JS files in the SpringMVC app (without Thymeleaf)
+---------------------------------------------------------------------------------------
 
 <head>
     <!-- Stylesheets -->
