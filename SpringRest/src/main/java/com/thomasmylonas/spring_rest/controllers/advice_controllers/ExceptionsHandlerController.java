@@ -24,7 +24,7 @@ public class ExceptionsHandlerController {
     @ResponseBody
     public ResponseEntity<ResponseError> handleRequestedResourceNotFoundException(RequestedResourceNotFoundException e) {
         String message = "The resource not found: " + e.getMessage();
-        return responseBuilder.buildResponseError(e, HttpStatus.NOT_FOUND, Map.of("error_message", message));
+        return responseBuilder.buildResponseError(HttpStatus.NOT_FOUND, Map.of("error_message", message));
     }
 
     @ExceptionHandler(value = {IllegalArgumentException.class})
@@ -32,7 +32,7 @@ public class ExceptionsHandlerController {
     @ResponseBody
     public ResponseEntity<ResponseError> handleIllegalArgumentException(IllegalArgumentException e) {
         String message = "The request arguments are not valid: " + e.getMessage();
-        return responseBuilder.buildResponseError(e, HttpStatus.NOT_FOUND, Map.of("error_message", message));
+        return responseBuilder.buildResponseError(HttpStatus.NOT_FOUND, Map.of("error_message", message));
     }
 
     @ExceptionHandler(value = {Exception.class})
@@ -40,6 +40,6 @@ public class ExceptionsHandlerController {
     @ResponseBody
     public ResponseEntity<ResponseError> handleAllUncaughtExceptions(Exception e) {
         String message = "Unknown error occurred: " + e.getMessage();
-        return responseBuilder.buildResponseError(e, HttpStatus.INTERNAL_SERVER_ERROR, Map.of("error_message", message));
+        return responseBuilder.buildResponseError(HttpStatus.INTERNAL_SERVER_ERROR, Map.of("error_message", message));
     }
 }
