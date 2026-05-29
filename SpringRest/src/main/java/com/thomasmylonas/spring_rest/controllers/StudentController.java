@@ -35,13 +35,13 @@ public class StudentController {
     @RequestMapping(path = {"/{id}"}, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody
-    public ResponseEntity<ResponseSuccess> findStudentById(@PathVariable(name = "id") Long id) { // "http://localhost:8080/api/v1/students/{id}"
+    public ResponseEntity<ResponseSuccess> findStudentById(@PathVariable(name = "id") Long studentId) { // "http://localhost:8080/api/v1/students/{id}"
 
-        if (id == null || id < 0) {
+        if (studentId == null || studentId < 0) {
             throw new IllegalArgumentException("The id is not valid!");
         }
-        StudentResponseDto studentResponseDto = studentService.findStudentById(id);
-        final String message = "Success: The Student with the ID '" + id + "' is found!";
+        StudentResponseDto studentResponseDto = studentService.findStudentById(studentId);
+        final String message = "Success: The Student with the ID '" + studentId + "' is found!";
         return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("student_response", studentResponseDto));
     }
 
@@ -87,26 +87,26 @@ public class StudentController {
     @RequestMapping(path = {"/{id}"}, method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody
-    public ResponseEntity<ResponseSuccess> updateStudent(@RequestBody StudentRequestDto studentRequestDto, @PathVariable(name = "id") Long id, ServletRequest servletRequest) { // "http://localhost:8080/api/v1/students/{id}"
+    public ResponseEntity<ResponseSuccess> updateStudent(@RequestBody StudentRequestDto studentRequestDto, @PathVariable(name = "id") Long studentId) { // "http://localhost:8080/api/v1/students/{id}"
 
-        if (id == null || id < 0 || studentRequestDto == null) {
+        if (studentId == null || studentId < 0 || studentRequestDto == null) {
             throw new IllegalArgumentException("The arguments are not valid!");
         }
-        StudentResponseDto updatedStudentResponseDto = studentService.updateStudent(studentRequestDto, id);
-        final String message = "Success: The Student with ID '" + id + "' has been updated successfully!";
+        StudentResponseDto updatedStudentResponseDto = studentService.updateStudent(studentRequestDto, studentId);
+        final String message = "Success: The Student with ID '" + studentId + "' has been updated successfully!";
         return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("updated_student_response", updatedStudentResponseDto));
     }
 
     @RequestMapping(path = {"/{id}"}, method = RequestMethod.DELETE)
     @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody
-    public ResponseEntity<ResponseSuccess> deleteStudentById(@PathVariable(name = "id") Long id) { // "http://localhost:8080/api/v1/students/{id}"
+    public ResponseEntity<ResponseSuccess> deleteStudentById(@PathVariable(name = "id") Long studentId) { // "http://localhost:8080/api/v1/students/{id}"
 
-        if (id == null || id < 0) {
+        if (studentId == null || studentId < 0) {
             throw new IllegalArgumentException("The id is not valid!");
         }
-        studentService.deleteStudentById(id);
-        final String message = "Success: The Student with ID '" + id + "' has been deleted successfully!";
+        studentService.deleteStudentById(studentId);
+        final String message = "Success: The Student with ID '" + studentId + "' has been deleted successfully!";
         return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("message", message));
     }
 }
