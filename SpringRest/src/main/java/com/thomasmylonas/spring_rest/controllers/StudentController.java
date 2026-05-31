@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.servlet.ServletRequest;
 import java.util.List;
 import java.util.Map;
 
@@ -32,10 +31,17 @@ public class StudentController {
     private final StudentService studentService;
     private final ResponseBuilder responseBuilder;
 
+    /**
+     * Endpoint:
+     * - GET, "http://localhost:8080/api/v1/students/{id}"
+     *
+     * @param studentId The "studentId"
+     * @return The ResponseEntity<ResponseSuccess>
+     */
     @RequestMapping(path = {"/{id}"}, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody
-    public ResponseEntity<ResponseSuccess> findStudentById(@PathVariable(name = "id") Long studentId) { // "http://localhost:8080/api/v1/students/{id}"
+    public ResponseEntity<ResponseSuccess> findStudentById(@PathVariable(name = "id") Long studentId) {
 
         if (studentId == null || studentId < 0) {
             throw new IllegalArgumentException("The id is not valid!");
@@ -45,19 +51,32 @@ public class StudentController {
         return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("student_response", studentResponseDto));
     }
 
+    /**
+     * Endpoint:
+     * - GET, "http://localhost:8080/api/v1/students"
+     *
+     * @return The ResponseEntity<ResponseSuccess>
+     */
     @RequestMapping(method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody
-    public ResponseEntity<ResponseSuccess> findAllStudents() { // "http://localhost:8080/api/v1/students"
+    public ResponseEntity<ResponseSuccess> findAllStudents() {
         List<StudentResponseDto> studentResponseDtos = studentService.findAllStudents();
         final String message = "Success: The Students are found!";
         return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("students_response", studentResponseDtos));
     }
 
+    /**
+     * Endpoint:
+     * - POST, "http://localhost:8080/api/v1/students"
+     *
+     * @param studentRequestDto The "studentRequestDto"
+     * @return The ResponseEntity<ResponseSuccess>
+     */
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.CREATED)
     @ResponseBody
-    public ResponseEntity<ResponseSuccess> saveStudent(@RequestBody StudentRequestDto studentRequestDto) { // "http://localhost:8080/api/v1/students"
+    public ResponseEntity<ResponseSuccess> saveStudent(@RequestBody StudentRequestDto studentRequestDto) {
 
         if (studentRequestDto == null) {
             throw new IllegalArgumentException("The student is not valid (is null)!");
@@ -72,9 +91,16 @@ public class StudentController {
         return responseBuilder.buildResponseSuccess(HttpStatus.CREATED, message, savedStudentUri, Map.of("saved_student_response", savedStudentResponseDto));
     }
 
+    /**
+     * Endpoint:
+     * - POST, "http://localhost:8080/api/v1/students/all"
+     *
+     * @param studentRequestDtos The "studentRequestDtos"
+     * @return The ResponseEntity<ResponseSuccess>
+     */
     @RequestMapping(path = {"/all"}, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.CREATED)
-    public ResponseEntity<ResponseSuccess> saveAllStudents(@RequestBody List<StudentRequestDto> studentRequestDtos) { // "http://localhost:8080/api/v1/students/all"
+    public ResponseEntity<ResponseSuccess> saveAllStudents(@RequestBody List<StudentRequestDto> studentRequestDtos) {
 
         if (studentRequestDtos == null || studentRequestDtos.isEmpty() || studentRequestDtos.contains(null)) {
             throw new IllegalArgumentException("The students are not valid!");
@@ -84,10 +110,18 @@ public class StudentController {
         return responseBuilder.buildResponseSuccess(HttpStatus.CREATED, message, Map.of("saved_students_response", savedStudentResponseDtos));
     }
 
+    /**
+     * Endpoint:
+     * - PUT, "http://localhost:8080/api/v1/students/{id}"
+     *
+     * @param studentRequestDto The "studentRequestDto"
+     * @param studentId         The "studentId"
+     * @return The ResponseEntity<ResponseSuccess>
+     */
     @RequestMapping(path = {"/{id}"}, method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody
-    public ResponseEntity<ResponseSuccess> updateStudent(@RequestBody StudentRequestDto studentRequestDto, @PathVariable(name = "id") Long studentId) { // "http://localhost:8080/api/v1/students/{id}"
+    public ResponseEntity<ResponseSuccess> updateStudent(@RequestBody StudentRequestDto studentRequestDto, @PathVariable(name = "id") Long studentId) {
 
         if (studentId == null || studentId < 0 || studentRequestDto == null) {
             throw new IllegalArgumentException("The arguments are not valid!");
@@ -97,10 +131,17 @@ public class StudentController {
         return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("updated_student_response", updatedStudentResponseDto));
     }
 
+    /**
+     * Endpoint:
+     * - DELETE, "http://localhost:8080/api/v1/students/{id}"
+     *
+     * @param studentId The "studentId"
+     * @return The ResponseEntity<ResponseSuccess>
+     */
     @RequestMapping(path = {"/{id}"}, method = RequestMethod.DELETE)
     @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody
-    public ResponseEntity<ResponseSuccess> deleteStudentById(@PathVariable(name = "id") Long studentId) { // "http://localhost:8080/api/v1/students/{id}"
+    public ResponseEntity<ResponseSuccess> deleteStudentById(@PathVariable(name = "id") Long studentId) {
 
         if (studentId == null || studentId < 0) {
             throw new IllegalArgumentException("The id is not valid!");
