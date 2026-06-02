@@ -89,6 +89,7 @@ This means:
 
 This API does NOT contain the next:
 - NO Validation Code using any validation library ("org.hibernate/hibernate-validator/7.0.1.Final")
+- The "Manual_Validation" is done in all the 3 tiers of the application. It should be done only in 1 of the tiers.
 - NO use of "Spring_Data_JPA" ("org.springframework.data.jpa.repository.JpaRepository<T, ID>")
 - NO use of "HATEOAS"
 - NO Return of any "stacktrace"
