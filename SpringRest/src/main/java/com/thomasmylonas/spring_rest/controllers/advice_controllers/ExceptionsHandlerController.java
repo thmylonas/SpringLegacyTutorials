@@ -32,7 +32,7 @@ public class ExceptionsHandlerController {
     @ResponseBody
     public ResponseEntity<ResponseError> handleIllegalArgumentException(IllegalArgumentException e) {
         String message = "The request arguments are not valid: " + e.getMessage();
-        return responseBuilder.buildResponseError(HttpStatus.NOT_FOUND, Map.of("error_message", message));
+        return responseBuilder.buildResponseError(HttpStatus.BAD_REQUEST, Map.of("error_message", message));
     }
 
     @ExceptionHandler(value = {Exception.class})
