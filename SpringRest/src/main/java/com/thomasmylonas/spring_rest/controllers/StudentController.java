@@ -46,8 +46,8 @@ public class StudentController {
         if (studentId == null || studentId < 0) {
             throw new IllegalArgumentException("The id is not valid!");
         }
-        StudentResponseDto studentResponseDto = studentService.findStudentById(studentId);
         final String message = "Success: The Student with the ID '" + studentId + "' is found!";
+        StudentResponseDto studentResponseDto = studentService.findStudentById(studentId);
         return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("student_response", studentResponseDto));
     }
 
@@ -61,8 +61,8 @@ public class StudentController {
     @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody
     public ResponseEntity<ResponseSuccess> findAllStudents() {
-        List<StudentResponseDto> studentResponseDtos = studentService.findAllStudents();
         final String message = "Success: The Students are found!";
+        List<StudentResponseDto> studentResponseDtos = studentService.findAllStudents();
         return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("students_response", studentResponseDtos));
     }
 
@@ -81,10 +81,10 @@ public class StudentController {
         if (studentRequestDto == null) {
             throw new IllegalArgumentException("The student is not valid (is null)!");
         }
-        StudentResponseDto savedStudentResponseDto = studentService.saveStudent(studentRequestDto);
         final String message = "Created: The Student has been created successfully!";
-
-        String savedStudentUri = ServletUriComponentsBuilder.fromCurrentContextPath()
+        StudentResponseDto savedStudentResponseDto = studentService.saveStudent(studentRequestDto);
+        String savedStudentUri = ServletUriComponentsBuilder
+                .fromCurrentContextPath() // "http://localhost:8080"
                 .path(REQUEST_MAPPING + "/{id}")
                 .buildAndExpand(savedStudentResponseDto.id())
                 .toUriString();
@@ -105,8 +105,8 @@ public class StudentController {
         if (studentRequestDtos == null || studentRequestDtos.isEmpty() || studentRequestDtos.contains(null)) {
             throw new IllegalArgumentException("The students are not valid!");
         }
-        List<StudentResponseDto> savedStudentResponseDtos = studentService.saveAllStudents(studentRequestDtos);
         final String message = "Created: The Students have been created successfully!";
+        List<StudentResponseDto> savedStudentResponseDtos = studentService.saveAllStudents(studentRequestDtos);
         return responseBuilder.buildResponseSuccess(HttpStatus.CREATED, message, Map.of("saved_students_response", savedStudentResponseDtos));
     }
 
@@ -126,8 +126,8 @@ public class StudentController {
         if (studentId == null || studentId < 0 || studentRequestDto == null) {
             throw new IllegalArgumentException("The arguments are not valid!");
         }
-        StudentResponseDto updatedStudentResponseDto = studentService.updateStudent(studentRequestDto, studentId);
         final String message = "Success: The Student with ID '" + studentId + "' has been updated successfully!";
+        StudentResponseDto updatedStudentResponseDto = studentService.updateStudent(studentRequestDto, studentId);
         return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("updated_student_response", updatedStudentResponseDto));
     }
 
@@ -146,8 +146,8 @@ public class StudentController {
         if (studentId == null || studentId < 0) {
             throw new IllegalArgumentException("The id is not valid!");
         }
-        studentService.deleteStudentById(studentId);
         final String message = "Success: The Student with ID '" + studentId + "' has been deleted successfully!";
+        studentService.deleteStudentById(studentId);
         return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("message", message));
     }
 }
