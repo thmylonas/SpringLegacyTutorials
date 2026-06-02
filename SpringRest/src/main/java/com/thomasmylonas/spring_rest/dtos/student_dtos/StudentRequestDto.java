@@ -9,9 +9,6 @@ import java.util.Date;
 
 @Builder
 public record StudentRequestDto(
-        @JsonProperty(value = "id")
-        Long id,
-
         @JsonProperty(value = "last_name")
         String lastName,
 
