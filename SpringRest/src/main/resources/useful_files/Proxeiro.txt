@@ -89,13 +89,16 @@ This means:
 
 This API does NOT contain the next:
 - NO Validation Code using any validation library ("org.hibernate/hibernate-validator/7.0.1.Final")
-- The "Manual_Validation" is done in all the 3 tiers of the application. It should be done only in 1 of the tiers.
 - NO use of "Spring_Data_JPA" ("org.springframework.data.jpa.repository.JpaRepository<T, ID>")
 - NO use of "HATEOAS"
 - NO Return of any "stacktrace"
 
 Significant Notes:
 - The names as long as they will be finalized, they will not be changed
-- In this API the validation will be done manually, as it is done in the "StudentDao"
+- In this API the validation will be done manually ("Manual_Validation"), as it is done in the "StudentDao"
+- The "Manual_Validation" should be done only in 1 of the tiers/layers of the application.
+    It is done though in all the 3 tiers/layers of the application, which is not good practice.
+    The purpose of this verbosity, is because this legacy project is just a template/tutorial project.
+    In a real application, should be decided in what level the "Manual_Validation" should take place.
 
 ========================================================================================================================
