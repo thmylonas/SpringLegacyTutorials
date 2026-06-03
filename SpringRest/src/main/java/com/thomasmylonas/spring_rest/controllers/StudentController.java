@@ -100,6 +100,7 @@ public class StudentController {
      */
     @RequestMapping(path = {"/all"}, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.CREATED)
+    @ResponseBody
     public ResponseEntity<ResponseSuccess> saveAllStudents(@RequestBody List<StudentRequestDto> studentRequestDtos) {
 
         if (studentRequestDtos == null || studentRequestDtos.isEmpty() || studentRequestDtos.contains(null)) {
