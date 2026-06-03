@@ -41,7 +41,7 @@ public class StudentController {
     @RequestMapping(path = {"/{id}"}, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody
-    public ResponseEntity<ResponseSuccess> findStudentById(@PathVariable(name = "id") Long studentId) {
+    public ResponseEntity<ResponseSuccess> findStudentById(@PathVariable(value = "id") Long studentId) {
 
         if (studentId == null || studentId < 0) {
             throw new IllegalArgumentException("The id is not valid!");
@@ -122,7 +122,7 @@ public class StudentController {
     @RequestMapping(path = {"/{id}"}, method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody
-    public ResponseEntity<ResponseSuccess> updateStudent(@RequestBody StudentRequestDto studentRequestDto, @PathVariable(name = "id") Long studentId) {
+    public ResponseEntity<ResponseSuccess> updateStudent(@RequestBody StudentRequestDto studentRequestDto, @PathVariable(value = "id") Long studentId) {
 
         if (studentId == null || studentId < 0 || studentRequestDto == null) {
             throw new IllegalArgumentException("The arguments are not valid!");
@@ -142,7 +142,7 @@ public class StudentController {
     @RequestMapping(path = {"/{id}"}, method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody
-    public ResponseEntity<ResponseSuccess> deleteStudentById(@PathVariable(name = "id") Long studentId) {
+    public ResponseEntity<ResponseSuccess> deleteStudentById(@PathVariable(value = "id") Long studentId) {
 
         if (studentId == null || studentId < 0) {
             throw new IllegalArgumentException("The id is not valid!");
