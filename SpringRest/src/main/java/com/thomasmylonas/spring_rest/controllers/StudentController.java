@@ -139,7 +139,7 @@ public class StudentController {
      * @param studentId The "studentId"
      * @return The ResponseEntity<ResponseSuccess>
      */
-    @RequestMapping(path = {"/{id}"}, method = RequestMethod.DELETE)
+    @RequestMapping(path = {"/{id}"}, method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody
     public ResponseEntity<ResponseSuccess> deleteStudentById(@PathVariable(name = "id") Long studentId) {
