@@ -33,7 +33,7 @@ public class Student {
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "Students_Id_Seq_Generator")
-    @SequenceGenerator(name = "Students_Id_Seq_Generator", sequenceName = "Students_Id_Seq", allocationSize = 1)
+    @SequenceGenerator(name = "Students_Id_Seq_Generator", sequenceName = "Students_Id_Seq", initialValue = 1, allocationSize = 1)
     @Column(name = "Id")
     private Long id;
 
