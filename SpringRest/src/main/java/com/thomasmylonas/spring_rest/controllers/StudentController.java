@@ -46,7 +46,7 @@ public class StudentController {
         if (studentId == null || studentId < 0) {
             throw new IllegalArgumentException("The id is not valid!");
         }
-        final String message = "Success: The Student with the ID '" + studentId + "' is found!";
+        final String message = "Success: The Student with ID " + studentId + " is found!";
         StudentResponseDto studentResponseDto = studentService.findStudentById(studentId);
         return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("student_response", studentResponseDto));
     }
@@ -127,7 +127,7 @@ public class StudentController {
         if (studentId == null || studentId < 0 || studentRequestDto == null) {
             throw new IllegalArgumentException("The arguments are not valid!");
         }
-        final String message = "Success: The Student with ID '" + studentId + "' has been updated successfully!";
+        final String message = "Success: The Student with ID " + studentId + " has been updated successfully!";
         StudentResponseDto updatedStudentResponseDto = studentService.updateStudent(studentRequestDto, studentId);
         return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("updated_student_response", updatedStudentResponseDto));
     }
@@ -147,7 +147,7 @@ public class StudentController {
         if (studentId == null || studentId < 0) {
             throw new IllegalArgumentException("The id is not valid!");
         }
-        final String message = "Success: The Student with ID '" + studentId + "' has been deleted successfully!";
+        final String message = "Success: The Student with ID " + studentId + " has been deleted successfully!";
         studentService.deleteStudentById(studentId);
         return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("message", message));
     }
