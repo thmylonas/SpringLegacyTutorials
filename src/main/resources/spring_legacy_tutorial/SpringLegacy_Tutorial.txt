@@ -6,7 +6,7 @@ The Configuration and the "ComponentScan"
 We have to exclude: "@ComponentScan.Filter(type = FilterType.ANNOTATION, value = Configuration.class)"
 from all the Configuration classes. Otherwise, the Controllers will be called many times
 
-@ComponentScan(basePackages = {"com.packages.path.to.app"},
+@Configuration @ComponentScan(basePackages = {"com.packages.path.to.app"},
         excludeFilters = {
                 @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Repository.class),
                 @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Controller.class),
@@ -15,14 +15,14 @@ from all the Configuration classes. Otherwise, the Controllers will be called ma
 )
 public class RootConfig {}
 
-@ComponentScan(basePackages = {"com.packages.path.to.controllers_directory.controllers"},
+@Configuration @ComponentScan(basePackages = {"com.packages.path.to.controllers_directory.controllers"},
         excludeFilters = {
                 @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Configuration.class)
         }
 )
 public class WebConfig {}
 
-@ComponentScan(basePackages = {"com.packages.path.to.data_access_layer.daos"},
+@Configuration @ComponentScan(basePackages = {"com.packages.path.to.data_access_layer.daos"},
         excludeFilters = {
                 @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Configuration.class)
         }
@@ -31,13 +31,46 @@ public class DataAccessConfig {}
 
 2. How to use "FilterType.REGEX"
 
-@ComponentScan(basePackages = {"com.packages.path.to.app"},
+@Configuration @ComponentScan(basePackages = {"com.packages.path.to.app"},
         excludeFilters = {
                 @ComponentScan.Filter(type = FilterType.REGEX, pattern = {"com\\.packages\\.path\\.to\\.app\\.data_access_layer\\..*"}),
                 @ComponentScan.Filter(type = FilterType.REGEX, pattern = {"com\\.packages\\.path\\.to\\.app\\.servlet_dispatcher_web_components\\..*"}),
         }
 )
 public class RootConfig {}
+
+
+---------------------
+
+// includeFilters = {@ComponentScan.Filter(type = FilterType.REGEX, pattern = "com.thomasmylonas.my_website_web_app.*")},
+// excludeFilters = {@ComponentScan.Filter(type = FilterType.REGEX, pattern = "com.thomasmylonas.my_website_web_app.servlet_dispatcher_web_components.controllers.*")}
+// excludeFilters = {@ComponentScan.Filter(type = FilterType.REGEX, pattern = {"com.thomasmylonas.my_website_web_app.servlet_dispatcher_web_components.controllers.*"})}
+// excludeFilters = {@ComponentScan.Filter(type = FilterType.REGEX, pattern = {"com.thomasmylonas.my_website_web_app.servlet_dispatcher_web_components.controllers.*Controller.java"})} // Complete failure...
+// excludeFilters = {@ComponentScan.Filter(type = FilterType.REGEX, pattern = {".*[Controller]"})} // Complete failure...
+
+
+@Configuration @ComponentScan(
+        basePackages = {"com.thomasmylonas.my_website_web_app"},
+        excludeFilters = {
+                @ComponentScan.Filter(type = FilterType.REGEX, pattern = {"com.thomasmylonas.my_website_web_app.servlet_dispatcher_web_components.controllers.*"}),
+                //@ComponentScan.Filter(type = FilterType.REGEX, pattern = {"com.thomasmylonas.my_website_web_app.data_access.*"}),
+                @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Configuration.class),
+        }
+)
+public class RootConfig {
+}
+
+@Configuration @ComponentScan(basePackages = {"com.packages.path.to.app"}
+        //, excludeFilters = {@ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.ANNOTATION, value = org.springframework.web.servlet.config.annotation.EnableWebMvc.class)}
+)
+public class RootConfig {
+
+    /*// I do not know what it is used for...
+    @Bean
+    public org.springframework.beans.factory.config.BeanPostProcessor persistenceTranslation() {
+        return new org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor();
+    }*/
+}
 
 3. Be careful, the "@WebFilter" is not a Spring bean, and is not in the "Spring Container". It is a Web Container"'s (Tomcat) object
 
@@ -230,6 +263,7 @@ public class ApplicationInitializer extends org.springframework.web.servlet.supp
 
 [SpringRest] APIs Validation
 --------------------------------
+
 In "SpringLegacy" to make APIs Validation (use of "@Valid"), we need the next dependency:
 - "org.hibernate/hibernate-validator/7.0.1.Final" // 6.1.1.Final
 
@@ -401,60 +435,6 @@ Dependency annotations: {}
 
 TO_DO these extra cleaning...
 
-@Configuration
-@ComponentScan(
-        basePackages = {"com.thomasmylonas.my_website_web_app"},
-        excludeFilters = {
-                @ComponentScan.Filter(type = FilterType.REGEX, pattern = {"com.thomasmylonas.my_website_web_app.servlet_dispatcher_web_components.controllers.*"}),
-                //@ComponentScan.Filter(type = FilterType.REGEX, pattern = {"com.thomasmylonas.my_website_web_app.data_access.*"}),
-                @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Configuration.class),
-        }
-)
-public class RootConfig {
-}
-
-@Configuration
-@ComponentScan(basePackages = {"com.thomasmylonas.display_consume_apis_web_app"},
-        excludeFilters = {
-                @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Repository.class),
-                @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Controller.class),
-                @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Configuration.class)
-        }
-)
-public class RootConfig {
-}
-
-@Configuration
-@ComponentScan(basePackages = {"com.thomasmylonas.loan_system_api_app"}
-        //, excludeFilters = {@ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.ANNOTATION, value = org.springframework.web.servlet.config.annotation.EnableWebMvc.class)}
-)
-public class RootConfig {
-
-    /*// I do not know what it is used for...
-    @Bean
-    public org.springframework.beans.factory.config.BeanPostProcessor persistenceTranslation() {
-        return new org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor();
-    }*/
-}
-
-@Configuration
-@ComponentScan(basePackages = {"com.thomasmylonas.school_api_web_app"},
-        excludeFilters = {
-                @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Repository.class),
-                @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Controller.class),
-                @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Configuration.class)
-        }
-)
-public class RootConfig {
-}
-
---------------------------------------------------------------------------------------------------------
-
-// includeFilters = {@ComponentScan.Filter(type = FilterType.REGEX, pattern = "com.thomasmylonas.my_website_web_app.*")},
-// excludeFilters = {@ComponentScan.Filter(type = FilterType.REGEX, pattern = "com.thomasmylonas.my_website_web_app.servlet_dispatcher_web_components.controllers.*")}
-// excludeFilters = {@ComponentScan.Filter(type = FilterType.REGEX, pattern = {"com.thomasmylonas.my_website_web_app.servlet_dispatcher_web_components.controllers.*"})}
-// excludeFilters = {@ComponentScan.Filter(type = FilterType.REGEX, pattern = {"com.thomasmylonas.my_website_web_app.servlet_dispatcher_web_components.controllers.*Controller.java"})} // Complete failure...
-// excludeFilters = {@ComponentScan.Filter(type = FilterType.REGEX, pattern = {".*[Controller]"})} // Complete failure...
 --------------------------------------------------------------------------------------------------------
 // The PagesLevel1Controller is created: "2 times" - Errrrroooorrrr
 @ComponentScan(
