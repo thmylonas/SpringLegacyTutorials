@@ -77,9 +77,9 @@ public class DataAccessConfig {
         jndiObjectFactoryBean.setResourceRef(true); // Default value: false
         jndiObjectFactoryBean.setProxyInterface(javax.sql.DataSource.class);
         try {
-            jndiObjectFactoryBean.afterPropertiesSet();
+            jndiObjectFactoryBean.afterPropertiesSet(); // NamingException
         } catch (NamingException e) {
-            log.error("NamingException thrown while jndiObjectFactoryBean.afterPropertiesSet");
+            log.error("'JndiObjectFactoryBean::afterPropertiesSet' throws 'NamingException': {}", e.getMessage());
         }
         return (DataSource) jndiObjectFactoryBean.getObject();
     }

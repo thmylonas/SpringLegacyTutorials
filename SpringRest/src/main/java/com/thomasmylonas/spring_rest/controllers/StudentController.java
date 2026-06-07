@@ -37,14 +37,15 @@ public class StudentController {
      *
      * @param studentId The "studentId"
      * @return The ResponseEntity<ResponseSuccess>
+     * @throws IllegalArgumentException The IllegalArgumentException might be thrown
      */
     @RequestMapping(path = {"/{id}"}, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody
-    public ResponseEntity<ResponseSuccess> findStudentById(@PathVariable(value = "id") Long studentId) {
+    public ResponseEntity<ResponseSuccess> findStudentById(@PathVariable(value = "id") Long studentId) throws IllegalArgumentException {
 
         if (studentId == null || studentId < 0) {
-            throw new IllegalArgumentException("The id is not valid!");
+            throw new IllegalArgumentException("The id is not valid!"); // IllegalArgumentException
         }
         final String message = "Success: The Student with ID " + studentId + " is found!";
         StudentResponseDto studentResponseDto = studentService.findStudentById(studentId);
@@ -72,14 +73,15 @@ public class StudentController {
      *
      * @param studentRequestDto The "studentRequestDto"
      * @return The ResponseEntity<ResponseSuccess>
+     * @throws IllegalArgumentException The IllegalArgumentException might be thrown
      */
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.CREATED)
     @ResponseBody
-    public ResponseEntity<ResponseSuccess> saveStudent(@RequestBody StudentRequestDto studentRequestDto) {
+    public ResponseEntity<ResponseSuccess> saveStudent(@RequestBody StudentRequestDto studentRequestDto) throws IllegalArgumentException {
 
         if (studentRequestDto == null) {
-            throw new IllegalArgumentException("The student is not valid (is null)!");
+            throw new IllegalArgumentException("The student is not valid (is null)!"); // IllegalArgumentException
         }
         final String message = "Created: The Student has been created successfully!";
         StudentResponseDto savedStudentResponseDto = studentService.saveStudent(studentRequestDto);
@@ -97,14 +99,15 @@ public class StudentController {
      *
      * @param studentRequestDtos The "studentRequestDtos"
      * @return The ResponseEntity<ResponseSuccess>
+     * @throws IllegalArgumentException The IllegalArgumentException might be thrown
      */
     @RequestMapping(path = {"/all"}, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.CREATED)
     @ResponseBody
-    public ResponseEntity<ResponseSuccess> saveAllStudents(@RequestBody List<StudentRequestDto> studentRequestDtos) {
+    public ResponseEntity<ResponseSuccess> saveAllStudents(@RequestBody List<StudentRequestDto> studentRequestDtos) throws IllegalArgumentException {
 
         if (studentRequestDtos == null || studentRequestDtos.isEmpty() || studentRequestDtos.contains(null)) {
-            throw new IllegalArgumentException("The students are not valid!");
+            throw new IllegalArgumentException("The students are not valid!"); // IllegalArgumentException
         }
         final String message = "Created: The Students have been created successfully!";
         List<StudentResponseDto> savedStudentResponseDtos = studentService.saveAllStudents(studentRequestDtos);
@@ -118,14 +121,15 @@ public class StudentController {
      * @param studentRequestDto The "studentRequestDto"
      * @param studentId         The "studentId"
      * @return The ResponseEntity<ResponseSuccess>
+     * @throws IllegalArgumentException The IllegalArgumentException might be thrown
      */
     @RequestMapping(path = {"/{id}"}, method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody
-    public ResponseEntity<ResponseSuccess> updateStudent(@RequestBody StudentRequestDto studentRequestDto, @PathVariable(value = "id") Long studentId) {
+    public ResponseEntity<ResponseSuccess> updateStudent(@RequestBody StudentRequestDto studentRequestDto, @PathVariable(value = "id") Long studentId) throws IllegalArgumentException {
 
         if (studentId == null || studentId < 0 || studentRequestDto == null) {
-            throw new IllegalArgumentException("The arguments are not valid!");
+            throw new IllegalArgumentException("The arguments are not valid!"); // IllegalArgumentException
         }
         final String message = "Success: The Student with ID " + studentId + " has been updated successfully!";
         StudentResponseDto updatedStudentResponseDto = studentService.updateStudent(studentRequestDto, studentId);
@@ -138,14 +142,15 @@ public class StudentController {
      *
      * @param studentId The "studentId"
      * @return The ResponseEntity<ResponseSuccess>
+     * @throws IllegalArgumentException The IllegalArgumentException might be thrown
      */
     @RequestMapping(path = {"/{id}"}, method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody
-    public ResponseEntity<ResponseSuccess> deleteStudentById(@PathVariable(value = "id") Long studentId) {
+    public ResponseEntity<ResponseSuccess> deleteStudentById(@PathVariable(value = "id") Long studentId) throws IllegalArgumentException {
 
         if (studentId == null || studentId < 0) {
-            throw new IllegalArgumentException("The id is not valid!");
+            throw new IllegalArgumentException("The id is not valid!"); // IllegalArgumentException
         }
         final String message = "Success: The Student with ID " + studentId + " has been deleted successfully!";
         studentService.deleteStudentById(studentId);

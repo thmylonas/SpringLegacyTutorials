@@ -42,7 +42,7 @@ public class StudentServiceImpl implements StudentService {
     public StudentResponseDto saveStudent(StudentRequestDto studentRequestDto) throws IllegalArgumentException {
 
         if (studentRequestDto == null) {
-            throw new IllegalArgumentException("The studentRequestDto is not valid (is null)!");
+            throw new IllegalArgumentException("The studentRequestDto is not valid (is null)!"); // IllegalArgumentException
         }
         Student student = studentMapper.toStudent(studentRequestDto);
         Student savedStudent = studentDao.save(student); // IllegalArgumentException
@@ -53,7 +53,7 @@ public class StudentServiceImpl implements StudentService {
     public List<StudentResponseDto> saveAllStudents(List<StudentRequestDto> studentRequestDtos) throws IllegalArgumentException {
 
         if (studentRequestDtos == null || studentRequestDtos.contains(null)) {
-            throw new IllegalArgumentException("The studentRequestDtos are not valid (are null)!");
+            throw new IllegalArgumentException("The studentRequestDtos are not valid (are null)!"); // IllegalArgumentException
         }
         List<Student> students = studentRequestDtos.stream().map(studentMapper::toStudent).toList();
         List<Student> savedStudents = studentDao.saveAll(students);
@@ -64,7 +64,7 @@ public class StudentServiceImpl implements StudentService {
     public StudentResponseDto updateStudent(StudentRequestDto studentRequestDto, Long id) throws IllegalArgumentException, RequestedResourceNotFoundException {
 
         if (studentRequestDto == null) {
-            throw new IllegalArgumentException("The studentRequestDto is not valid (is null)!");
+            throw new IllegalArgumentException("The studentRequestDto is not valid (is null)!"); // IllegalArgumentException
         }
         Student student = studentMapper.toStudent(studentRequestDto);
         Student updatedStudent = studentDao.update(student, id); // IllegalArgumentException, RequestedResourceNotFoundException
