@@ -1,10 +1,12 @@
 The Configuration and the "ComponentScan"
 ---------------------------------------------
 
-1. Right configuration of "ComponentScan"
+1. Working configuration of "ComponentScan"
+-----------------------------------------------
 
-We have to exclude (Mandatory): "@ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.ANNOTATION, value = Configuration.class)"
-from all the Configuration classes. Otherwise, the Controllers will be called many times
+We have to exclude (Mandatory):
+- "@ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.ANNOTATION, value = Configuration.class)"
+from all the Configuration classes. Otherwise, the Controllers will be called many times.
 
 @Configuration @ComponentScan(
     basePackages = {"com.packages.path.to.app"},
@@ -33,6 +35,7 @@ public class WebConfig {}
 public class DataAccessConfig {}
 
 2. How to use "org.springframework.context.annotation.FilterType.REGEX"
+---------------------------------------------------------------------------
 
 @Configuration @ComponentScan(
     basePackages = {"com.packages.path.to.app"},
@@ -40,6 +43,31 @@ public class DataAccessConfig {}
         @ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.REGEX, pattern = {"com\\.packages\\.path\\.to\\.app\\.data_access_layer\\..*"}),
         @ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.REGEX, pattern = {"com\\.packages\\.path\\.to\\.app\\.controllers\\..*"}),
         @ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.ANNOTATION, value = Configuration.class) // Mandatory
+    }
+)
+public class RootConfig {}
+
+3. Alternative Working configuration of "ComponentScan"
+-----------------------------------------------------------
+
+Attention:
+- In this case the "XxxController" is created: "1 time"
+- In case that the "Mandatory" line is missing, the  "XxxController" is created: "2 times"
+
+@Configuration @ComponentScan(
+    basePackages = {"com.packages.path.to.app"},
+    excludeFilters = {
+        @ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.ASSIGNABLE_TYPE, classes = {XxxController.class}),
+        @ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.ANNOTATION, value = Configuration.class) // Mandatory
+    }
+)
+public class WebConfig {}
+
+@Configuration @ComponentScan(
+    basePackages = {
+        "com.packages.path.to.app.view_layer",
+        "com.packages.path.to.app.exceptionhandlers_exceptions",
+        "com.packages.path.to.app.service_layer.models"}
     }
 )
 public class RootConfig {}
@@ -82,42 +110,24 @@ Not working special cases (Complete failure):
 )
 public class RootConfig {}
 
-3. Be careful, the "@WebFilter" is not a Spring bean, and is not in the "Spring Container". It is a Web Container"'s (Tomcat) object
+4. About the "@WebFilter"
+-----------------------------
 
-4. I do not know what the next Bean is used for:
-    @Configuration
-    public class RootConfig {
-        @Bean
-        public org.springframework.beans.factory.config.BeanPostProcessor persistenceTranslation() {
-            return new org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor();
-        }
-    }
+Be careful, the "@WebFilter" is not a Spring bean, and is not in the "Spring Container".
+It is a Web Container"'s (Tomcat) object.
 
---------------------------------------------------------------------------------------------------------
-// The PagesLevel1Controller is created: "2 times" - Errrrroooorrrr
-@ComponentScan(
-    basePackages = {"com.thomasmylonas.my_website_web_app"},
-    excludeFilters = {
-        @ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.ASSIGNABLE_TYPE, classes = {PagesLevel1Controller.class}),
+5. Unknown Configuration
+----------------------------
+
+I do not know what the next Bean is used for:
+
+@Configuration
+public class RootConfig {
+    @Bean
+    public org.springframework.beans.factory.config.BeanPostProcessor persistenceTranslation() {
+        return new org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor();
     }
-)
---------------------------------------------------------------------------------------------------------
-// The PagesLevel1Controller is created: "1 time"
-@ComponentScan(
-    basePackages = {"com.thomasmylonas.my_website_web_app"},
-    excludeFilters = {
-        @ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.ASSIGNABLE_TYPE, classes = {PagesLevel1Controller.class}),
-        @ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.ANNOTATION, value = Configuration.class),
-    }
-)
---------------------------------------------------------------------------------------------------------
-@ComponentScan(
-    basePackages = {
-        "com.thomasmylonas.my_website_web_app.view_layer",
-        "com.thomasmylonas.my_website_web_app.exceptionhandlers_exceptions",
-        "com.thomasmylonas.my_website_web_app.service_layer.models"}
-    }
-)
+}
 
 ========================================================================================================================
 
