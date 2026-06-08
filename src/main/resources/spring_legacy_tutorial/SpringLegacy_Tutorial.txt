@@ -459,7 +459,7 @@ TO_DO these extra cleaning...
 @ComponentScan(
     basePackages = {"com.thomasmylonas.my_website_web_app"},
     excludeFilters = {
-        @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = {PagesLevel1Controller.class}),
+        @ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.ASSIGNABLE_TYPE, classes = {PagesLevel1Controller.class}),
     }
 )
 --------------------------------------------------------------------------------------------------------
@@ -467,8 +467,8 @@ TO_DO these extra cleaning...
 @ComponentScan(
     basePackages = {"com.thomasmylonas.my_website_web_app"},
     excludeFilters = {
-        @ComponentScan.Filter(type = FilterType.ASSIGNABLE_TYPE, classes = {PagesLevel1Controller.class}),
-        @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Configuration.class),
+        @ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.ASSIGNABLE_TYPE, classes = {PagesLevel1Controller.class}),
+        @ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.ANNOTATION, value = Configuration.class),
     }
 )
 --------------------------------------------------------------------------------------------------------
