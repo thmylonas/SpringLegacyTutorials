@@ -93,6 +93,32 @@ public class RootConfig {}
         }
     }
 
+--------------------------------------------------------------------------------------------------------
+// The PagesLevel1Controller is created: "2 times" - Errrrroooorrrr
+@ComponentScan(
+    basePackages = {"com.thomasmylonas.my_website_web_app"},
+    excludeFilters = {
+        @ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.ASSIGNABLE_TYPE, classes = {PagesLevel1Controller.class}),
+    }
+)
+--------------------------------------------------------------------------------------------------------
+// The PagesLevel1Controller is created: "1 time"
+@ComponentScan(
+    basePackages = {"com.thomasmylonas.my_website_web_app"},
+    excludeFilters = {
+        @ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.ASSIGNABLE_TYPE, classes = {PagesLevel1Controller.class}),
+        @ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.ANNOTATION, value = Configuration.class),
+    }
+)
+--------------------------------------------------------------------------------------------------------
+@ComponentScan(
+    basePackages = {
+        "com.thomasmylonas.my_website_web_app.view_layer",
+        "com.thomasmylonas.my_website_web_app.exceptionhandlers_exceptions",
+        "com.thomasmylonas.my_website_web_app.service_layer.models"}
+    }
+)
+
 ========================================================================================================================
 
 Configuration in "SpringLegacy" "Web_Application"
@@ -451,32 +477,3 @@ No qualifying bean of type 'javax.sql.DataSource' available: expected at least 1
 Dependency annotations: {}
 
 ========================================================================================================================
-
-TO_DO these extra cleaning...
-
---------------------------------------------------------------------------------------------------------
-// The PagesLevel1Controller is created: "2 times" - Errrrroooorrrr
-@ComponentScan(
-    basePackages = {"com.thomasmylonas.my_website_web_app"},
-    excludeFilters = {
-        @ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.ASSIGNABLE_TYPE, classes = {PagesLevel1Controller.class}),
-    }
-)
---------------------------------------------------------------------------------------------------------
-// The PagesLevel1Controller is created: "1 time"
-@ComponentScan(
-    basePackages = {"com.thomasmylonas.my_website_web_app"},
-    excludeFilters = {
-        @ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.ASSIGNABLE_TYPE, classes = {PagesLevel1Controller.class}),
-        @ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.ANNOTATION, value = Configuration.class),
-    }
-)
---------------------------------------------------------------------------------------------------------
-@ComponentScan(
-    basePackages = {
-        "com.thomasmylonas.my_website_web_app.view_layer",
-        "com.thomasmylonas.my_website_web_app.exceptionhandlers_exceptions",
-        "com.thomasmylonas.my_website_web_app.service_layer.models"}
-    }
-)
---------------------------------------------------------------------------------------------------------
