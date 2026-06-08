@@ -3,15 +3,15 @@ The Configuration and the "ComponentScan"
 
 1. Right configuration of "ComponentScan"
 
-We have to exclude (Mandatory): "@ComponentScan.Filter(type = FilterType.ANNOTATION, value = Configuration.class)"
+We have to exclude (Mandatory): "@ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.ANNOTATION, value = Configuration.class)"
 from all the Configuration classes. Otherwise, the Controllers will be called many times
 
 @Configuration @ComponentScan(
     basePackages = {"com.packages.path.to.app"},
     excludeFilters = {
-        @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Repository.class),
-        @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Controller.class),
-        @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Configuration.class) // Mandatory
+        @ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.ANNOTATION, value = Repository.class),
+        @ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.ANNOTATION, value = Controller.class),
+        @ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.ANNOTATION, value = Configuration.class) // Mandatory
     }
 )
 public class RootConfig {}
@@ -19,7 +19,7 @@ public class RootConfig {}
 @Configuration @ComponentScan(
     basePackages = {"com.packages.path.to.controllers_directory.controllers"},
     excludeFilters = {
-        @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Configuration.class) // Mandatory
+        @ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.ANNOTATION, value = Configuration.class) // Mandatory
     }
 )
 public class WebConfig {}
@@ -27,19 +27,19 @@ public class WebConfig {}
 @Configuration @ComponentScan(
     basePackages = {"com.packages.path.to.app.data_access_layer.daos"},
     excludeFilters = {
-        @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Configuration.class) // Mandatory
+        @ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.ANNOTATION, value = Configuration.class) // Mandatory
     }
 )
 public class DataAccessConfig {}
 
-2. How to use "FilterType.REGEX"
+2. How to use "org.springframework.context.annotation.FilterType.REGEX"
 
 @Configuration @ComponentScan(
     basePackages = {"com.packages.path.to.app"},
     excludeFilters = {
-        @ComponentScan.Filter(type = FilterType.REGEX, pattern = {"com\\.packages\\.path\\.to\\.app\\.data_access_layer\\..*"}),
-        @ComponentScan.Filter(type = FilterType.REGEX, pattern = {"com\\.packages\\.path\\.to\\.app\\.controllers\\..*"}),
-        @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Configuration.class) // Mandatory
+        @ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.REGEX, pattern = {"com\\.packages\\.path\\.to\\.app\\.data_access_layer\\..*"}),
+        @ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.REGEX, pattern = {"com\\.packages\\.path\\.to\\.app\\.controllers\\..*"}),
+        @ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.ANNOTATION, value = Configuration.class) // Mandatory
     }
 )
 public class RootConfig {}
@@ -47,21 +47,21 @@ public class RootConfig {}
 --------------------------------------------------------------------------------------------------------
 
 [Solution] Working:
-excludeFilters = {@ComponentScan.Filter(type = FilterType.REGEX, pattern = {".*Controller"})}
-excludeFilters = {@ComponentScan.Filter(type = FilterType.REGEX, pattern = "com.packages.path.to.app.controllers.*")}
-excludeFilters = {@ComponentScan.Filter(type = FilterType.REGEX, pattern = {"com.packages.path.to.app.controllers.*"})}
+excludeFilters = {@ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.REGEX, pattern = {".*Controller"})}
+excludeFilters = {@ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.REGEX, pattern = "com.packages.path.to.app.controllers.*")}
+excludeFilters = {@ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.REGEX, pattern = {"com.packages.path.to.app.controllers.*"})}
 
 Do not know if working:
-includeFilters = {@ComponentScan.Filter(type = FilterType.REGEX, pattern = "com.packages.path.to.app.*")}
+includeFilters = {@ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.REGEX, pattern = "com.packages.path.to.app.*")}
 
 Not working special cases (Complete failure):
 -------------------------------------------------
 
 @Configuration @ComponentScan(
     excludeFilters = {
-        @ComponentScan.Filter(type = FilterType.ANNOTATION, value = EnableWebMvc.class)
-        @ComponentScan.Filter(type = FilterType.REGEX, pattern = {"com.packages.path.to.app.controllers.*Controller.java"})
-        @ComponentScan.Filter(type = FilterType.REGEX, pattern = {".*[Controller]"})
+        @ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.ANNOTATION, value = EnableWebMvc.class)
+        @ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.REGEX, pattern = {"com.packages.path.to.app.controllers.*Controller.java"})
+        @ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.REGEX, pattern = {".*[Controller]"})
     },
     useDefaultFilters = false // This leads to complete failure
 )
@@ -75,9 +75,9 @@ Not working special cases (Complete failure):
 @Configuration @ComponentScan(
     basePackages = {"com.packages.path.to.app"},
     excludeFilters = {
-        @ComponentScan.Filter(type = FilterType.REGEX, pattern = {"com.packages.path.to.app.data_access_layer.*"}),
-        @ComponentScan.Filter(type = FilterType.REGEX, pattern = {"com.packages.path.to.app.controllers.*"}),
-        @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Configuration.class) // Mandatory
+        @ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.REGEX, pattern = {"com.packages.path.to.app.data_access_layer.*"}),
+        @ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.REGEX, pattern = {"com.packages.path.to.app.controllers.*"}),
+        @ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.ANNOTATION, value = Configuration.class) // Mandatory
     }
 )
 public class RootConfig {}
