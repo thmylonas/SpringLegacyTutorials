@@ -66,6 +66,10 @@ Not working special cases (Complete failure):
     useDefaultFilters = false // This leads to complete failure
 )
 
+@Configuration @ComponentScan(basePackages = {"com.packages.path.to.app"}
+        //, excludeFilters = {@ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.ANNOTATION, value = org.springframework.web.servlet.config.annotation.EnableWebMvc.class)}
+)
+
 ------------------------
 
 @Configuration @ComponentScan(
@@ -76,22 +80,18 @@ Not working special cases (Complete failure):
         @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Configuration.class) // Mandatory
     }
 )
-public class RootConfig {
-}
-
-@Configuration @ComponentScan(basePackages = {"com.packages.path.to.app"}
-        //, excludeFilters = {@ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.ANNOTATION, value = org.springframework.web.servlet.config.annotation.EnableWebMvc.class)}
-)
-public class RootConfig {
-
-    /*// I do not know what it is used for...
-    @Bean
-    public org.springframework.beans.factory.config.BeanPostProcessor persistenceTranslation() {
-        return new org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor();
-    }*/
-}
+public class RootConfig {}
 
 3. Be careful, the "@WebFilter" is not a Spring bean, and is not in the "Spring Container". It is a Web Container"'s (Tomcat) object
+
+4. I do not know what the next Bean is used for:
+    @Configuration
+    public class RootConfig {
+        @Bean
+        public org.springframework.beans.factory.config.BeanPostProcessor persistenceTranslation() {
+            return new org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor();
+        }
+    }
 
 ========================================================================================================================
 
