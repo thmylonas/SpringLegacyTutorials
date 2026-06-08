@@ -11,7 +11,7 @@ from all the Configuration classes. Otherwise, the Controllers will be called ma
     excludeFilters = {
         @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Repository.class),
         @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Controller.class),
-        @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Configuration.class), // Mandatory
+        @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Configuration.class) // Mandatory
     }
 )
 public class RootConfig {}
@@ -19,15 +19,15 @@ public class RootConfig {}
 @Configuration @ComponentScan(
     basePackages = {"com.packages.path.to.controllers_directory.controllers"},
     excludeFilters = {
-        @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Configuration.class), // Mandatory
+        @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Configuration.class) // Mandatory
     }
 )
 public class WebConfig {}
 
 @Configuration @ComponentScan(
-    basePackages = {"com.packages.path.to.data_access_layer.daos"},
+    basePackages = {"com.packages.path.to.app.data_access_layer.daos"},
     excludeFilters = {
-        @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Configuration.class), // Mandatory
+        @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Configuration.class) // Mandatory
     }
 )
 public class DataAccessConfig {}
@@ -39,7 +39,7 @@ public class DataAccessConfig {}
     excludeFilters = {
         @ComponentScan.Filter(type = FilterType.REGEX, pattern = {"com\\.packages\\.path\\.to\\.app\\.data_access_layer\\..*"}),
         @ComponentScan.Filter(type = FilterType.REGEX, pattern = {"com\\.packages\\.path\\.to\\.app\\.controllers\\..*"}),
-        @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Configuration.class), // Mandatory
+        @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Configuration.class) // Mandatory
     }
 )
 public class RootConfig {}
@@ -71,9 +71,9 @@ Not working special cases (Complete failure):
 @Configuration @ComponentScan(
     basePackages = {"com.packages.path.to.app"},
     excludeFilters = {
+        @ComponentScan.Filter(type = FilterType.REGEX, pattern = {"com.packages.path.to.app.data_access_layer.*"}),
         @ComponentScan.Filter(type = FilterType.REGEX, pattern = {"com.packages.path.to.app.controllers.*"}),
-        //@ComponentScan.Filter(type = FilterType.REGEX, pattern = {"com.thomasmylonas.my_website_web_app.data_access.*"}),
-        @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Configuration.class),
+        @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Configuration.class) // Mandatory
     }
 )
 public class RootConfig {
