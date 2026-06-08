@@ -51,16 +51,17 @@ excludeFilters = {
         }
 , useDefaultFilters = false // This leads to complete failure
 --------------------------------------------------------------------------------------------------------
-[Solution]
-excludeFilters = {
-    @ComponentScan.Filter(type = FilterType.REGEX, pattern = {".*Controller"}), // This works OK, as the next line...
-    @ComponentScan.Filter(type = FilterType.REGEX, pattern = "com.packages.path.to.app.controllers.*"),
-    @ComponentScan.Filter(type = FilterType.REGEX, pattern = {"com.packages.path.to.app.controllers.*"}),
-}
+[Solution] Working:
+excludeFilters = {@ComponentScan.Filter(type = FilterType.REGEX, pattern = {".*Controller"})}
+excludeFilters = {@ComponentScan.Filter(type = FilterType.REGEX, pattern = "com.packages.path.to.app.controllers.*")}
+excludeFilters = {@ComponentScan.Filter(type = FilterType.REGEX, pattern = {"com.packages.path.to.app.controllers.*"})}
 
-// includeFilters = {@ComponentScan.Filter(type = FilterType.REGEX, pattern = "com.thomasmylonas.my_website_web_app.*")},
-// excludeFilters = {@ComponentScan.Filter(type = FilterType.REGEX, pattern = {"com.packages.path.to.app.controllers.*Controller.java"})} // Complete failure...
-// excludeFilters = {@ComponentScan.Filter(type = FilterType.REGEX, pattern = {".*[Controller]"})} // Complete failure...
+Do not know if working:
+includeFilters = {@ComponentScan.Filter(type = FilterType.REGEX, pattern = "com.packages.path.to.app.*")}
+
+Not working (Complete failure):
+excludeFilters = {@ComponentScan.Filter(type = FilterType.REGEX, pattern = {"com.packages.path.to.app.controllers.*Controller.java"})}
+excludeFilters = {@ComponentScan.Filter(type = FilterType.REGEX, pattern = {".*[Controller]"})}
 
 
 @Configuration @ComponentScan(
