@@ -34,7 +34,7 @@ public class WebConfig {}
 )
 public class DataAccessConfig {}
 
-2. [Not sure if is correct] How to use "org.springframework.context.annotation.FilterType.REGEX"
+2. [Not_Sure if is correct] How to use "org.springframework.context.annotation.FilterType.REGEX"
 ----------------------------------------------------------------------------------------------------
 
 @Configuration @ComponentScan(
@@ -52,12 +52,14 @@ public class RootConfig {}
     excludeFilters = {
         @ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.REGEX, pattern = {"com.packages.path.to.app.data_access_layer.*"}),
         @ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.REGEX, pattern = {"com.packages.path.to.app.controllers.*"}),
+        //@ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.REGEX, pattern = "com.packages.path.to.app.controllers.*"), // Alternatively
+        //@ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.REGEX, pattern = {".*Controller"}), // Alternatively
         @ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.ANNOTATION, value = Configuration.class) // Mandatory
     }
 )
 public class RootConfig {}
 
-3. Alternative Working configuration of "ComponentScan"
+3. Alternative Correct configuration of "ComponentScan"
 -----------------------------------------------------------
 
 Attention:
@@ -83,17 +85,11 @@ public class WebConfig {}
 )
 public class RootConfig {}
 
---------------------------------------------------------------------------------------------------------
+4. Wrong configuration of "ComponentScan"
+---------------------------------------------
 
-[Solution] Working:
-excludeFilters = {@ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.REGEX, pattern = {".*Controller"})}
-excludeFilters = {@ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.REGEX, pattern = "com.packages.path.to.app.controllers.*")}
-excludeFilters = {@ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.REGEX, pattern = {"com.packages.path.to.app.controllers.*"})}
-
-Not working special cases (Complete failure):
--------------------------------------------------
-
-@Configuration @ComponentScan(
+[Not_Working special cases (Complete failure)]:
+@ComponentScan(
     basePackages = {"com.packages.path.to.app"},
     excludeFilters = { // Use 1 of these "@ComponentScan.Filter" lines
         @ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.ANNOTATION, value = org.springframework.web.servlet.config.annotation.EnableWebMvc.class)
@@ -103,18 +99,16 @@ Not working special cases (Complete failure):
     useDefaultFilters = false // This leads to complete failure
 )
 
-------------------------
-Do not know if working:
-includeFilters = {@ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.REGEX, pattern = "com.packages.path.to.app.*")}
-------------------------
+[Not_Sure if is correct]:
+    includeFilters = {@ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.REGEX, pattern = "com.packages.path.to.app.*")}
 
-4. About the "@WebFilter"
+5. About the "@WebFilter"
 -----------------------------
 
 Be careful, the "@WebFilter" is not a Spring bean, and is not in the "Spring Container".
 It is a Web Container"'s (Tomcat) object.
 
-5. Unknown Configuration
+6. Unknown Configuration
 ----------------------------
 
 I do not know what the next Bean is used for:
