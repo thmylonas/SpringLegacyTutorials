@@ -19,7 +19,7 @@ from all the Configuration classes. Otherwise, the Controllers will be called ma
 public class RootConfig {}
 
 @Configuration @ComponentScan(
-    basePackages = {"com.packages.path.to.controllers_directory.controllers"},
+    basePackages = {"com.packages.path.to.app.controllers_directory.controllers"},
     excludeFilters = {
         @ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.ANNOTATION, value = Configuration.class) // Mandatory
     }
@@ -34,7 +34,7 @@ public class WebConfig {}
 )
 public class DataAccessConfig {}
 
-2. How to use "org.springframework.context.annotation.FilterType.REGEX" [Not sure if is correct]
+2. [Not sure if is correct] How to use "org.springframework.context.annotation.FilterType.REGEX"
 ----------------------------------------------------------------------------------------------------
 
 @Configuration @ComponentScan(
@@ -61,7 +61,8 @@ public class RootConfig {}
 -----------------------------------------------------------
 
 Attention:
-- In this case the "XxxController" is created: "1 time"
+In the 1st case:
+- The "XxxController" is created: "1 time"
 - In case that the "Mandatory" line is missing, the  "XxxController" is created: "2 times"
 
 @Configuration @ComponentScan(
