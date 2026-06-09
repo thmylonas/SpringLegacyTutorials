@@ -1,7 +1,7 @@
 The Configuration and the "ComponentScan"
 ---------------------------------------------
 
-1. Working configuration of "ComponentScan"
+1. Correct configuration of "ComponentScan"
 -----------------------------------------------
 
 We have to exclude (Mandatory):
@@ -34,14 +34,24 @@ public class WebConfig {}
 )
 public class DataAccessConfig {}
 
-2. How to use "org.springframework.context.annotation.FilterType.REGEX"
----------------------------------------------------------------------------
+2. How to use "org.springframework.context.annotation.FilterType.REGEX" [Not sure if is correct]
+----------------------------------------------------------------------------------------------------
 
 @Configuration @ComponentScan(
     basePackages = {"com.packages.path.to.app"},
     excludeFilters = {
         @ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.REGEX, pattern = {"com\\.packages\\.path\\.to\\.app\\.data_access_layer\\..*"}),
         @ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.REGEX, pattern = {"com\\.packages\\.path\\.to\\.app\\.controllers\\..*"}),
+        @ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.ANNOTATION, value = Configuration.class) // Mandatory
+    }
+)
+public class RootConfig {}
+
+@Configuration @ComponentScan(
+    basePackages = {"com.packages.path.to.app"},
+    excludeFilters = {
+        @ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.REGEX, pattern = {"com.packages.path.to.app.data_access_layer.*"}),
+        @ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.REGEX, pattern = {"com.packages.path.to.app.controllers.*"}),
         @ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.ANNOTATION, value = Configuration.class) // Mandatory
     }
 )
@@ -96,16 +106,6 @@ Not working special cases (Complete failure):
 Do not know if working:
 includeFilters = {@ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.REGEX, pattern = "com.packages.path.to.app.*")}
 ------------------------
-
-@Configuration @ComponentScan(
-    basePackages = {"com.packages.path.to.app"},
-    excludeFilters = {
-        @ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.REGEX, pattern = {"com.packages.path.to.app.data_access_layer.*"}),
-        @ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.REGEX, pattern = {"com.packages.path.to.app.controllers.*"}),
-        @ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.ANNOTATION, value = Configuration.class) // Mandatory
-    }
-)
-public class RootConfig {}
 
 4. About the "@WebFilter"
 -----------------------------
