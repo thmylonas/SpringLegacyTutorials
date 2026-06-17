@@ -115,8 +115,7 @@ I do not know what the next Bean is used for:
 
 @Configuration
 public class RootConfig {
-    @Bean
-    public org.springframework.beans.factory.config.BeanPostProcessor persistenceTranslation() {
+    @Bean public org.springframework.beans.factory.config.BeanPostProcessor persistenceTranslation() {
         return new org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor();
     }
 }
