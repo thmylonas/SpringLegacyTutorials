@@ -129,7 +129,7 @@ Configuration in "SpringLegacy" "Web_Application"
 The minimum Configuration to run a "SpringLegacy" "Web_Application" is:
 
 @Configuration
-@ComponentScan(basePackages = {"path.to.controllers"})
+@ComponentScan(basePackages = {"com.packages.path.to.app.controllers"})
 @org.springframework.web.servlet.config.annotation.EnableWebMvc
 public class WebConfig {}
 
@@ -324,7 +324,7 @@ In case of "Spring_Legacy" (NO "SpringBoot"), to use:
 we need to add the annotation "@org.springframework.data.jpa.repository.config.EnableJpaRepositories", over the "DataAccessConfig":
 
     @Configuration @ComponentScan(basePackages = {...})
-    @org.springframework.data.jpa.repository.config.EnableJpaRepositories(basePackages = "path.to.repositories")
+    @org.springframework.data.jpa.repository.config.EnableJpaRepositories(basePackages = "com.packages.path.to.app.repositories")
     public class DataAccessConfig {...}
 
 The "@EnableJpaRepositories" annotation in "Spring_Data_JPA" is used to enable and configure Spring's support for "JPA" repositories.
@@ -351,7 +351,7 @@ Significant Note:
 ---------------------
 "SpringBoot" automatically enables "JPA" repositories based on the location of the "@SpringBootApplication" class.
 So, there is no need to use the Annotation:
-- @org.springframework.data.jpa.repository.config.EnableJpaRepositories(basePackages = "path.to.repositories")
+- @org.springframework.data.jpa.repository.config.EnableJpaRepositories(basePackages = "com.packages.path.to.app.repositories")
 
 ========================================================================================================================
 
