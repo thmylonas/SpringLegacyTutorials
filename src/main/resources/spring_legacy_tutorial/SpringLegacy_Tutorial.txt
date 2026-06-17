@@ -105,8 +105,8 @@ public class RootConfig {}
 5. About the "@WebFilter"
 -----------------------------
 
-Be careful, the "@WebFilter" is not a Spring bean, and is not in the "Spring Container".
-It is a Web Container"'s (Tomcat) object.
+Be careful, the "@WebFilter" is not a Spring bean, and is not in the "Spring_Container".
+It is a "Web_Container"'s (Tomcat's) object.
 
 6. Unknown Configuration
 ----------------------------
