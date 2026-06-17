@@ -19,7 +19,7 @@ from all the Configuration classes. Otherwise, the Controllers will be called ma
 public class RootConfig {}
 
 @Configuration @ComponentScan(
-    basePackages = {"com.packages.path.to.app.controllers_directory.controllers"},
+    basePackages = {"com.packages.path.to.app.controllers"},
     excludeFilters = {
         @ComponentScan.Filter(type = org.springframework.context.annotation.FilterType.ANNOTATION, value = Configuration.class) // Mandatory
     }
@@ -130,7 +130,7 @@ The minimum Configuration to run a "SpringLegacy" "Web_Application" is:
 
 @Configuration
 @ComponentScan(basePackages = {"path.to.controllers"})
-@EnableWebMvc
+@org.springframework.web.servlet.config.annotation.EnableWebMvc
 public class WebConfig {}
 
 public class ApplicationInitializer extends org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer {
@@ -220,7 +220,7 @@ In older Spring versions there was not "Automatic_Detection" of features. This h
 The "InternalResourceViewResolver" did not have "Automatic_Detection" of "JSTL" in the early days,
 so it was required to always specify the "JstlView" as the viewClass, through the "Line_1" in the "WebConfig::viewResolver":
 
-    @Configuration @EnableWebMvc
+    @Configuration @org.springframework.web.servlet.config.annotation.EnableWebMvc
     public class WebConfig {
         @Bean public ViewResolver viewResolver() {
             InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
