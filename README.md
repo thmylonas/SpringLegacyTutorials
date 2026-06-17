@@ -1,6 +1,6 @@
 # SpringLegacyTutorials
 
-A tutorial application for Spring_Legacy_Framework (Core, AOP, JDBC, Web, Rest, etc.)
+A tutorial application on Spring_Legacy_Framework (Core, AOP, JDBC, Web, Rest, etc.)
 
 GitHub link:
 
