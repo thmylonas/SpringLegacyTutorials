@@ -13,7 +13,7 @@ import java.util.Map;
 public class ResponseBuilder {
 
     public ResponseEntity<ResponseSuccess> buildResponseSuccess(HttpStatus httpStatus, String message, Map<String, ?> data) {
-        return buildResponseSuccess(httpStatus, message, ServletUriComponentsBuilder.fromCurrentRequest().toUriString(), data);
+        return buildResponseSuccess(httpStatus, message, ServletUriComponentsBuilder.fromCurrentRequest().build().toUriString(), data);
     }
 
     public ResponseEntity<ResponseSuccess> buildResponseSuccess(HttpStatus httpStatus, String message, String path, Map<String, ?> data) {
@@ -34,7 +34,7 @@ public class ResponseBuilder {
                 .timestamp(new Date())
                 .statusCode(httpStatus.toString())
                 .errorMessages(errorMessages)
-                .path(ServletUriComponentsBuilder.fromCurrentRequest().toUriString()) // "request.getDescription(false)"
+                .path(ServletUriComponentsBuilder.fromCurrentRequest().build().toUriString()) // "request.getDescription(false)"
                 .build();
         return ResponseEntity.status(httpStatus).body(responseError);
     }
