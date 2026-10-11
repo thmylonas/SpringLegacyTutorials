@@ -38,7 +38,7 @@ public class ExceptionsHandlerController {
     @ExceptionHandler(value = {Exception.class})
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR) // 500: "Internal Server Error"
     @ResponseBody
-    public ResponseEntity<ResponseError> handleAllUncaughtExceptions(Exception e) {
+    public ResponseEntity<ResponseError> handleException(Exception e) {
         final String message = "Unknown error occurred: " + e.getMessage();
         return responseBuilder.buildResponseError(HttpStatus.INTERNAL_SERVER_ERROR, Map.of("error_message", message));
     }
