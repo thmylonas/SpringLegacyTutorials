@@ -1,4 +1,4 @@
-package com.thomasmylonas.spring_rest.config;
+package com.thomasmylonas.spring_rest.api.config;
 
 import com.thomasmylonas.spring_rest.api.config.DataAccessConfig;
 import org.junit.jupiter.api.AfterEach;
