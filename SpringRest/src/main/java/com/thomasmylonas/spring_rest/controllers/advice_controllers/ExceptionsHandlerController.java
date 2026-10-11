@@ -23,7 +23,7 @@ public class ExceptionsHandlerController {
     @ResponseStatus(value = HttpStatus.NOT_FOUND) // 404: "Not Found"
     @ResponseBody
     public ResponseEntity<ResponseError> handleRequestedResourceNotFoundException(RequestedResourceNotFoundException e) {
-        String message = "The resource is not found: " + e.getMessage();
+        final String message = "The resource is not found: " + e.getMessage();
         return responseBuilder.buildResponseError(HttpStatus.NOT_FOUND, Map.of("error_message", message));
     }
 
@@ -31,7 +31,7 @@ public class ExceptionsHandlerController {
     @ResponseStatus(value = HttpStatus.BAD_REQUEST) // 400: "Bad Request"
     @ResponseBody
     public ResponseEntity<ResponseError> handleIllegalArgumentException(IllegalArgumentException e) {
-        String message = "The request arguments are not valid: " + e.getMessage();
+        final String message = "The request arguments are not valid: " + e.getMessage();
         return responseBuilder.buildResponseError(HttpStatus.BAD_REQUEST, Map.of("error_message", message));
     }
 
@@ -39,7 +39,7 @@ public class ExceptionsHandlerController {
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR) // 500: "Internal Server Error"
     @ResponseBody
     public ResponseEntity<ResponseError> handleAllUncaughtExceptions(Exception e) {
-        String message = "Unknown error occurred: " + e.getMessage();
+        final String message = "Unknown error occurred: " + e.getMessage();
         return responseBuilder.buildResponseError(HttpStatus.INTERNAL_SERVER_ERROR, Map.of("error_message", message));
     }
 }
