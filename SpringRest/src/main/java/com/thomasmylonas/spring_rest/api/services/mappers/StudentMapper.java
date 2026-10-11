@@ -1,8 +1,8 @@
-package com.thomasmylonas.spring_rest.services.mappers;
+package com.thomasmylonas.spring_rest.api.services.mappers;
 
-import com.thomasmylonas.spring_rest.entities.Student;
-import com.thomasmylonas.spring_rest.dtos.student_dtos.StudentRequestDto;
-import com.thomasmylonas.spring_rest.dtos.student_dtos.StudentResponseDto;
+import com.thomasmylonas.spring_rest.api.entities.Student;
+import com.thomasmylonas.spring_rest.api.dtos.student_dtos.StudentRequestDto;
+import com.thomasmylonas.spring_rest.api.dtos.student_dtos.StudentResponseDto;
 import org.springframework.stereotype.Service;
 
 @Service

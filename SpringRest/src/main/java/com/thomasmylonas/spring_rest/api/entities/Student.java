@@ -1,6 +1,6 @@
-package com.thomasmylonas.spring_rest.entities;
+package com.thomasmylonas.spring_rest.api.entities;
 
-import com.thomasmylonas.spring_rest.enums.Status;
+import com.thomasmylonas.spring_rest.api.enums.Status;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;

@@ -1,7 +1,7 @@
-package com.thomasmylonas.spring_rest.daos;
+package com.thomasmylonas.spring_rest.api.daos;
 
-import com.thomasmylonas.spring_rest.entities.Student;
-import com.thomasmylonas.spring_rest.exceptions.RequestedResourceNotFoundException;
+import com.thomasmylonas.spring_rest.api.entities.Student;
+import com.thomasmylonas.spring_rest.api.exceptions.RequestedResourceNotFoundException;
 import com.thomasmylonas.spring_rest.helpers.HelperClass;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

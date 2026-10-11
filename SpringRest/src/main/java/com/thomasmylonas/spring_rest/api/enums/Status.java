@@ -1,4 +1,4 @@
-package com.thomasmylonas.spring_rest.enums;
+package com.thomasmylonas.spring_rest.api.enums;
 
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;

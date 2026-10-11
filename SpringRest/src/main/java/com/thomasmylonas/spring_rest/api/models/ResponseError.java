@@ -1,4 +1,4 @@
-package com.thomasmylonas.spring_rest.models;
+package com.thomasmylonas.spring_rest.api.models;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;

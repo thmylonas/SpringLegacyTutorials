@@ -1,5 +1,6 @@
 package com.thomasmylonas.spring_rest.config;
 
+import com.thomasmylonas.spring_rest.api.config.DataAccessConfig;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

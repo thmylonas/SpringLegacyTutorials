@@ -1,4 +1,4 @@
-package com.thomasmylonas.spring_rest.config;
+package com.thomasmylonas.spring_rest.api.config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;

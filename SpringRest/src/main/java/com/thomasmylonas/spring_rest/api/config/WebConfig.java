@@ -1,4 +1,4 @@
-package com.thomasmylonas.spring_rest.config;
+package com.thomasmylonas.spring_rest.api.config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -7,7 +7,7 @@ import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
-@ComponentScan(basePackages = {"com.thomasmylonas.spring_rest.controllers"},
+@ComponentScan(basePackages = {"com.thomasmylonas.spring_rest.api.controllers"},
         excludeFilters = {
                 @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Configuration.class)
         }

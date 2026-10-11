@@ -1,10 +1,10 @@
-package com.thomasmylonas.spring_rest.controllers;
+package com.thomasmylonas.spring_rest.api.controllers;
 
-import com.thomasmylonas.spring_rest.dtos.student_dtos.StudentRequestDto;
-import com.thomasmylonas.spring_rest.dtos.student_dtos.StudentResponseDto;
-import com.thomasmylonas.spring_rest.models.ResponseBuilder;
-import com.thomasmylonas.spring_rest.models.ResponseSuccess;
-import com.thomasmylonas.spring_rest.services.StudentService;
+import com.thomasmylonas.spring_rest.api.dtos.student_dtos.StudentRequestDto;
+import com.thomasmylonas.spring_rest.api.dtos.student_dtos.StudentResponseDto;
+import com.thomasmylonas.spring_rest.api.models.ResponseBuilder;
+import com.thomasmylonas.spring_rest.api.models.ResponseSuccess;
+import com.thomasmylonas.spring_rest.api.services.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;

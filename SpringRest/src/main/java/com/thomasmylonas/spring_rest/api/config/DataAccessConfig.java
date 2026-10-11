@@ -1,4 +1,4 @@
-package com.thomasmylonas.spring_rest.config;
+package com.thomasmylonas.spring_rest.api.config;
 
 import javax.naming.NamingException;
 import javax.persistence.EntityManagerFactory;
@@ -21,7 +21,7 @@ import org.springframework.transaction.PlatformTransactionManager;
 import java.util.Properties;
 
 @Configuration
-@ComponentScan(basePackages = {"com.thomasmylonas.spring_rest.entities", "com.thomasmylonas.spring_rest.daos"},
+@ComponentScan(basePackages = {"com.thomasmylonas.spring_rest.api.entities", "com.thomasmylonas.spring_rest.api.daos"},
         excludeFilters = {
                 @ComponentScan.Filter(type = FilterType.ANNOTATION, value = Configuration.class)
         }

@@ -1,8 +1,8 @@
-package com.thomasmylonas.spring_rest.controllers.advice_controllers;
+package com.thomasmylonas.spring_rest.api.controllers.advice_controllers;
 
-import com.thomasmylonas.spring_rest.exceptions.RequestedResourceNotFoundException;
-import com.thomasmylonas.spring_rest.models.ResponseBuilder;
-import com.thomasmylonas.spring_rest.models.ResponseError;
+import com.thomasmylonas.spring_rest.api.exceptions.RequestedResourceNotFoundException;
+import com.thomasmylonas.spring_rest.api.models.ResponseBuilder;
+import com.thomasmylonas.spring_rest.api.models.ResponseError;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

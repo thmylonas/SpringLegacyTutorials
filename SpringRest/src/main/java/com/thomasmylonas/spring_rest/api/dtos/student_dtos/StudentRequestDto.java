@@ -1,17 +1,14 @@
-package com.thomasmylonas.spring_rest.dtos.student_dtos;
+package com.thomasmylonas.spring_rest.api.dtos.student_dtos;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.thomasmylonas.spring_rest.enums.Status;
+import com.thomasmylonas.spring_rest.api.enums.Status;
 import lombok.Builder;
 
 import java.util.Date;
 
 @Builder
-public record StudentResponseDto(
-        @JsonProperty(value = "id")
-        Long id,
-
+public record StudentRequestDto(
         @JsonProperty(value = "last_name")
         String lastName,
 
