@@ -395,7 +395,8 @@ It seems that (I am not sure if this is correct) the next 2 points are valid:
   these 2 annotations are not needed at all.
 - [I am not sure] Jackson makes an "Autoconfiguration", and adds these annotations by itself.
 
-Note:
+Significant Note:
+---------------------
 In these "SpringLegacyTutorials", the "com.fasterxml.jackson.*" dependencies are added in the "pom.xml" manually.
 In "SpringBoot", the "com.fasterxml.jackson.*" dependencies are provided by the "org.springframework.boot/spring-boot-dependencies".
 
