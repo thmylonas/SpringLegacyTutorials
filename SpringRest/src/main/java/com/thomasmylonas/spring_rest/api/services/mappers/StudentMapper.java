@@ -3,6 +3,7 @@ package com.thomasmylonas.spring_rest.api.services.mappers;
 import com.thomasmylonas.spring_rest.api.entities.Student;
 import com.thomasmylonas.spring_rest.api.dtos.student_dtos.StudentRequestDto;
 import com.thomasmylonas.spring_rest.api.dtos.student_dtos.StudentResponseDto;
+import com.thomasmylonas.spring_rest.api.enums.Status;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -15,7 +16,7 @@ public class StudentMapper {
                 .dateOfBirth(studentRequestDto.dateOfBirth())
                 .absences(studentRequestDto.absences())
                 .departmentId(studentRequestDto.departmentId())
-                .status(studentRequestDto.status())
+                .status(Status.valueOfStatus(studentRequestDto.status()))
                 .build();
     }
 
@@ -27,7 +28,7 @@ public class StudentMapper {
                 .dateOfBirth(student.getDateOfBirth())
                 .absences(student.getAbsences())
                 .departmentId(student.getDepartmentId())
-                .status(student.getStatus())
+                .status(student.getStatus().getValue())
                 .build();
     }
 }

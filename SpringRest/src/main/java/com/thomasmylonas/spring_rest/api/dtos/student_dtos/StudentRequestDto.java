@@ -2,7 +2,6 @@ package com.thomasmylonas.spring_rest.api.dtos.student_dtos;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.thomasmylonas.spring_rest.api.enums.Status;
 import lombok.Builder;
 
 import java.util.Date;
@@ -26,6 +25,6 @@ public record StudentRequestDto(
         String departmentId,
 
         @JsonProperty(value = "status")
-        Status status
+        String status
 ) {
 }
