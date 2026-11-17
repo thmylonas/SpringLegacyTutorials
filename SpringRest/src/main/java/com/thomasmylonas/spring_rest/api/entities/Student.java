@@ -1,6 +1,7 @@
 package com.thomasmylonas.spring_rest.api.entities;
 
 import com.thomasmylonas.spring_rest.api.enums.Status;
+import com.thomasmylonas.spring_rest.api.models.StatusConverter;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -9,9 +10,8 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -53,7 +53,7 @@ public class Student {
     @Column(name = "Department_Id")
     private String departmentId;
 
-    @Enumerated(value = EnumType.STRING)
     @Column(name = "Status")
+    @Convert(converter = StatusConverter.class)
     private Status status;
 }
