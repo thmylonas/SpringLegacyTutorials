@@ -32,8 +32,6 @@ import java.util.List;
 @Slf4j
 public class StudentDao {
 
-    private static final String ROLLBACK_MESSAGE = "Because of an 'Exception': '{}', the transaction is rolled back!";
-
     private final EntityManagerFactory entityManagerFactory; // Autowired by "@RequiredArgsConstructor" (as final)
     private EntityManager em; // Created into "StudentDao::init" (NOT autowired - must NOT be final - "@RequiredArgsConstructor")
 
@@ -95,7 +93,8 @@ public class StudentDao {
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
-            log.error(ROLLBACK_MESSAGE, e.getMessage());
+            log.error(rollbackMessage("{}"), e.getMessage());
+            throw new RuntimeException(rollbackMessage(e.getMessage()), e);
         }
         return student; // see method's documentation
     }
@@ -123,7 +122,8 @@ public class StudentDao {
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
-            log.error(ROLLBACK_MESSAGE, e.getMessage());
+            log.error(rollbackMessage("{}"), e.getMessage());
+            throw new RuntimeException(rollbackMessage(e.getMessage()), e);
         }
         return students; // see method's documentation
     }
@@ -152,11 +152,13 @@ public class StudentDao {
             em.getTransaction().commit();
         } catch (RequestedResourceNotFoundException e) {
             em.getTransaction().rollback();
-            log.error(ROLLBACK_MESSAGE + " - The Student to update, is not found!", e.getMessage());
+            log.error(rollbackMessage("{}"), e.getMessage());
+            log.error("The Student to update, is not found!");
             throw new RequestedResourceNotFoundException(Student.class.getSimpleName(), id);
         } catch (Exception e) {
             em.getTransaction().rollback();
-            log.error(ROLLBACK_MESSAGE, e.getMessage());
+            log.error(rollbackMessage("{}"), e.getMessage());
+            throw new RuntimeException(rollbackMessage(e.getMessage()), e);
         }
         return updatedStudent; // It can never be null
     }
@@ -181,7 +183,8 @@ public class StudentDao {
             em.getTransaction().commit();
         } catch (Exception e) {
             em.getTransaction().rollback();
-            log.error(ROLLBACK_MESSAGE + " - The Student to delete, is not found!", e.getMessage());
+            log.error(rollbackMessage("{}"), e.getMessage());
+            throw new RuntimeException(rollbackMessage(e.getMessage()), e);
         }
     }
 
@@ -192,6 +195,10 @@ public class StudentDao {
         } catch (Exception e) {
             throw new RuntimeException("Error creating EntityManager!", e);
         }
+    }
+
+    private String rollbackMessage(String exceptionMessage) {
+        return String.format("Because of an 'Exception': '%s', the transaction is rolled back!", exceptionMessage);
     }
 
     private Student updateStudentWithGivenObject(Student studentToUpdate, Student student) {
