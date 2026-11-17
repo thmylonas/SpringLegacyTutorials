@@ -430,7 +430,7 @@ This fix this problem,
 
 Significant Note:
 ---------------------
-In "SpringBoot" this parameter is not needed. That default response is returned in JSON.
+In "SpringBoot" this extra parameter is not needed. By default the response is in JSON format.
 
 ========================================================================================================================
 
