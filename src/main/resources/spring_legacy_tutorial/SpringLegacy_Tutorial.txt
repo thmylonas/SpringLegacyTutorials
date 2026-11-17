@@ -415,6 +415,24 @@ So, they need to return the resource to the Client.
 
 ========================================================================================================================
 
+[SpringRest] How "@ControllerAdvice" can return JSON response
+-----------------------------------------------------------------
+
+Link:
+- https://stackoverflow.com/questions/42983228/controlleradvice-is-not-returning-json-response
+
+In SpringRest (no "SpringBoot"), the "@ControllerAdvice" is not returning JSON response.
+This fix this problem,
+- Go to the: "ResponseBuilder::buildResponseError"
+- In the return statement add the extra parameter:
+    > ".header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE)"
+
+Significant Note:
+---------------------
+In "SpringBoot" this parameter is not needed. That default response is returned in JSON.
+
+========================================================================================================================
+
 Questions/Problems/Issues
 -----------------------------
 

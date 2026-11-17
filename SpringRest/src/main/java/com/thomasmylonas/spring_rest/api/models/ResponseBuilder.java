@@ -2,6 +2,7 @@ package com.thomasmylonas.spring_rest.api.models;
 
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -36,6 +37,6 @@ public class ResponseBuilder {
                 .errorMessages(errorMessages)
                 .path(ServletUriComponentsBuilder.fromCurrentRequest().build().toUriString()) // "request.getDescription(false)"
                 .build();
-        return ResponseEntity.status(httpStatus).body(responseError);
+        return ResponseEntity.status(httpStatus).header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON_VALUE).body(responseError); // See tutorial: '[SpringRest] How "@ControllerAdvice" can return JSON response'
     }
 }
