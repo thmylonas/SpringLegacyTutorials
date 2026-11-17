@@ -44,7 +44,7 @@ public class DataAccessConfig {
         //emfb.setPersistenceUnitName("StudentPU_H2");
         emfb.setDataSource(dataSource);
         emfb.setJpaVendorAdapter(jpaVendorAdapter);
-        emfb.setPackagesToScan("com.thomasmylonas.spring_rest.entities", "com.thomasmylonas.spring_rest.daos");
+        emfb.setPackagesToScan("com.thomasmylonas.spring_rest.api.entities", "com.thomasmylonas.spring_rest.api.daos");
 
         Properties properties = new Properties();
         properties.setProperty("hibernate.hbm2ddl.auto", "update");

@@ -50,10 +50,10 @@ public class Student {
     @Column(name = "Absences")
     private Integer absences;
 
-    @Column(name = "Department_Id", length = 10)
+    @Column(name = "Department_Id")
     private String departmentId;
 
     @Enumerated(value = EnumType.STRING)
-    @Column(name = "Status", length = 20)
+    @Column(name = "Status")
     private Status status;
 }
