@@ -51,7 +51,7 @@ public class StudentDao {
     public Student findById(Long id) throws IllegalArgumentException, RequestedResourceNotFoundException {
 
         if (id == null || id < 0) {
-            throw new IllegalArgumentException("The id is not valid!");
+            throw new IllegalArgumentException("The id is not valid!"); // IllegalArgumentException
         }
         Student student = em.find(Student.class, id); // IllegalArgumentException
         if (student == null) {
@@ -82,7 +82,7 @@ public class StudentDao {
     public Student save(Student student) throws IllegalArgumentException {
 
         if (student == null) {
-            throw new IllegalArgumentException("The student is not valid (is null)!");
+            throw new IllegalArgumentException("The student is not valid (is null)!"); // IllegalArgumentException
         }
         try {
             em.getTransaction().begin();
@@ -111,7 +111,7 @@ public class StudentDao {
     public List<Student> saveAll(List<Student> students) throws IllegalArgumentException {
 
         if (students == null || students.isEmpty() || students.contains(null)) {
-            throw new IllegalArgumentException("The students are not valid!");
+            throw new IllegalArgumentException("The students are not valid!"); // IllegalArgumentException
         }
         try {
             em.getTransaction().begin();
@@ -141,7 +141,7 @@ public class StudentDao {
 
         Student updatedStudent = null;
         if (id == null || id < 0 || student == null) {
-            throw new IllegalArgumentException("The arguments are not valid!");
+            throw new IllegalArgumentException("The arguments are not valid!"); // IllegalArgumentException
         }
         try {
             em.getTransaction().begin();
@@ -172,7 +172,7 @@ public class StudentDao {
     public void deleteById(Long id) throws IllegalArgumentException {
 
         if (id == null || id < 0) {
-            throw new IllegalArgumentException("The id is not valid!");
+            throw new IllegalArgumentException("The id is not valid!"); // IllegalArgumentException
         }
         try {
             em.getTransaction().begin();
