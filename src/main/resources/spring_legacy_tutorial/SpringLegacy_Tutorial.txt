@@ -440,7 +440,7 @@ In "SpringBoot" this extra parameter is not needed. By default the response is i
 In the "Student" Entity, the "lastName" has the constraint "length = 30":
     @Entity public class Student {
         @Id private Long id;
-        @Column(length = 30) private String lastName;
+        @Column(name = "Last_Name", length = 30) private String lastName;
     }
 
 In Postman, I make the request:
