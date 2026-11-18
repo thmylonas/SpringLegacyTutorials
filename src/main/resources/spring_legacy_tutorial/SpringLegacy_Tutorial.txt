@@ -447,7 +447,7 @@ In Postman, I make the request:
     - POST, "http://localhost:8080/api/v1/students"
     - Body:
         {
-          "last_name": "Soldatova111111111111111111111111111111111111111111111",...
+          "Last_Name": "Soldatova111111111111111111111111111111111111111111111",...
         }
 
 and I get the next "Constraint_Validation" console error log:
