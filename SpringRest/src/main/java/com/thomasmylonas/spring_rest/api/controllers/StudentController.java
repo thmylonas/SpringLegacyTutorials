@@ -2,6 +2,8 @@ package com.thomasmylonas.spring_rest.api.controllers;
 
 import com.thomasmylonas.spring_rest.api.dtos.student_dtos.StudentRequestDto;
 import com.thomasmylonas.spring_rest.api.dtos.student_dtos.StudentResponseDto;
+import com.thomasmylonas.spring_rest.api.exceptions.RequestedResourceNotFoundException;
+import com.thomasmylonas.spring_rest.api.exceptions.RollbackException;
 import com.thomasmylonas.spring_rest.api.models.ResponseBuilder;
 import com.thomasmylonas.spring_rest.api.models.ResponseSuccess;
 import com.thomasmylonas.spring_rest.api.services.StudentService;
@@ -37,18 +39,19 @@ public class StudentController {
      *
      * @param studentId The "studentId"
      * @return The ResponseEntity<ResponseSuccess>
-     * @throws IllegalArgumentException The IllegalArgumentException might be thrown
+     * @throws IllegalArgumentException           The IllegalArgumentException might be thrown
+     * @throws RequestedResourceNotFoundException The RequestedResourceNotFoundException might be thrown
      */
     @RequestMapping(path = {"/{id}"}, method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody
-    public ResponseEntity<ResponseSuccess> findStudentById(@PathVariable(value = "id") Long studentId) throws IllegalArgumentException {
+    public ResponseEntity<ResponseSuccess> findStudentById(@PathVariable(value = "id") Long studentId) throws IllegalArgumentException, RequestedResourceNotFoundException {
 
         if (studentId == null || studentId < 0) {
             throw new IllegalArgumentException("The id is not valid!"); // IllegalArgumentException
         }
         final String message = "Success: The Student with ID " + studentId + " is found!";
-        StudentResponseDto studentResponseDto = studentService.findStudentById(studentId);
+        StudentResponseDto studentResponseDto = studentService.findStudentById(studentId); // IllegalArgumentException, RequestedResourceNotFoundException
         return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("student_response", studentResponseDto));
     }
 
@@ -74,17 +77,18 @@ public class StudentController {
      * @param studentRequestDto The "studentRequestDto"
      * @return The ResponseEntity<ResponseSuccess>
      * @throws IllegalArgumentException The IllegalArgumentException might be thrown
+     * @throws RollbackException        The RollbackException might be thrown
      */
     @RequestMapping(method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.CREATED)
     @ResponseBody
-    public ResponseEntity<ResponseSuccess> saveStudent(@RequestBody StudentRequestDto studentRequestDto) throws IllegalArgumentException {
+    public ResponseEntity<ResponseSuccess> saveStudent(@RequestBody StudentRequestDto studentRequestDto) throws IllegalArgumentException, RollbackException {
 
         if (studentRequestDto == null) {
             throw new IllegalArgumentException("The student is not valid (is null)!"); // IllegalArgumentException
         }
         final String message = "Created: The Student has been created successfully!";
-        StudentResponseDto savedStudentResponseDto = studentService.saveStudent(studentRequestDto);
+        StudentResponseDto savedStudentResponseDto = studentService.saveStudent(studentRequestDto); // IllegalArgumentException, RollbackException
         String savedStudentUri = ServletUriComponentsBuilder
                 .fromCurrentContextPath() // "http://localhost:8080"
                 .path(REQUEST_MAPPING + "/{id}")
@@ -100,17 +104,18 @@ public class StudentController {
      * @param studentRequestDtos The "studentRequestDtos"
      * @return The ResponseEntity<ResponseSuccess>
      * @throws IllegalArgumentException The IllegalArgumentException might be thrown
+     * @throws RollbackException        The RollbackException might be thrown
      */
     @RequestMapping(path = {"/all"}, method = RequestMethod.POST, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.CREATED)
     @ResponseBody
-    public ResponseEntity<ResponseSuccess> saveAllStudents(@RequestBody List<StudentRequestDto> studentRequestDtos) throws IllegalArgumentException {
+    public ResponseEntity<ResponseSuccess> saveAllStudents(@RequestBody List<StudentRequestDto> studentRequestDtos) throws IllegalArgumentException, RollbackException {
 
         if (studentRequestDtos == null || studentRequestDtos.isEmpty() || studentRequestDtos.contains(null)) {
             throw new IllegalArgumentException("The students are not valid!"); // IllegalArgumentException
         }
         final String message = "Created: The Students have been created successfully!";
-        List<StudentResponseDto> savedStudentResponseDtos = studentService.saveAllStudents(studentRequestDtos);
+        List<StudentResponseDto> savedStudentResponseDtos = studentService.saveAllStudents(studentRequestDtos); // IllegalArgumentException, RollbackException
         return responseBuilder.buildResponseSuccess(HttpStatus.CREATED, message, Map.of("saved_students_response", savedStudentResponseDtos));
     }
 
@@ -121,18 +126,20 @@ public class StudentController {
      * @param studentRequestDto The "studentRequestDto"
      * @param studentId         The "studentId"
      * @return The ResponseEntity<ResponseSuccess>
-     * @throws IllegalArgumentException The IllegalArgumentException might be thrown
+     * @throws IllegalArgumentException           The IllegalArgumentException might be thrown
+     * @throws RequestedResourceNotFoundException The RequestedResourceNotFoundException might be thrown
+     * @throws RollbackException                  The RollbackException might be thrown
      */
     @RequestMapping(path = {"/{id}"}, method = RequestMethod.PUT, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody
-    public ResponseEntity<ResponseSuccess> updateStudent(@RequestBody StudentRequestDto studentRequestDto, @PathVariable(value = "id") Long studentId) throws IllegalArgumentException {
+    public ResponseEntity<ResponseSuccess> updateStudent(@RequestBody StudentRequestDto studentRequestDto, @PathVariable(value = "id") Long studentId) throws IllegalArgumentException, RequestedResourceNotFoundException, RollbackException {
 
         if (studentId == null || studentId < 0 || studentRequestDto == null) {
             throw new IllegalArgumentException("The arguments are not valid!"); // IllegalArgumentException
         }
         final String message = "Success: The Student with ID " + studentId + " has been updated successfully!";
-        StudentResponseDto updatedStudentResponseDto = studentService.updateStudent(studentRequestDto, studentId);
+        StudentResponseDto updatedStudentResponseDto = studentService.updateStudent(studentRequestDto, studentId); // IllegalArgumentException, RequestedResourceNotFoundException, RollbackException
         return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("updated_student_response", updatedStudentResponseDto));
     }
 
@@ -142,18 +149,20 @@ public class StudentController {
      *
      * @param studentId The "studentId"
      * @return The ResponseEntity<ResponseSuccess>
-     * @throws IllegalArgumentException The IllegalArgumentException might be thrown
+     * @throws IllegalArgumentException           The IllegalArgumentException might be thrown
+     * @throws RequestedResourceNotFoundException The RequestedResourceNotFoundException might be thrown
+     * @throws RollbackException                  The RollbackException might be thrown
      */
     @RequestMapping(path = {"/{id}"}, method = RequestMethod.DELETE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.OK)
     @ResponseBody
-    public ResponseEntity<ResponseSuccess> deleteStudentById(@PathVariable(value = "id") Long studentId) throws IllegalArgumentException {
+    public ResponseEntity<ResponseSuccess> deleteStudentById(@PathVariable(value = "id") Long studentId) throws IllegalArgumentException, RequestedResourceNotFoundException, RollbackException {
 
         if (studentId == null || studentId < 0) {
             throw new IllegalArgumentException("The id is not valid!"); // IllegalArgumentException
         }
         final String message = "Success: The Student with ID " + studentId + " has been deleted successfully!";
-        studentService.deleteStudentById(studentId);
+        studentService.deleteStudentById(studentId); // IllegalArgumentException, RequestedResourceNotFoundException, RollbackException
         return responseBuilder.buildResponseSuccess(HttpStatus.OK, message, Map.of("message", message));
     }
 }

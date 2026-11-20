@@ -56,7 +56,7 @@ public class StudentDao {
         }
         Student student = em.find(Student.class, id); // IllegalArgumentException
         if (student == null) {
-            throw new RequestedResourceNotFoundException(Student.class.getSimpleName(), id);
+            throw new RequestedResourceNotFoundException(Student.class.getSimpleName(), id); // RequestedResourceNotFoundException
         }
         return student; // It can never be null
     }
