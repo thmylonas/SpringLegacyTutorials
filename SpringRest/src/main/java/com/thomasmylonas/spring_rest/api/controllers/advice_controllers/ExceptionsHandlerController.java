@@ -1,7 +1,7 @@
 package com.thomasmylonas.spring_rest.api.controllers.advice_controllers;
 
+import com.thomasmylonas.spring_rest.api.exceptions.GeneralRollbackException;
 import com.thomasmylonas.spring_rest.api.exceptions.RequestedResourceNotFoundException;
-import com.thomasmylonas.spring_rest.api.exceptions.RollbackException;
 import com.thomasmylonas.spring_rest.api.models.ResponseBuilder;
 import com.thomasmylonas.spring_rest.api.models.ResponseError;
 import lombok.RequiredArgsConstructor;
@@ -36,7 +36,7 @@ public class ExceptionsHandlerController {
         return responseBuilder.buildResponseError(HttpStatus.BAD_REQUEST, Map.of("error_message", message));
     }
 
-    @ExceptionHandler(value = {RollbackException.class, Exception.class})
+    @ExceptionHandler(value = {GeneralRollbackException.class, Exception.class})
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR) // 500: "Internal Server Error"
     @ResponseBody
     public ResponseEntity<ResponseError> handleException(Exception e) {

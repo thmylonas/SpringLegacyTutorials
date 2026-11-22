@@ -1,8 +1,8 @@
 package com.thomasmylonas.spring_rest.api.services;
 
 import com.thomasmylonas.spring_rest.api.entities.Student;
+import com.thomasmylonas.spring_rest.api.exceptions.GeneralRollbackException;
 import com.thomasmylonas.spring_rest.api.exceptions.RequestedResourceNotFoundException;
-import com.thomasmylonas.spring_rest.api.exceptions.RollbackException;
 import com.thomasmylonas.spring_rest.helpers.TestDataProvider;
 import com.thomasmylonas.spring_rest.api.dtos.student_dtos.StudentRequestDto;
 import com.thomasmylonas.spring_rest.api.dtos.student_dtos.StudentResponseDto;
@@ -40,45 +40,45 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public StudentResponseDto saveStudent(StudentRequestDto studentRequestDto) throws IllegalArgumentException, RollbackException {
+    public StudentResponseDto saveStudent(StudentRequestDto studentRequestDto) throws IllegalArgumentException, GeneralRollbackException {
 
         if (studentRequestDto == null) {
             throw new IllegalArgumentException("The studentRequestDto is not valid (is null)!"); // IllegalArgumentException
         }
         Student student = studentMapper.toStudent(studentRequestDto);
-        Student savedStudent = studentDao.save(student); // IllegalArgumentException, RollbackException
+        Student savedStudent = studentDao.save(student); // IllegalArgumentException, GeneralRollbackException
         return studentMapper.fromStudent(savedStudent);
     }
 
     @Override
-    public List<StudentResponseDto> saveAllStudents(List<StudentRequestDto> studentRequestDtos) throws IllegalArgumentException, RollbackException {
+    public List<StudentResponseDto> saveAllStudents(List<StudentRequestDto> studentRequestDtos) throws IllegalArgumentException, GeneralRollbackException {
 
         if (studentRequestDtos == null || studentRequestDtos.contains(null)) {
             throw new IllegalArgumentException("The studentRequestDtos are not valid (are null)!"); // IllegalArgumentException
         }
         List<Student> students = studentRequestDtos.stream().map(studentMapper::toStudent).toList();
-        List<Student> savedStudents = studentDao.saveAll(students); // IllegalArgumentException, RollbackException
+        List<Student> savedStudents = studentDao.saveAll(students); // IllegalArgumentException, GeneralRollbackException
         return savedStudents.stream().map(studentMapper::fromStudent).toList();
     }
 
     @Override
-    public StudentResponseDto updateStudent(StudentRequestDto studentRequestDto, Long id) throws IllegalArgumentException, RequestedResourceNotFoundException, RollbackException {
+    public StudentResponseDto updateStudent(StudentRequestDto studentRequestDto, Long id) throws IllegalArgumentException, RequestedResourceNotFoundException, GeneralRollbackException {
 
         if (studentRequestDto == null) {
             throw new IllegalArgumentException("The studentRequestDto is not valid (is null)!"); // IllegalArgumentException
         }
         Student student = studentMapper.toStudent(studentRequestDto);
-        Student updatedStudent = studentDao.update(student, id); // IllegalArgumentException, RequestedResourceNotFoundException, RollbackException
+        Student updatedStudent = studentDao.update(student, id); // IllegalArgumentException, RequestedResourceNotFoundException, GeneralRollbackException
         return studentMapper.fromStudent(updatedStudent);
     }
 
     @Override
-    public void deleteStudentById(Long id) throws IllegalArgumentException, RequestedResourceNotFoundException, RollbackException {
-        studentDao.deleteById(id); // IllegalArgumentException, RequestedResourceNotFoundException, RollbackException
+    public void deleteStudentById(Long id) throws IllegalArgumentException, RequestedResourceNotFoundException, GeneralRollbackException {
+        studentDao.deleteById(id); // IllegalArgumentException, RequestedResourceNotFoundException, GeneralRollbackException
     }
 
-    private void initStudentsList() throws IllegalArgumentException, RollbackException {
+    private void initStudentsList() throws IllegalArgumentException, GeneralRollbackException {
         List<Student> students = new ArrayList<>(TestDataProvider.STUDENTS);
-        studentDao.saveAll(students); // IllegalArgumentException, RollbackException
+        studentDao.saveAll(students); // IllegalArgumentException, GeneralRollbackException
     }
 }
