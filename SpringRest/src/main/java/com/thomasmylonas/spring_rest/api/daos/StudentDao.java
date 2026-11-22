@@ -38,7 +38,7 @@ public class StudentDao {
 
     @PostConstruct
     private void init() {
-        em = createEntityManager();
+        em = createEntityManager(); // IllegalStateException
     }
 
     /**
@@ -199,7 +199,7 @@ public class StudentDao {
         }
     }
 
-    private EntityManager createEntityManager() {
+    private EntityManager createEntityManager() throws IllegalStateException {
 
         try {
             return entityManagerFactory.createEntityManager(); // IllegalStateException
