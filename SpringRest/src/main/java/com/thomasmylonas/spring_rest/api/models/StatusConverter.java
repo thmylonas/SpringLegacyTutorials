@@ -1,6 +1,7 @@
 package com.thomasmylonas.spring_rest.api.models;
 
 import com.thomasmylonas.spring_rest.api.enums.Status;
+import com.thomasmylonas.spring_rest.helpers.HelperClass;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
@@ -15,6 +16,6 @@ public class StatusConverter implements AttributeConverter<Status, String> {
 
     @Override
     public Status convertToEntityAttribute(String statusValue) {
-        return Status.valueOfStatus(statusValue);
+        return HelperClass.isStringNullOrEmpty(statusValue) ? null : Status.valueOfStatus(statusValue);
     }
 }
